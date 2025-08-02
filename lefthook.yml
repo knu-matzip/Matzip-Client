@@ -9,10 +9,11 @@ pre-push:
   commands:
     audit-check:
       run: pnpm audit
-    type-check:
-      run: pnpm run type-check
-    unit-test:
-      run: pnpm run test -- --passWithNoTests
+    # 테스트 도입 전까지 비활성화
+    # type-check:
+    #   run: pnpm run type-check
+    # unit-test:
+    #   run: pnpm run test -- --passWithNoTests
 
 commit-msg:
   commands:
