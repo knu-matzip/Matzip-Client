@@ -4,10 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "lint": "eslint . --fix",
-    "check-types": "tsc --noEmit"
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build"
   },
   "dependencies": {
     "@repo/ui": "workspace:^"
