@@ -1,5 +1,8 @@
 name: 'Deploy Chromatic'
 
+permissions:
+  pull-requests: write
+
 on:
   pull_request:
     types: [opened, synchronize]
@@ -46,7 +49,6 @@ jobs:
 
       - name: Comment PR with Storybook URL
         uses: thollander/actions-comment-pull-request@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           message: '🚀storybook: ${{ steps.chromatic.outputs.storybookUrl }}'
