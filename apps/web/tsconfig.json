@@ -4,6 +4,7 @@
     "paths": {
       "@repo/ui/components/*": ["../../packages/ui/src/components/*"],
       "@repo/ui/hooks/*": ["../../packages/ui/src/hooks/*"],
+      "@repo/ui/utils/*": ["../../packages/ui/src/utils/*"]
     },
     "plugins": [
       {
