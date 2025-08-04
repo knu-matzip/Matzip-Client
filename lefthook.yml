@@ -1,8 +1,9 @@
 pre-commit:
   parallel: true
   commands:
-    lint-staged:
-      run: pnpm exec lint-staged
+    lint:
+      run: pnpm lint
+      stage_fixed: true
 
 pre-push:
   parallel: true

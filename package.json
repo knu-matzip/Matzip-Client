@@ -8,19 +8,9 @@
     "check-types": "turbo run check-types",
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
-  "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "turbo run lint --filter=...{apps/web,apps/docs}",
-      "prettier --write"
-    ],
-    "**/*.{md,json}": [
-      "prettier --write"
-    ]
-  },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",
     "@commitlint/config-conventional": "^19.8.1",
-    "lint-staged": "^16.1.2",
     "prettier": "^3.6.0",
     "prettier-plugin-tailwindcss": "^0.6.11",
     "turbo": "^2.5.5"
