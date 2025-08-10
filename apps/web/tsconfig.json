@@ -10,8 +10,10 @@
     /* alias */
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
-    }
+      "@/*": ["src/*"],
+      "@repo/ui/components/*": ["../../packages/ui/src/components/*"]
+    },
+
   },
   "include": [
     "**/*.ts",

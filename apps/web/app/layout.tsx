@@ -3,6 +3,7 @@ import './globals.css'
 import type { Metadata } from 'next'
 import QueryProvider from './QueryClientProvider'
 import localFont from 'next/font/local'
+import { Column } from '@repo/ui/components/Layout/Column'
 
 export const metadata: Metadata = {
   title: 'Create Turborepo',
@@ -23,7 +24,13 @@ export default function RootLayout({
   return (
     <html lang='ko'>
       <body className={pretendard.className}>
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          <div className={'flex h-svh justify-center bg-gray-50'}>
+            <Column className={'relative w-[450px] max-w-[450px] bg-white'}>
+              {children}
+            </Column>
+          </div>
+        </QueryProvider>
       </body>
     </html>
   )
