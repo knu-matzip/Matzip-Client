@@ -7,7 +7,7 @@ export const Column: FlexType = ({ as, className, children, ...restProps }) => {
   return (
     <Component
       as={as}
-      className={cn('ui:flex ui:flex-col ui:gap-2', className)}
+      className={cn('ui:flex ui:flex-col', className)}
       {...restProps}
     >
       {children}
