@@ -24,7 +24,7 @@ type FontWeight =
   | 'extrabold' // 800
   | 'black' // 900
 
-type TypographyVariant =
+export type TypographyVariant =
   | 'heading1'
   | 'heading2'
   | 'title1'
@@ -60,7 +60,7 @@ const fontWeightClasses: Record<FontWeight, string> = {
   black: 'ui:font-black',
 }
 
-const typographyVariants: Record<TypographyVariant, string> = {
+export const typographyVariants: Record<TypographyVariant, string> = {
   heading1: 'ui:text-[22px] ui:font-bold ui:leading-[1.4]', // 22px, Bold
   heading2: 'ui:text-xl ui:font-semibold ui:leading-[1.4]', // 20px, SemiBold
   title1: 'ui:text-lg ui:font-semibold ui:leading-[1.4]', // 18px, SemiBold
