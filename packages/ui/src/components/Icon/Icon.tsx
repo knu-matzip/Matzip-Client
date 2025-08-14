@@ -1,4 +1,4 @@
-import { iconMap, IconType } from './IconMap'
+import { iconMap, type IconType } from './IconMap'
 import { SVGProps } from 'react'
 import '@repo/tailwind-config'
 
