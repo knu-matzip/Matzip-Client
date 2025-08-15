@@ -1,6 +1,6 @@
 'use client'
 
-import { useLayoutEffect, useRef } from 'react'
+import { useId, useLayoutEffect, useRef } from 'react'
 import { Column } from '../Layout'
 import { cn } from '../../utils/cn'
 import { Text } from '../Text'
@@ -36,6 +36,7 @@ export const Textarea = ({
   maxLength = 1000,
   className,
 }: Props) => {
+  const id = useId()
   const textareaRef = useRef<HTMLTextAreaElement>(null)
 
   useLayoutEffect(() => {
@@ -54,6 +55,7 @@ export const Textarea = ({
   return (
     <Column>
       <textarea
+        name={`message-${id}`}
         ref={textareaRef}
         value={value}
         maxLength={maxLength}
