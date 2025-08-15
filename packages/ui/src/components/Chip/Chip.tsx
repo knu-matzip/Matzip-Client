@@ -30,7 +30,7 @@ type ChipTagKey = keyof typeof CHIP_TAGS
 export type ChipProps<C extends ElementType> = PolymorphicComponentProps<
   C,
   {
-    type: ChipTagKey
+    chipType: ChipTagKey
     onToggle?: () => void
   }
 >
@@ -50,7 +50,7 @@ export type ChipType = <C extends ElementType = 'button'>(
  *
  * @param as 렌더링할 HTML 태그 또는 컴포넌트
  * @param className 추가 CSS 클래스
- * @param type 표시할 Chip 타입
+ * @param chipType 표시할 Chip 타입
  * @param onToggle 클릭 시 실행할 콜백 함수
  * @param restProps 나머지 Props
  *
@@ -62,12 +62,12 @@ export type ChipType = <C extends ElementType = 'button'>(
 export const Chip: ChipType = ({
   as,
   className,
-  type,
+  chipType,
   onToggle,
   ...restProps
 }) => {
   const Component = as || 'button'
-  const { icon, label } = CHIP_TAGS[type]
+  const { icon, label } = CHIP_TAGS[chipType]
   const [isActive, setIsActive] = useState(false)
 
   const onClick = () => {
