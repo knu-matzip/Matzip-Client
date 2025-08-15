@@ -23,7 +23,7 @@ export const Button: ButtonType = ({
   className,
   size,
   children,
-  restProps,
+  ...restProps
 }) => {
   const Component = as || 'button'
 
@@ -41,7 +41,7 @@ export const Button: ButtonType = ({
       )}
       {...restProps}
     >
-      <Text as={'span'} variant={BUTTON_FONT_SIZE[size]}>
+      <Text as='span' variant={BUTTON_FONT_SIZE[size]}>
         {children}
       </Text>
     </Component>
