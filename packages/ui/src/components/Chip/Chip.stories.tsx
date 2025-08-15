@@ -14,10 +14,10 @@ type Story = StoryObj<typeof Chip>
 export const Default: Story = {
   render: () => (
     <Flex className='ui:gap-2'>
-      <Chip type='SOLO_FRIENDLY' />
-      <Chip type='GOOD_AMBIENCE' />
-      <Chip type='VALUE_FOR_MONEY' />
-      <Chip type='KIND_SERVICE' />
+      <Chip chipType='SOLO_FRIENDLY' />
+      <Chip chipType='GOOD_AMBIENCE' />
+      <Chip chipType='VALUE_FOR_MONEY' />
+      <Chip chipType='KIND_SERVICE' />
     </Flex>
   ),
 }
@@ -32,12 +32,12 @@ export const ClickableChips: Story = {
           'GOOD_AMBIENCE',
           'KIND_SERVICE',
         ] as const
-      ).map((type) => (
+      ).map((chipType) => (
         <Chip
-          key={type}
-          type={type}
+          key={chipType}
+          chipType={chipType}
           onToggle={() => {
-            console.log(`${type} 클릭됨!`)
+            console.log(`${chipType} 클릭됨!`)
           }}
         />
       ))}

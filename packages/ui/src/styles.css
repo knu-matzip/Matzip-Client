@@ -1,4 +1,4 @@
 /* Component-level styles for the UI package */
+@config "../tailwind.config.ts";
 @import "tailwindcss" prefix(ui);
 @import "@repo/tailwind-config";
-@config "../tailwind.config.ts";
