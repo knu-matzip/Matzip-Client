@@ -14,15 +14,15 @@ type FontSize =
   | '5xl' // 48px
 
 type FontWeight =
-  | 'thin' // 100
-  | 'extralight' // 200
-  | 'light' // 300
-  | 'normal' // 400
-  | 'medium' // 500
-  | 'semibold' // 600
-  | 'bold' // 700
-  | 'extrabold' // 800
-  | 'black' // 900
+  | 'thin' // Figma: Thin, 100
+  | 'extralight' // Figma: Extra Light, 200
+  | 'light' // Figma: Light, 300
+  | 'normal' // Figma: Regular / Normal, 400
+  | 'medium' // Figma: Medium, 500
+  | 'semibold' // Figma: Semi Bold, 600
+  | 'bold' // Figma: Bold, 700
+  | 'extrabold' // Figma: Extra Bold, 800
+  | 'black' // Figma: Black, 900
 
 export type TypographyVariant =
   | 'heading1'
