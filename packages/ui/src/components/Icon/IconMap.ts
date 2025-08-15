@@ -93,7 +93,7 @@ export const iconMap = {
   note: Note,
   smile: Smile,
   cry: Cry,
-  kakkoLogo: KakaoLogo,
+  kakaoLogo: KakaoLogo,
   crosshairs: Crosshairs,
 }
 
