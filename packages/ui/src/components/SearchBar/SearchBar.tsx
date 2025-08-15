@@ -7,7 +7,7 @@ export const SearchBar = ({ href }: { href: string }) => {
   return (
     <Flex
       as='a'
-      href={href || ''}
+      href={href}
       className={cn(
         'ui:border ui:border-gray-200',
         'ui:rounded-xl',
@@ -15,6 +15,7 @@ export const SearchBar = ({ href }: { href: string }) => {
         'ui:items-center',
         'ui:gap-2',
       )}
+      aria-label={'검색 페이지로 이동'}
     >
       <Icon type={'search'} size={16} />
       <Text
