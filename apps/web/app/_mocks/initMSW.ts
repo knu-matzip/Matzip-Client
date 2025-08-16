@@ -11,10 +11,11 @@ export const initServerMSW = () => {
 }
 
 export const initBrowserMSW = async () => {
-  if (typeof window !== 'undefined') {
+  if (typeof window !== 'undefined' && process.env.NODE_ENV === 'development') {
     const { worker } = await import('./worker')
     await worker.start({
       onUnhandledRequest: 'bypass',
     })
+    console.log('✅ MSW 브라우저 시작됨')
   }
 }
