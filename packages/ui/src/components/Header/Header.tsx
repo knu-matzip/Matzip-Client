@@ -29,6 +29,8 @@ export const OnlyLeftHeader = ({
 }) => (
   <Flex as={'header'} className='ui:gap-1 ui:py-3.5 ui:px-5 ui:items-center'>
     <Icon type={icon} size={26} />
-    <Text variant={'heading1'}>{name}</Text>
+    <Text as={'h1'} variant={'heading1'}>
+      {name}
+    </Text>
   </Flex>
 )

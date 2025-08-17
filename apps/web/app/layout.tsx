@@ -1,5 +1,6 @@
 import '@repo/ui/styles.css'
 import './globals.css'
+import 'keen-slider/keen-slider.min.css'
 import type { Metadata } from 'next'
 import QueryProvider from './QueryClientProvider'
 import localFont from 'next/font/local'
@@ -30,7 +31,7 @@ export default async function RootLayout({
       <body className={pretendard.className}>
         <MSWProvider>
           <QueryProvider>
-            <div className={'flex h-svh justify-center bg-gray-50'}>
+            <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
               <Column className={'relative w-[450px] max-w-[450px] bg-white'}>
                 {children}
               </Column>

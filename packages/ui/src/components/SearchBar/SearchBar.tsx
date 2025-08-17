@@ -3,7 +3,13 @@ import { Flex } from '../Layout'
 import { cn } from '../../utils/cn'
 import { Text } from '../Text'
 
-export const SearchBar = ({ href }: { href: string }) => {
+export const SearchBar = ({
+  href,
+  className,
+}: {
+  href: string
+  className?: string
+}) => {
   return (
     <Flex
       as='a'
@@ -14,6 +20,7 @@ export const SearchBar = ({ href }: { href: string }) => {
         'ui:p-3.5',
         'ui:items-center',
         'ui:gap-2',
+        className,
       )}
       aria-label={'검색 페이지로 이동'}
     >

@@ -1,0 +1,18 @@
+import { http, HttpResponse } from 'msw'
+import { API_PATH } from '@/_constants/path'
+import { RankingPlaces } from '../data/place'
+
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || ''
+
+const addBaseUrl = (path: string) => {
+  return `${BASE_URL}${path}`
+}
+
+export const PlaceHandlers = [
+  http.get(addBaseUrl(API_PATH.RANKING('likes')), () => {
+    return HttpResponse.json(RankingPlaces)
+  }),
+  http.get(addBaseUrl(API_PATH.RANKING('views')), () => {
+    return HttpResponse.json(RankingPlaces)
+  }),
+]

@@ -1,3 +1,4 @@
-import { CategoryHandlers } from '@/_mocks/handlers/categoryHandlers'
+import { CategoryHandlers } from './categoryHandlers'
+import { PlaceHandlers } from './placeHandlers'
 
-export const handlers = [...CategoryHandlers]
+export const handlers = [...CategoryHandlers, ...PlaceHandlers]

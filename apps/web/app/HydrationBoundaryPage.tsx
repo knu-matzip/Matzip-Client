@@ -6,49 +6,35 @@ import {
 import { ReactNode } from 'react'
 
 /**
- * React Query 쿼리 구성 타입
+ * 서버 컴포넌트에서 React Query 쿼리를 미리 요청(prefetch)하고,
+ * 클라이언트로 전달하여 초기 데이터를 사용할 수 있도록 해주는 컴포넌트입니다.
  *
- * @property queryKey - React Query에서 사용할 쿼리 키
- * @property queryFn  - 데이터를 가져오는 비동기 함수
- */
-type QueryConfig = {
-  queryKey: string[]
-  queryFn: () => Promise<unknown>
-}
-
-/**
- * 서버 컴포넌트에서 React Query 쿼리를 미리 요청(prefetch)한 뒤,
- * dehydrate 상태를 클라이언트에 전달하기 위한 컴포넌트.
+ * @param children - HydrationBoundary로 감쌀 React 노드
+ * @param prefetch - 서버에서 실행할 prefetch 함수. QueryClient를 받아서 필요한 쿼리를 모두 prefetch하도록 구현합니다.
+ *
+ * @returns HydrationBoundary로 감싼 children
  *
  * @example
  * ```tsx
  * <HydrationBoundaryPage
- *   queries={[
- *     { queryKey: ['user'], queryFn: fetchUser },
- *     { queryKey: ['posts'], queryFn: fetchPosts },
- *   ]}
+ *   prefetch={async (queryClient) => {
+ *     await queryClient.prefetchQuery(useCategoryQueries.list())
+ *     await queryClient.prefetchQuery(usePlaceQueries.rankingList('likes'))
+ *   }}
  * >
- *   <MyPage />
+ *   <Categories />
  * </HydrationBoundaryPage>
  * ```
- *
- * @param queries - 사전 요청할 쿼리들의 배열
- * @param children - HydrationBoundary로 감쌀 React 노드
  */
 export const HydrationBoundaryPage = async ({
-  queries,
   children,
+  prefetch,
 }: {
-  queries: QueryConfig[]
   children: ReactNode
+  prefetch: (queryClient: QueryClient) => Promise<void>
 }) => {
   const queryClient = new QueryClient()
-
-  await Promise.all(
-    queries.map(({ queryKey, queryFn }) =>
-      queryClient.prefetchQuery({ queryKey, queryFn }),
-    ),
-  )
+  await prefetch(queryClient)
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
