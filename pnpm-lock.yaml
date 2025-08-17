@@ -129,6 +129,9 @@ importers:
       axios:
         specifier: ^1.11.0
         version: 1.11.0
+      keen-slider:
+        specifier: ^6.8.6
+        version: 6.8.6
       motion:
         specifier: ^12.23.12
         version: 12.23.12(react-dom@19.1.0)(react@19.1.0)
@@ -7534,6 +7537,10 @@ packages:
       object.assign: 4.1.7
       object.values: 1.2.1
     dev: true
+
+  /keen-slider@6.8.6:
+    resolution: {integrity: sha512-dcEQ7GDBpCjUQA8XZeWh3oBBLLmyn8aoeIQFGL/NTVkoEOsmlnXqA4QykUm/SncolAZYGsEk/PfUhLZ7mwMM2w==}
+    dev: false
 
   /keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
