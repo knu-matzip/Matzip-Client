@@ -5,7 +5,7 @@ import { useCategoryQueries } from '@/_apis/queries/category'
 import { cn } from '@repo/ui/utils/cn'
 import { CategoryItem } from './CategoryItem'
 
-export default function Categories() {
+export const Categories = () => {
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
 
   return (
