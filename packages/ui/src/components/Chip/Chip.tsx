@@ -15,7 +15,7 @@ export type ChipProps<C extends ElementType> = PolymorphicComponentProps<
   }
 >
 
-export type ChipType = <C extends ElementType = 'button'>(
+export type ChipType = <C extends ElementType = 'div'>(
   props: PropsWithChildren<ChipProps<C>>,
 ) => JSX.Element
 
@@ -26,7 +26,7 @@ export type ChipType = <C extends ElementType = 'button'>(
  * - 클릭 시 내부 상태 `isActive`를 토글하며, `onToggle` 콜백을 실행합니다.
  * - 다양한 HTML 요소(`as` prop)를 지정하여 렌더링할 수 있습니다.
  *
- * @template C 렌더링할 HTML 태그 타입 (기본값: 'button')
+ * @template C 렌더링할 HTML 태그 타입 (기본값: 'div')
  *
  * @param as 렌더링할 HTML 태그 또는 컴포넌트
  * @param className 추가 CSS 클래스
