@@ -74,8 +74,8 @@ export const Chip: ChipType = ({
         { 'ui:border-blue': isActive },
         className,
       )}
-      onClick={onClick}
       {...restProps}
+      onClick={onClick}
     >
       <Icon type={icon} size={16} />
       <Text as={'span'} variant={'caption1'} className={'ui:text-gray-300'}>
