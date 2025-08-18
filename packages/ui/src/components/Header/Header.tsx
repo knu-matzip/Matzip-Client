@@ -1,18 +1,22 @@
-import { Flex, JustifyBetween } from '../Layout'
 import type { ReactNode } from 'react'
-import { Icon } from '../Icon'
 import { Text } from '../Text'
-import type { IconType } from '../Icon/IconMap'
+import { Icon, type IconType } from '../Icon'
+import { Flex, JustifyBetween } from '../Layout'
+import { cn } from '../../utils/cn'
 
 type Props = {
   left?: ReactNode
   center?: ReactNode
   right?: ReactNode
+  className?: string
 }
 
-export const Header = ({ left, center, right }: Props) => {
+export const Header = ({ left, center, right, className }: Props) => {
   return (
-    <JustifyBetween as='header' className='ui:px-5 ui:py-3.5 ui:items-center'>
+    <JustifyBetween
+      as='header'
+      className={cn('ui:px-5 ui:py-3.5 ui:items-center', className)}
+    >
       {left}
       {center}
       {right ?? <div className='ui:invisible'>{left}</div>}
