@@ -9,6 +9,6 @@ import {
 export const getRankingPlaces = async (
   sort: RankingPlaceSort,
 ): Promise<RankingPlace[]> => {
-  const { data } = await axiosInstance.get(API_PATH.RANKING(sort))
+  const { data } = await axiosInstance.get(API_PATH.PLACES.BY_RANKING(sort))
   return RankingPlaceSchema.array().parse(data)
 }

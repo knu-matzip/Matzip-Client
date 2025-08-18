@@ -9,10 +9,10 @@ const addBaseUrl = (path: string) => {
 }
 
 export const PlaceHandlers = [
-  http.get(addBaseUrl(API_PATH.RANKING('likes')), () => {
+  http.get(addBaseUrl(API_PATH.PLACES.BY_RANKING('likes')), () => {
     return HttpResponse.json(RankingPlaces)
   }),
-  http.get(addBaseUrl(API_PATH.RANKING('views')), () => {
+  http.get(addBaseUrl(API_PATH.PLACES.BY_RANKING('views')), () => {
     return HttpResponse.json(RankingPlaces)
   }),
 ]

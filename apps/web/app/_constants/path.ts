@@ -2,7 +2,10 @@ import { RankingPlaceSort } from '@/_apis/schemas/place'
 
 export const API_PATH = {
   CATEGORY: '/categories',
-  RANKING: (sort: RankingPlaceSort) => `/places/ranking?sort=${sort}`,
+  PLACES: {
+    BY_CATEGORY: (id: string) => `/places/?categoryIds=${id}`,
+    BY_RANKING: (sort: RankingPlaceSort) => `/places/ranking?sort=${sort}`,
+  },
 }
 
 export const CLIENT_PATH = {
