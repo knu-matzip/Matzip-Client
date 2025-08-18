@@ -19,7 +19,7 @@ import { ReactNode } from 'react'
  * <HydrationBoundaryPage
  *   prefetch={async (queryClient) => {
  *     await queryClient.prefetchQuery(useCategoryQueries.list())
- *     await queryClient.prefetchQuery(usePlaceQueries.rankingList('likes'))
+ *     await queryClient.prefetchQuery(usePlaceQueries.byRanking('likes'))
  *   }}
  * >
  *   <Categories />

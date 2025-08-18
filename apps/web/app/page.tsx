@@ -9,7 +9,7 @@ import { SearchBar } from '@repo/ui/components/SearchBar'
 import { Column } from '@repo/ui/components/Layout'
 import { Banner } from '@/_components/Banner'
 import {
-  MostLikedPlaces,
+  MostLikesPlaces,
   MostViewsPlaces,
 } from '@/_components/RankingPlaceList'
 import { Divider } from '@repo/ui/components/Divider'
@@ -19,8 +19,8 @@ export default function Page() {
     <HydrationBoundaryPage
       prefetch={async (queryClient) => {
         await queryClient.prefetchQuery(useCategoryQueries.list())
-        await queryClient.prefetchQuery(usePlaceQueries.rankingList('likes'))
-        await queryClient.prefetchQuery(usePlaceQueries.rankingList('views'))
+        await queryClient.prefetchQuery(usePlaceQueries.byRanking('likes'))
+        await queryClient.prefetchQuery(usePlaceQueries.byRanking('views'))
       }}
     >
       <OnlyLeftHeader icon={'logo'} name={'맛집'} />
@@ -28,7 +28,7 @@ export default function Page() {
       <Column className={'scrollbar-hide gap-4 overflow-auto'}>
         <Categories />
         <Banner contents={[1, 2, 3, 4]} />
-        <MostLikedPlaces />
+        <MostLikesPlaces />
         <Divider />
         <MostViewsPlaces />
       </Column>

@@ -32,7 +32,7 @@ export default async function RootLayout({
         <MSWProvider>
           <QueryProvider>
             <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
-              <Column className={'relative w-[450px] max-w-[450px] bg-white'}>
+              <Column className={'relative w-full max-w-[450px] bg-white'}>
                 {children}
               </Column>
             </div>
