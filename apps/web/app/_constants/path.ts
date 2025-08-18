@@ -3,7 +3,7 @@ import { RankingPlaceSort } from '@/_apis/schemas/place'
 export const API_PATH = {
   CATEGORY: '/categories',
   PLACES: {
-    BY_CATEGORY: (id: string) => `/places/?categoryIds=${id}`,
+    BY_CATEGORY: (id: string) => `/places/?categoryId=${id}`,
     BY_RANKING: (sort: RankingPlaceSort) => `/places/ranking?sort=${sort}`,
   },
 }

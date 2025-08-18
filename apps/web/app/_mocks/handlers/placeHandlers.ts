@@ -15,4 +15,7 @@ export const PlaceHandlers = [
   http.get(addBaseUrl(API_PATH.PLACES.BY_RANKING('views')), () => {
     return HttpResponse.json(Places)
   }),
+  http.get(addBaseUrl(API_PATH.PLACES.BY_CATEGORY('1')), () => {
+    return HttpResponse.json(Places)
+  }),
 ]
