@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 import { API_PATH } from '@/_constants/path'
-import { RankingPlaces } from '../data/place'
+import { Places } from '../data/place'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || ''
 
@@ -10,9 +10,9 @@ const addBaseUrl = (path: string) => {
 
 export const PlaceHandlers = [
   http.get(addBaseUrl(API_PATH.PLACES.BY_RANKING('likes')), () => {
-    return HttpResponse.json(RankingPlaces)
+    return HttpResponse.json(Places)
   }),
   http.get(addBaseUrl(API_PATH.PLACES.BY_RANKING('views')), () => {
-    return HttpResponse.json(RankingPlaces)
+    return HttpResponse.json(Places)
   }),
 ]
