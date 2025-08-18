@@ -18,7 +18,7 @@ export const CategoryDetailPage = ({ initId }: Props) => {
   const [id, setId] = useState(initId)
 
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
-  const activeCategory = categories.filter((category) => category.id === id)[0]
+  const activeCategory = categories.find((category) => category.id === id)
 
   const setIdFunc = (id: string) => {
     setId(id)
