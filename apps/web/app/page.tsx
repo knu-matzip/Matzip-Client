@@ -19,8 +19,8 @@ export default function Page() {
     <HydrationBoundaryPage
       prefetch={async (queryClient) => {
         await queryClient.prefetchQuery(useCategoryQueries.list())
-        await queryClient.prefetchQuery(usePlaceQueries.rankingList('likes'))
-        await queryClient.prefetchQuery(usePlaceQueries.rankingList('views'))
+        await queryClient.prefetchQuery(usePlaceQueries.byRanking('likes'))
+        await queryClient.prefetchQuery(usePlaceQueries.byRanking('views'))
       }}
     >
       <OnlyLeftHeader icon={'logo'} name={'맛집'} />

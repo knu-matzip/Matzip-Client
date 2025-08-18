@@ -6,7 +6,7 @@ import {
   BasePlaceSchema,
 } from '../schemas/place'
 
-export const getRankingPlaces = async (
+export const getPlacesByRanking = async (
   sort: RankingPlaceSort,
 ): Promise<BasePlace[]> => {
   const { data } = await axiosInstance.get(API_PATH.PLACES.BY_RANKING(sort))
