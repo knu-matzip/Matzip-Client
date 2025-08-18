@@ -9,6 +9,30 @@ export const BasePlaceSchema = z.object({
   tags: z.array(CategorySchema),
 })
 
+export const PlaceDetailSchema = BasePlaceSchema.extend({
+  photos: z.array(
+    z.object({
+      photoId: z.number().transform(String),
+      photoUrl: z.url(),
+      displayOrder: z.number().transform(String),
+    }),
+  ),
+  location: z.object({
+    latitude: z.number(),
+    longitude: z.number(),
+  }),
+  isLiked: z.boolean(),
+  description: z.string(),
+  menus: z.array(
+    z.object({
+      name: z.string(),
+      price: z.number(),
+      isRecommended: z.boolean(),
+    }),
+  ),
+})
+
 export type RankingPlaceSort = 'views' | 'likes'
 
 export type BasePlace = z.infer<typeof BasePlaceSchema>
+export type PlaceDetail = z.infer<typeof PlaceDetailSchema>

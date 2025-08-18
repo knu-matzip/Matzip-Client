@@ -5,6 +5,7 @@ export const API_PATH = {
   PLACES: {
     BY_CATEGORY: (id: string) => `/places?categoryId=${id}`,
     BY_RANKING: (sort: RankingPlaceSort) => `/places/ranking?sort=${sort}`,
+    DETAIL: (id: string) => `/places/${id}`,
   },
 }
 

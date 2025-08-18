@@ -1,6 +1,6 @@
 import { http, HttpResponse } from 'msw'
 import { API_PATH } from '@/_constants/path'
-import { Places } from '../data/place'
+import { PlaceDetail, Places } from '../data/place'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || ''
 
@@ -17,5 +17,8 @@ export const PlaceHandlers = [
   }),
   http.get(addBaseUrl(API_PATH.PLACES.BY_CATEGORY('1')), () => {
     return HttpResponse.json(Places)
+  }),
+  http.get(addBaseUrl(API_PATH.PLACES.DETAIL('1')), () => {
+    return HttpResponse.json(PlaceDetail)
   }),
 ]
