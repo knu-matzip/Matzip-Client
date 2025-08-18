@@ -9,7 +9,7 @@ import { SearchBar } from '@repo/ui/components/SearchBar'
 import { Column } from '@repo/ui/components/Layout'
 import { Banner } from '@/_components/Banner'
 import {
-  MostLikedPlaces,
+  MostLikesPlaces,
   MostViewsPlaces,
 } from '@/_components/RankingPlaceList'
 import { Divider } from '@repo/ui/components/Divider'
@@ -28,7 +28,7 @@ export default function Page() {
       <Column className={'scrollbar-hide gap-4 overflow-auto'}>
         <Categories />
         <Banner contents={[1, 2, 3, 4]} />
-        <MostLikedPlaces />
+        <MostLikesPlaces />
         <Divider />
         <MostViewsPlaces />
       </Column>
