@@ -20,7 +20,7 @@ export const Menu = ({ menu }: Props) => {
       </Flex>
 
       <Text fontSize={'sm'} fontWeight={'semibold'} className={'text-gray-300'}>
-        {price.toLocaleString()}
+        {price.toLocaleString()} 원
       </Text>
     </JustifyBetween>
   )
