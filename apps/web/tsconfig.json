@@ -6,7 +6,7 @@
         "name": "next"
       }
     ],
-    "types": ["vitest/globals","vitest/jsdom"],
+    "types": ["vitest/globals","vitest/jsdom", "navermaps"],
     /* alias */
     "baseUrl": ".",
     "paths": {
