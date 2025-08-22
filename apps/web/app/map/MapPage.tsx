@@ -13,7 +13,7 @@ import { cn } from '@repo/ui/utils/cn'
 import { toLatLng } from './_utils/toLatLng'
 import { useWatchLocation } from './_hooks/useWatchLocation'
 import { PlaceList } from './_components/PlaceList'
-import { UserMarker } from './_components/Marker'
+import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
 
 export const MapPage = () => {
@@ -68,6 +68,13 @@ export const MapPage = () => {
           onZoomChanged={onCenterChanged}
         >
           {userLocation && <UserMarker position={userLocation} />}
+          {data?.map((place) => (
+            <PlaceMarker
+              key={place.placeId}
+              position={place.location}
+              icon={place.categories[0]?.iconKey || 'logo'}
+            />
+          ))}
         </NaverMap>
       </Container>
       <PlaceList places={data || []} />

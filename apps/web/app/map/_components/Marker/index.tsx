@@ -1,1 +1,1 @@
-export { UserMarker } from './Marker'
+export { UserMarker, PlaceMarker } from './Marker'
