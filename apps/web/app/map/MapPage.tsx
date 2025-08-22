@@ -10,10 +10,11 @@ import { usePlaceQueries } from '@/_apis/queries/place'
 import type { MapBounds } from '@/_apis/schemas/place'
 
 import { cn } from '@repo/ui/utils/cn'
-import { toLatLng } from '@/map/_utils/toLatLng'
-import { useCenterMapToCurrentLocation } from '@/map/_hooks/useCenterMapToCurrentLocation'
-import { PlaceList } from '@/map/_components/PlaceList'
-import { CurrentLocationButton } from '@/map/_components/CurrentLocationButton'
+import { toLatLng } from './_utils/toLatLng'
+import { useWatchLocation } from './_hooks/useWatchLocation'
+import { PlaceList } from './_components/PlaceList'
+import { UserMarker } from './_components/Marker'
+import { CurrentLocationButton } from './_components/CurrentLocationButton'
 
 export const MapPage = () => {
   const [map, setMap] = useState<naver.maps.Map | null>(null)
@@ -21,24 +22,23 @@ export const MapPage = () => {
   const [currentBounds, setCurrentBounds] = useState<MapBounds | null>(null)
 
   const { campus } = useCampusStore()
+  const { userLocation } = useWatchLocation()
   const { data } = useQuery(usePlaceQueries.byMap(currentBounds))
-  const CenterMapToCurrentLocation = useCenterMapToCurrentLocation(map)
 
   const updateBoundsFromMap = useCallback(() => {
     if (!map) return
-
     const bounds = map.getBounds()
-    const coords = {
+    setCurrentBounds({
       minLatitude: bounds.minY(),
       minLongitude: bounds.minX(),
       maxLatitude: bounds.maxY(),
       maxLongitude: bounds.maxX(),
-    }
-    setCurrentBounds(coords)
+    })
   }, [map])
 
-  const centerMapToUserLocation = async () => {
-    await CenterMapToCurrentLocation()
+  const centerMapToUserLocation = () => {
+    if (!map || !userLocation) return
+    map.setCenter(toLatLng(userLocation))
     updateBoundsFromMap()
     setIsCenteredOnUser(true)
   }
@@ -65,7 +65,10 @@ export const MapPage = () => {
         <NaverMap
           ref={setMap}
           defaultCenter={toLatLng(CAMPUS_LOCATION[campus])}
-        />
+          onZoomChanged={onCenterChanged}
+        >
+          {userLocation && <UserMarker position={userLocation} />}
+        </NaverMap>
       </Container>
       <PlaceList places={data || []} />
     </>

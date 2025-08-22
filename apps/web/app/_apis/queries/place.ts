@@ -41,7 +41,6 @@ export const usePlaceQueries = {
     return queryOptions({
       queryKey: PlaceQueryKeys.byMap(),
       queryFn: () => {
-        console.log(bounds)
         if (!bounds) return Promise.resolve([])
         return getPlacesByMap(bounds)
       },
