@@ -1,15 +1,18 @@
 'use client'
 
 import 'react-spring-bottom-sheet/dist/style.css'
-import { BottomSheet, BottomSheetRef } from 'react-spring-bottom-sheet'
 import { useRef } from 'react'
+import { BottomSheet, type BottomSheetRef } from 'react-spring-bottom-sheet'
+import type { PlaceByMap } from '@/_apis/schemas/place'
+import { PlaceListItem } from '@/_components/PlaceListItem'
+import { Text } from '@repo/ui/components/Text'
 
-export const PlaceList = () => {
+export const PlaceList = ({ places }: { places: PlaceByMap[] }) => {
   const sheetRef = useRef<BottomSheetRef | null>(null)
 
   return (
     <BottomSheet
-      className={'z-20'}
+      className={'z-10'}
       open
       blocking={false}
       ref={sheetRef}
@@ -20,7 +23,21 @@ export const PlaceList = () => {
       ]}
       expandOnContentDrag
     >
-      <div>하이</div>
+      {places.length > 0 ? (
+        <ul className={'px-5'}>
+          {places.map((place) => (
+            <PlaceListItem key={place.placeId} {...place} />
+          ))}
+        </ul>
+      ) : (
+        <Text
+          fontSize={'sm'}
+          fontWeight={'semibold'}
+          className={'pt-3 text-center text-gray-300'}
+        >
+          주위 검색된 맛집이 없습니다
+        </Text>
+      )}
     </BottomSheet>
   )
 }
