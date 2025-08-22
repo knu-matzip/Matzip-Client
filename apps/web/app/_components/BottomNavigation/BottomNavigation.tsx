@@ -15,6 +15,7 @@ export const BottomNavigation = () => {
     <JustifyBetween
       as={'nav'}
       className={cn(
+        'bg-white',
         'border-t-1',
         'border-gray-50',
         'h-15',
