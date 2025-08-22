@@ -31,13 +31,16 @@ export const UserMarker = ({ position }: { position: Coord }) => {
  * 맛집 위치를 나타내는 마커
  * @param icon
  * @param position
+ * @param handlePreviewPlace
  */
 export const PlaceMarker = ({
   icon,
   position,
+  handlePreviewPlace,
 }: {
   icon: IconType
   position: Coord
+  handlePreviewPlace: VoidFunction
 }) => {
   const naverMaps = useNavermaps()
   const MarkerIcon = ReactDOMServer.renderToString(
@@ -49,6 +52,7 @@ export const PlaceMarker = ({
 
   return (
     <Marker
+      onClick={handlePreviewPlace}
       position={new naverMaps.LatLng(toLatLng(position))}
       icon={{
         content: MarkerIcon,

@@ -30,8 +30,10 @@ export const PlaceListItem = ({
         href={CLIENT_PATH.PLACE_DETAIL(placeId)}
       >
         <Flex className={'gap-1'}>
-          <Text variant={'title2'}>{placeName}</Text>
-          <Icon type={mainCategoryIcon} size={16} />
+          <Text as={'span'} variant={'title2'}>
+            {placeName}
+          </Text>
+          <Icon type={mainCategoryIcon} size={18} />
         </Flex>
         <Text variant={'caption2'} className={'text-gray-300'}>
           {address}

@@ -16,15 +16,21 @@ import { PlaceList } from './_components/PlaceList'
 import { CampusButtonBax } from './_components/CampusButtom'
 import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
+import { PreviewPlace } from './_components/PreviewPlace'
 
 export const MapPage = () => {
   const [map, setMap] = useState<naver.maps.Map | null>(null)
   const [isCenteredOnUser, setIsCenteredOnUser] = useState(false)
   const [currentBounds, setCurrentBounds] = useState<MapBounds | null>(null)
+  const [previewPlaceId, setPreviewPlaceId] = useState<string | null>(null)
 
   const { campus } = useCampusStore()
   const { userLocation } = useWatchLocation()
-  const { data } = useQuery(usePlaceQueries.byMap(currentBounds))
+  const { data = [] } = useQuery(usePlaceQueries.byMap(currentBounds))
+
+  const previewPlace = previewPlaceId
+    ? data.find((place) => place.placeId === previewPlaceId)!
+    : null
 
   const updateBoundsFromMap = useCallback(() => {
     if (!map) return
@@ -46,6 +52,11 @@ export const MapPage = () => {
 
   const onCenterChanged = () => {
     setIsCenteredOnUser(false)
+    setPreviewPlaceId(null)
+  }
+
+  const handlePreviewPlace = (placeId: string) => {
+    setPreviewPlaceId(placeId)
   }
 
   useEffect(() => {
@@ -70,16 +81,23 @@ export const MapPage = () => {
           onZoomChanged={onCenterChanged}
         >
           {userLocation && <UserMarker position={userLocation} />}
-          {data?.map((place) => (
+          {data.map((place) => (
             <PlaceMarker
               key={place.placeId}
               position={place.location}
               icon={place.categories[0]?.iconKey || 'logo'}
+              handlePreviewPlace={() => {
+                handlePreviewPlace(place.placeId)
+              }}
             />
           ))}
         </NaverMap>
       </Container>
-      <PlaceList places={data || []} />
+      {previewPlace ? (
+        <PreviewPlace place={previewPlace} />
+      ) : (
+        <PlaceList places={data} />
+      )}
     </>
   )
 }
