@@ -11,3 +11,12 @@
     --rsbs-ml: auto;
     --rsbs-mr: auto;
 }
+
+a {
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
+}
+
