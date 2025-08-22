@@ -12,6 +12,12 @@
     --rsbs-mr: auto;
 }
 
+body {
+    ::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Opera*/
+    }
+}
+
 a {
     cursor: pointer;
 }

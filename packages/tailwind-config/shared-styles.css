@@ -13,10 +13,3 @@
   --color-gray-400: #3D3D3D;
   --color-gray-500: #403E3F;
 }
-
-.scrollbar-hide {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  scrollbar-width: none;
-}
