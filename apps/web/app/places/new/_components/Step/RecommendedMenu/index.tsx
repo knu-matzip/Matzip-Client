@@ -1,0 +1,1 @@
+export { RecommendedMenu } from './RecommendedMenu'
