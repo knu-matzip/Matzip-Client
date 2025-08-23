@@ -1,12 +1,17 @@
 import { SVGProps } from 'react'
 
-export const Bunsik = ({ width, height }: SVGProps<SVGSVGElement>) => (
+export const Bunsik = ({
+  width,
+  height,
+  ...props
+}: SVGProps<SVGSVGElement>) => (
   <svg
     width={width ?? 40}
     height={height ?? 40}
     viewBox='0 0 41 42'
     fill='none'
     xmlns='http://www.w3.org/2000/svg'
+    {...props}
   >
     <g clipPath='url(#clip0_116_3529)'>
       <path

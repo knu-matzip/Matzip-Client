@@ -15,11 +15,13 @@ export const BottomNavigation = () => {
     <JustifyBetween
       as={'nav'}
       className={cn(
+        'bg-white',
         'border-t-1',
         'border-gray-50',
         'h-15',
         'mt-auto',
         'px-5 py-2.5',
+        'z-10',
       )}
     >
       {tabs.map((tab: TabItemProps) => (

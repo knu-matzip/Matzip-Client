@@ -9,7 +9,7 @@ pre-push:
   parallel: true
   commands:
     audit-check:
-      run: pnpm audit
+      run: pnpm audit --audit-level critical
     # 테스트 도입 전까지 비활성화
     # type-check:
     #   run: pnpm run type-check

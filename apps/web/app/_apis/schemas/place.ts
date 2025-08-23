@@ -9,6 +9,13 @@ export const BasePlaceSchema = z.object({
   tags: z.array(CategorySchema),
 })
 
+export const PlaceByMapSchema = BasePlaceSchema.extend({
+  location: z.object({
+    latitude: z.number(),
+    longitude: z.number(),
+  }),
+})
+
 export const PlaceDetailSchema = BasePlaceSchema.extend({
   photos: z.array(
     z.object({
@@ -33,6 +40,13 @@ export const PlaceDetailSchema = BasePlaceSchema.extend({
 })
 
 export type RankingPlaceSort = 'views' | 'likes'
+export type MapBounds = {
+  minLatitude: number
+  minLongitude: number
+  maxLatitude: number
+  maxLongitude: number
+}
 
 export type BasePlace = z.infer<typeof BasePlaceSchema>
+export type PlaceByMap = z.infer<typeof PlaceByMapSchema>
 export type PlaceDetail = z.infer<typeof PlaceDetailSchema>

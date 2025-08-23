@@ -1,4 +1,4 @@
-import { RankingPlaceSort } from '@/_apis/schemas/place'
+import { MapBounds, RankingPlaceSort } from '@/_apis/schemas/place'
 import { CampusType } from '@/_constants/campus'
 
 export const API_PATH = {
@@ -8,6 +8,13 @@ export const API_PATH = {
       `/places?categoryId=${id}&campus=${campus}`,
     BY_RANKING: (sort: RankingPlaceSort, campus: CampusType) =>
       `/places/ranking?sort=${sort}&campus=${campus}`,
+    BY_MAP: ({
+      minLatitude,
+      minLongitude,
+      maxLatitude,
+      maxLongitude,
+    }: MapBounds) =>
+      `/places?northEastLatitude=${maxLatitude}&northEastLongitudede=${maxLongitude}&southWestLatitude=${minLatitude}&southWestLongitude=${minLongitude}`,
     DETAIL: (id: string) => `/places/${id}`,
   },
 }

@@ -46,6 +46,7 @@ import { KakaoLogo } from './assets/icons/kakaoLogo'
 import { Crosshairs } from './assets/icons/crosshairs'
 import { DoubleHeart } from './assets/icons/doubleHeart'
 import { SwapArrow } from './assets/icons/swapArrow'
+import { MapMarker } from './assets/icons/mapMarker'
 
 export const iconMap = {
   // 메뉴
@@ -100,6 +101,7 @@ export const iconMap = {
   crosshairs: Crosshairs,
   doubleHeart: DoubleHeart,
   swapArrow: SwapArrow,
+  mapMarker: MapMarker,
 }
 
 export type IconType = keyof typeof iconMap

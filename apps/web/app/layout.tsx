@@ -8,6 +8,7 @@ import { initServerMSW } from '@/_mocks/initMSW'
 import { MSWProvider } from '@/_mocks/MSWProvider'
 import { HeroUIProvider } from '@heroui/system'
 import { Column } from '@repo/ui/components/Layout'
+import { NaverMapProvider } from '@/NaverMapProvider'
 
 export const metadata: Metadata = {
   title: 'Create Turborepo',
@@ -33,11 +34,13 @@ export default async function RootLayout({
         <MSWProvider>
           <QueryProvider>
             <HeroUIProvider>
-              <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
-                <Column className={'relative w-full max-w-[450px] bg-white'}>
-                  {children}
-                </Column>
-              </div>
+              <NaverMapProvider>
+                <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
+                  <Column className={'relative w-full max-w-[450px] bg-white'}>
+                    {children}
+                  </Column>
+                </div>
+              </NaverMapProvider>
             </HeroUIProvider>
           </QueryProvider>
         </MSWProvider>

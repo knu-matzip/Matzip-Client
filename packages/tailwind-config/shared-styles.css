@@ -4,7 +4,13 @@
   --color-main: #313D4C;
 
   --color-blue: #3182F7;
+  --color-blue-light: #DBEAFE;
+
   --color-red: #EF4452;
+  --color-red-light: #FFE4E6;
+
+  --color-yellow: #F97316;
+  --color-yellow-light: #FFEDD5;
 
   --color-gray-50: #F3F4F6;
   --color-gray-100: #E4E7EB;
@@ -12,11 +18,4 @@
   --color-gray-300: #6C7887;
   --color-gray-400: #3D3D3D;
   --color-gray-500: #403E3F;
-}
-
-.scrollbar-hide {
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  scrollbar-width: none;
 }
