@@ -66,7 +66,7 @@ export const SearchPage = ({
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           className={'w-full text-lg font-medium outline-none'}
-          placeholder={placeholder || '장소 검색 구다사이'}
+          placeholder={placeholder || '장소 또는 주소를 검색하세요'}
         />
       </Flex>
       {inputValue && (

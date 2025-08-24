@@ -25,7 +25,12 @@ export const CampusSelector = () => {
   return (
     <Dropdown>
       <DropdownTrigger className='flex items-center gap-1'>
-        <Text fontSize='base' fontWeight='semibold' className='text-gray-300'>
+        <Text
+          as={'button'}
+          fontSize='base'
+          fontWeight='semibold'
+          className='text-gray-300'
+        >
           <Icon type='swapArrow' size={18} />
           {CAMPUS[campus]}캠퍼스
         </Text>

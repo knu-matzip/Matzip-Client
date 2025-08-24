@@ -19,13 +19,17 @@ export const Menus = ({ menus }: Props) => {
       <Column
         className={cn('gap-2.5', 'rounded-xl', 'bg-gray-50', 'px-4 py-3')}
       >
-        <Text variant={'caption1'} className={'text-gray-300'}>
-          추천메뉴
-        </Text>
-        {recommendedMenu.map((menu, index) => (
-          <Menu key={index} menu={menu} />
-        ))}
-        <hr className={'w-full border border-gray-200'} />
+        {recommendedMenu && (
+          <>
+            <Text variant={'caption1'} className={'text-gray-300'}>
+              추천메뉴
+            </Text>
+            {recommendedMenu.map((menu, index) => (
+              <Menu key={index} menu={menu} />
+            ))}
+            <hr className={'w-full border border-gray-200'} />
+          </>
+        )}
         {unRecommendedMenu.map((menu, index) => (
           <Menu key={index} menu={menu} />
         ))}
