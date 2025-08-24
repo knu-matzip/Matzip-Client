@@ -17,6 +17,7 @@ import {
   Description,
   Category,
 } from './_components/Step'
+import { HeaderHomeButton } from '@/places/new/_components/HeaderHomeButton'
 
 export type StepType =
   | 'CAMPUS'
@@ -69,6 +70,7 @@ const PlaceNewPage = () => {
             <Text variant={'heading2'}>맛집 알리기</Text>
           </Flex>
         }
+        right={<HeaderHomeButton />}
       />
       <Column
         as={'form'}
