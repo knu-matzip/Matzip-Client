@@ -1,7 +1,13 @@
 import { SearchPage } from '@/_components/SearchPage'
 import { useSearchPlaceByKakao } from '@/_hooks/useSearchPlaceByKakao'
+import type { UseFormSetValue } from 'react-hook-form'
+import type { NewPlaceRequest } from '@/_apis/schemas/place'
 
-export const PlaceSearch = () => {
+export const PlaceSearch = ({
+  setValue,
+}: {
+  setValue: UseFormSetValue<NewPlaceRequest>
+}) => {
   const { searchListsData, searchFunc } = useSearchPlaceByKakao()
 
   const places = searchListsData.map((item) => ({
@@ -15,7 +21,8 @@ export const PlaceSearch = () => {
       places={places}
       searchFunc={searchFunc}
       onSelectPlace={(id) => {
-        console.log(id)
+        setValue('kakaoPlaceId', id)
+        //Todo: step 이동
       }}
     />
   )

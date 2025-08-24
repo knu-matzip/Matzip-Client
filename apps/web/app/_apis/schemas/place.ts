@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { CategorySchema } from '@/_apis/schemas/category'
+import { CAMPUS_LIST } from '@/_constants/campus'
 
 export const BasePlaceSchema = z.object({
   placeId: z.number().transform(String),
@@ -39,6 +40,21 @@ export const PlaceDetailSchema = BasePlaceSchema.extend({
   ),
 })
 
+export const NewPlaceRequestSchema = z.object({
+  kakaoPlaceId: z.string(),
+  campus: z.enum(CAMPUS_LIST),
+  description: z.string(),
+  menus: z.array(
+    z.object({
+      name: z.string(),
+      price: z.number(),
+      isRecommended: z.boolean(),
+    }),
+  ),
+  tagIds: z.array(z.string()),
+  categoryIds: z.array(z.string()),
+})
+
 export type RankingPlaceSort = 'views' | 'likes'
 export type MapBounds = {
   minLatitude: number
@@ -50,3 +66,4 @@ export type MapBounds = {
 export type BasePlace = z.infer<typeof BasePlaceSchema>
 export type PlaceByMap = z.infer<typeof PlaceByMapSchema>
 export type PlaceDetail = z.infer<typeof PlaceDetailSchema>
+export type NewPlaceRequest = z.infer<typeof NewPlaceRequestSchema>

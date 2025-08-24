@@ -1,30 +1,51 @@
 import { useState } from 'react'
 import { useSuspenseQuery } from '@tanstack/react-query'
+import type { UseFormSetValue } from 'react-hook-form'
 import { useCategoryQueries } from '@/_apis/queries/category'
+import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import type { Category as CategoryType } from '@/_apis/schemas/category'
 import { CategoryBox } from './CategoryBox'
 import { ChoiceCategoryBox } from './ChoiceCategoryBox'
 import { Title } from '../../Tilte'
 import { Button } from '@repo/ui/components/Button'
 
-export const Category = () => {
+export const Category = ({
+  setValue,
+  getValues,
+}: {
+  setValue: UseFormSetValue<NewPlaceRequest>
+  getValues: () => NewPlaceRequest
+}) => {
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
-  const [choiceCategories, setChoiceCategories] = useState<CategoryType[]>([])
+  const initialValues = getValues().categoryIds
+  const initialCategory = categories.filter((category) =>
+    initialValues.includes(category.id),
+  )
+  const [choiceCategories, setChoiceCategories] =
+    useState<CategoryType[]>(initialCategory)
 
   const addCategory = (category: CategoryType) => {
-    if (choiceCategories.length >= 5 || includeInCategories(category)) {
+    const currentIds = getValues().categoryIds || []
+
+    if (choiceCategories.length >= 5 || currentIds.includes(category.id)) {
       // Todo: Toast 처리
       return
     }
-    setChoiceCategories((prev) => [...prev, category])
+    const updated = [...choiceCategories, category]
+    setChoiceCategories(updated)
+    setValue(
+      'categoryIds',
+      updated.map((c) => c.id),
+    )
   }
 
   const removeCategory = (category: CategoryType) => {
-    if (choiceCategories.length === 0) {
-      // Todo: Toast 처리
-      return
-    }
-    setChoiceCategories((prev) => prev.filter((c) => c.id !== category.id))
+    const updated = choiceCategories.filter((c) => c.id !== category.id)
+    setChoiceCategories(updated)
+    setValue(
+      'categoryIds',
+      updated.map((c) => c.id),
+    )
   }
 
   const includeInCategories = (category: CategoryType) => {

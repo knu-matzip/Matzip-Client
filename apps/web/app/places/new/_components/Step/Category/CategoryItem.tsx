@@ -21,6 +21,7 @@ export const CategoryItem = ({
   return (
     <Column
       as={'button'}
+      type={'button'}
       className={cn('items-center gap-1', {
         'opacity-40': includeInCategories,
       })}
