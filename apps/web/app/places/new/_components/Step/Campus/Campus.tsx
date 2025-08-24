@@ -6,7 +6,12 @@ import { Title } from '@/places/new/_components/Tilte'
 import { Button } from '@repo/ui/components/Button'
 import { Text } from '@repo/ui/components/Text'
 
-export const Campus = ({ control }: { control: Control<NewPlaceRequest> }) => {
+type Props = {
+  control: Control<NewPlaceRequest>
+  nextStep: VoidFunction
+}
+
+export const Campus = ({ control, nextStep }: Props) => {
   return (
     <>
       <Title title={'맛집에 가까운 캠퍼스는?'} />
@@ -33,7 +38,7 @@ export const Campus = ({ control }: { control: Control<NewPlaceRequest> }) => {
           </RadioGroup>
         )}
       />
-      <Button size={'medium'} className={'ui:min-w-full'}>
+      <Button size={'medium'} className={'ui:min-w-full'} onClick={nextStep}>
         다음
       </Button>
     </>

@@ -5,11 +5,12 @@ import { type Control, Controller } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { Tags } from '@/places/new/_components/Step/Description/Tags'
 
-export const Description = ({
-  control,
-}: {
+type Props = {
   control: Control<NewPlaceRequest>
-}) => {
+  nextStep: VoidFunction
+}
+
+export const Description = ({ control, nextStep }: Props) => {
   return (
     <>
       <Title
@@ -27,7 +28,7 @@ export const Description = ({
       <Button
         size={'medium'}
         className={'ui:min-w-full mt-auto'}
-        type={'submit'}
+        onClick={nextStep}
       >
         다음
       </Button>

@@ -6,11 +6,12 @@ import { Text } from '@repo/ui/components/Text'
 import { JustifyBetween } from '@repo/ui/components/Layout'
 import { Button } from '@repo/ui/components/Button'
 
-export const RecommendedMenu = ({
-  control,
-}: {
+type Props = {
   control: Control<NewPlaceRequest>
-}) => {
+  nextStep: VoidFunction
+}
+
+export const RecommendedMenu = ({ control, nextStep }: Props) => {
   return (
     <>
       <Title
@@ -70,7 +71,7 @@ export const RecommendedMenu = ({
           )
         }}
       />
-      <Button size={'medium'} className={'ui:min-w-full'} type='submit'>
+      <Button size={'medium'} className={'ui:min-w-full'} onClick={nextStep}>
         다음
       </Button>
     </>

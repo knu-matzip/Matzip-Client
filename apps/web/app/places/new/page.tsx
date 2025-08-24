@@ -1,8 +1,8 @@
 'use client'
 
-import { type ReactNode, useState } from 'react'
 import { type SubmitHandler, useForm } from 'react-hook-form'
 import { type NewPlaceRequest } from '@/_apis/schemas/place'
+import { useFunnel } from '@/_hooks/useFunnel'
 import { useCampusStore } from '@/_store/campus'
 import { Header } from '@repo/ui/components/Header'
 import { Column, Flex } from '@repo/ui/components/Layout'
@@ -18,7 +18,7 @@ import {
   Category,
 } from './_components/Step'
 
-type StepType =
+export type StepType =
   | 'CAMPUS'
   | 'PLACE_SEARCH'
   | 'PLACE_CHECK'
@@ -26,8 +26,18 @@ type StepType =
   | 'DESCRIPTION'
   | 'CATEGORY'
 
+const STEP_ORDER: Record<StepType, string> = {
+  CAMPUS: '1',
+  PLACE_SEARCH: '2',
+  PLACE_CHECK: '3',
+  RECOMMENDED_MENU: '4',
+  DESCRIPTION: '5',
+  CATEGORY: '6',
+}
+
 const PlaceNewPage = () => {
-  const [step] = useState<StepType>('CATEGORY')
+  const { Step, nextStep } = useFunnel<StepType>(STEP_ORDER)
+
   const { campus: initCampus } = useCampusStore()
   const {
     // register,
@@ -40,15 +50,10 @@ const PlaceNewPage = () => {
     defaultValues: {
       campus: initCampus,
       kakaoPlaceId: '',
-      menus: [
-        { name: '짜장면', price: 3000, isRecommended: false },
-        { name: '짬뽕', price: 4000, isRecommended: false },
-        { name: '볶음밥', price: 5000, isRecommended: false },
-        { name: '탕수육', price: 6000, isRecommended: false },
-      ],
+      menus: [],
       description: '',
       tagIds: [],
-      categoryIds: ['1', '2', '4'],
+      categoryIds: [],
     },
   })
 
@@ -65,28 +70,52 @@ const PlaceNewPage = () => {
           </Flex>
         }
       />
-
       <Column
         as={'form'}
         onSubmit={handleSubmit(onSubmit)}
         className={'min-h-0 flex-1 p-5'}
       >
-        <Step step={step} name={'CAMPUS'}>
-          <Campus control={control} />
+        <Step name={'CAMPUS'}>
+          <Campus
+            control={control}
+            nextStep={() => {
+              nextStep('PLACE_SEARCH')
+            }}
+          />
         </Step>
-        <Step step={step} name={'PLACE_SEARCH'}>
-          <PlaceSearch setValue={setValue} />
+        <Step name={'PLACE_SEARCH'}>
+          <PlaceSearch
+            setValue={setValue}
+            nextStep={() => {
+              nextStep('PLACE_CHECK')
+            }}
+          />
         </Step>
-        <Step step={step} name={'PLACE_CHECK'}>
-          <PlaceCheck setValue={setValue} />
+        <Step name={'PLACE_CHECK'}>
+          <PlaceCheck
+            setValue={setValue}
+            nextStep={() => {
+              nextStep('RECOMMENDED_MENU')
+            }}
+          />
         </Step>
-        <Step step={step} name={'RECOMMENDED_MENU'}>
-          <RecommendedMenu control={control} />
+        <Step name={'RECOMMENDED_MENU'}>
+          <RecommendedMenu
+            control={control}
+            nextStep={() => {
+              nextStep('DESCRIPTION')
+            }}
+          />
         </Step>
-        <Step step={step} name={'DESCRIPTION'}>
-          <Description control={control} />
+        <Step name={'DESCRIPTION'}>
+          <Description
+            control={control}
+            nextStep={() => {
+              nextStep('CATEGORY')
+            }}
+          />
         </Step>
-        <Step step={step} name={'CATEGORY'}>
+        <Step name={'CATEGORY'}>
           <Category setValue={setValue} getValues={getValues} />
         </Step>
       </Column>
@@ -95,15 +124,3 @@ const PlaceNewPage = () => {
 }
 
 export default PlaceNewPage
-
-const Step = ({
-  step,
-  name,
-  children,
-}: {
-  step: StepType
-  name: StepType
-  children: ReactNode
-}) => {
-  return name === step ? children : null
-}
