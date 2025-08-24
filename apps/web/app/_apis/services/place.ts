@@ -1,3 +1,4 @@
+import axios from 'axios'
 import axiosInstance from '@/_lib/axiosInstance'
 import { API_PATH } from '@/_constants/path'
 import type { CampusType } from '@/_constants/campus'
@@ -53,4 +54,16 @@ export const getPlacesByMap = async ({
 export const getPlaceDetail = async (id: string): Promise<PlaceDetail> => {
   const { data } = await axiosInstance.get(API_PATH.PLACES.DETAIL(id))
   return PlaceDetailSchema.parse(data)
+}
+
+export const getSearchPlaceByKakao = async (query: string) => {
+  const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_API || ''
+
+  const { data } = await axios.get(API_PATH.KAKAO.SEARCH(query), {
+    headers: {
+      Authorization: `KakaoAK ${KAKAO_API_KEY}`,
+    },
+  })
+
+  return data
 }

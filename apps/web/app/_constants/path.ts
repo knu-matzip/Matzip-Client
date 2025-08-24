@@ -17,6 +17,10 @@ export const API_PATH = {
       `/places?northEastLatitude=${maxLatitude}&northEastLongitudede=${maxLongitude}&southWestLatitude=${minLatitude}&southWestLongitude=${minLongitude}`,
     DETAIL: (id: string) => `/places/${id}`,
   },
+  KAKAO: {
+    SEARCH: (query: string) =>
+      `https://dapi.kakao.com/v2/local/search/keyword.json?query=${query}`,
+  },
 }
 
 export const CLIENT_PATH = {
