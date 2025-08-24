@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Flex } from '@repo/ui/components/Layout'
 import { Chip } from '@repo/ui/components/Chip'
 import { IconType } from '@repo/ui/components/Icon'
+import { Button } from '@repo/ui/components/Button'
 
 const CHIP_TAGS: {
   id: number
@@ -55,6 +56,9 @@ export const Description = () => {
           />
         ))}
       </Flex>
+      <Button size={'medium'} className={'ui:min-w-full mt-auto'}>
+        다음
+      </Button>
     </>
   )
 }

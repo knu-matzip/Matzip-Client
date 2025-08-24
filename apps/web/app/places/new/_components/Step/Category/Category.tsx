@@ -47,7 +47,7 @@ export const Category = () => {
         removeCategory={removeCategory}
         includeInCategories={includeInCategories}
       />
-      <Button size={'medium'} className={'mt-auto w-full'}>
+      <Button size={'medium'} className={'ui:min-w-full mt-auto'}>
         등록하기
       </Button>
     </>
