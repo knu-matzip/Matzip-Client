@@ -12,7 +12,7 @@ import { Description, LikeButton, Location, Menus } from './_components'
 
 export const PlaceDetailPage = ({ id }: { id: string }) => {
   const { data } = useSuspenseQuery(usePlaceQueries.detail(id))
-  const { placeName, photos, menus, description } = data
+  const { placeName, photos, menus, description, location } = data
 
   return (
     <>
@@ -36,7 +36,7 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
           minHeight={180}
         />
         <Column className={'flex-1 justify-around gap-4 p-5'}>
-          <Location />
+          <Location location={location} />
           <Menus menus={menus} />
           <Description description={description} />
         </Column>
