@@ -17,7 +17,7 @@ export const HeaderHomeButton = () => {
 
   return (
     <>
-      <button onClick={onOpen}>
+      <button onClick={onOpen} className={'rounded-xl bg-gray-50 p-1'}>
         <Icon type={'logo'} size={30} />
       </button>
       <Modal
