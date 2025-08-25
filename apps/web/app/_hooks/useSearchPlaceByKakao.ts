@@ -13,6 +13,13 @@ export interface SearchPlace {
   address_name: string
 }
 
+const KAKAO_CATEGORY_CODE = {
+  restaurant: 'FD6',
+  cafe: 'CE7',
+}
+
+export type KakaoCategoryCode = keyof typeof KAKAO_CATEGORY_CODE
+
 /**
  * Kakao Local API를 이용한 장소 검색을 수행하는 커스텀 훅
  *
@@ -21,41 +28,47 @@ export interface SearchPlace {
  * - API 결과를 상태로 관리하여 컴포넌트에서 바로 사용 가능
  *
  * @returns 훅이 반환하는 값
- * @returns searchListsData - 검색된 장소 리스트
+ * @returns searchResult - 검색된 장소 리스트
  * @returns searchFunc - 검색을 수행하는 함수
  *
  * @example
- * const { searchListsData, searchFunc } = useSearchData()
+ * const { searchResult, searchFunc } = useSearchData()
  *
  * // 인풋 변경 시 검색 실행
  * <input onChange={(e) => searchFunc(e.target.value)} />
  *
  * // 검색된 결과 출력
- * {searchListsData.map(place => (
+ * {searchResult.map(place => (
  *   <div key={place.id}>{place.place_name}</div>
  * ))}
  */
 export const useSearchPlaceByKakao = () => {
-  const [searchListsData, setSearchListsData] = useState<SearchPlace[]>([])
+  const [searchResult, setSearchResult] = useState<SearchPlace[]>([])
   const timeoutRef = useRef<NodeJS.Timeout>(null)
 
   /**
    * 검색 함수 (300ms 디바운스 적용)
    * @param query 검색 키워드
    */
-  const searchFunc = useCallback(async (query: string) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current)
+  const searchFunc = useCallback(
+    async (query: string, categoryCode: KakaoCategoryCode) => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
-    timeoutRef.current = setTimeout(async () => {
-      try {
-        const result = await getSearchPlaceByKakao(query)
-        setSearchListsData([...result.documents])
-      } catch (error) {
-        console.error(error)
-        setSearchListsData([])
-      }
-    }, 300)
-  }, [])
+      timeoutRef.current = setTimeout(async () => {
+        try {
+          const result = await getSearchPlaceByKakao(
+            query,
+            KAKAO_CATEGORY_CODE[categoryCode],
+          )
+          setSearchResult([...result.documents])
+        } catch (error) {
+          console.error(error)
+          setSearchResult([])
+        }
+      }, 300)
+    },
+    [],
+  )
 
   useEffect(() => {
     return () => {
@@ -72,5 +85,5 @@ export const useSearchPlaceByKakao = () => {
     }
   }, [])
 
-  return { searchListsData, searchFunc }
+  return { searchResult, searchFunc }
 }

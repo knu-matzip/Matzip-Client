@@ -56,10 +56,13 @@ export const getPlaceDetail = async (id: string): Promise<PlaceDetail> => {
   return PlaceDetailSchema.parse(data)
 }
 
-export const getSearchPlaceByKakao = async (query: string) => {
+export const getSearchPlaceByKakao = async (
+  query: string,
+  categoryCode: string,
+) => {
   const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_API || ''
 
-  const { data } = await axios.get(API_PATH.KAKAO.SEARCH(query), {
+  const { data } = await axios.get(API_PATH.KAKAO.SEARCH(query, categoryCode), {
     headers: {
       Authorization: `KakaoAK ${KAKAO_API_KEY}`,
     },

@@ -1,3 +1,4 @@
+import { useCallback } from 'react'
 import { SearchPage } from '@/_components/SearchPage'
 import { useSearchPlaceByKakao } from '@/_hooks/useSearchPlaceByKakao'
 import type { UseFormSetValue } from 'react-hook-form'
@@ -9,13 +10,24 @@ type Props = {
 }
 
 export const PlaceSearch = ({ setValue, nextStep }: Props) => {
-  const { searchListsData, searchFunc } = useSearchPlaceByKakao()
+  const { searchResult: restaurantResult, searchFunc: restaurantSearchFunc } =
+    useSearchPlaceByKakao()
+  const { searchResult: cafeResult, searchFunc: cafeSearchFunc } =
+    useSearchPlaceByKakao()
 
-  const places = searchListsData.map((item) => ({
+  const places = [...restaurantResult, ...cafeResult].map((item) => ({
     id: item.id,
     name: item.place_name,
     address: item.address_name,
   }))
+
+  const searchFunc = useCallback(
+    (inputValue: string) => {
+      restaurantSearchFunc(inputValue, 'restaurant')
+      cafeSearchFunc(inputValue, 'cafe')
+    },
+    [restaurantSearchFunc, cafeSearchFunc],
+  )
 
   return (
     <SearchPage
