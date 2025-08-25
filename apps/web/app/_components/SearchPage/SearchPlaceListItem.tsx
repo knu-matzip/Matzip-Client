@@ -18,7 +18,7 @@ export const SearchPlaceListItem = ({
   return (
     <Column
       as={'li'}
-      className={'border-b-1 border-gray-50 px-2.5 py-5'}
+      className={'border-b-1 cursor-pointer border-gray-50 px-2.5 py-5'}
       onClick={onClick}
     >
       <Flex className={'gap-2.5'}>
