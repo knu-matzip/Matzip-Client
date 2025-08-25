@@ -3,13 +3,15 @@ import { SearchPage } from '@/_components/SearchPage'
 import { useSearchPlaceByKakao } from '@/_hooks/useSearchPlaceByKakao'
 import type { UseFormSetValue } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
+import { type CampusType, CAMPUS_LOCATION } from '@/_constants/campus'
 
 type Props = {
+  campus: CampusType
   setValue: UseFormSetValue<NewPlaceRequest>
   nextStep: VoidFunction
 }
 
-export const PlaceSearch = ({ setValue, nextStep }: Props) => {
+export const PlaceSearch = ({ campus, setValue, nextStep }: Props) => {
   const { searchResult: restaurantResult, searchFunc: restaurantSearchFunc } =
     useSearchPlaceByKakao()
   const { searchResult: cafeResult, searchFunc: cafeSearchFunc } =
@@ -22,11 +24,21 @@ export const PlaceSearch = ({ setValue, nextStep }: Props) => {
   }))
 
   const searchFunc = useCallback(
-    (inputValue: string) => {
-      restaurantSearchFunc(inputValue, 'restaurant')
-      cafeSearchFunc(inputValue, 'cafe')
+    (query: string) => {
+      const { longitude: x, latitude: y } = CAMPUS_LOCATION[campus]
+      const location = {
+        x,
+        y,
+      }
+
+      cafeSearchFunc({ query, categoryCode: 'cafe', location })
+      restaurantSearchFunc({
+        query,
+        categoryCode: 'restaurant',
+        location,
+      })
     },
-    [restaurantSearchFunc, cafeSearchFunc],
+    [cafeSearchFunc, campus, restaurantSearchFunc],
   )
 
   return (

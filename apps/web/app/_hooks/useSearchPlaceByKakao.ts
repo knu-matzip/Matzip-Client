@@ -13,12 +13,17 @@ export interface SearchPlace {
   address_name: string
 }
 
-const KAKAO_CATEGORY_CODE = {
+export const KAKAO_CATEGORY_CODE = {
   restaurant: 'FD6',
   cafe: 'CE7',
 }
 
 export type KakaoCategoryCode = keyof typeof KAKAO_CATEGORY_CODE
+export type KakaoSearchFuncParams = {
+  query: string
+  categoryCode: KakaoCategoryCode
+  location: { x: number; y: number }
+}
 
 /**
  * Kakao Local API를 이용한 장소 검색을 수행하는 커스텀 훅
@@ -51,15 +56,16 @@ export const useSearchPlaceByKakao = () => {
    * @param query 검색 키워드
    */
   const searchFunc = useCallback(
-    async (query: string, categoryCode: KakaoCategoryCode) => {
+    async ({ query, categoryCode, location }: KakaoSearchFuncParams) => {
       if (timeoutRef.current) clearTimeout(timeoutRef.current)
 
       timeoutRef.current = setTimeout(async () => {
         try {
-          const result = await getSearchPlaceByKakao(
+          const result = await getSearchPlaceByKakao({
             query,
-            KAKAO_CATEGORY_CODE[categoryCode],
-          )
+            categoryCode,
+            location,
+          })
           setSearchResult([...result.documents])
         } catch (error) {
           console.error(error)

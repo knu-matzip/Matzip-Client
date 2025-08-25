@@ -12,6 +12,10 @@ import {
   PlaceByMapSchema,
   PlaceDetailSchema,
 } from '../schemas/place'
+import {
+  type KakaoSearchFuncParams,
+  KAKAO_CATEGORY_CODE,
+} from '@/_hooks/useSearchPlaceByKakao'
 
 export const getPlacesByRanking = async (
   sort: RankingPlaceSort,
@@ -56,17 +60,22 @@ export const getPlaceDetail = async (id: string): Promise<PlaceDetail> => {
   return PlaceDetailSchema.parse(data)
 }
 
-export const getSearchPlaceByKakao = async (
-  query: string,
-  categoryCode: string,
-) => {
+export const getSearchPlaceByKakao = async ({
+  query,
+  categoryCode,
+  location,
+}: KakaoSearchFuncParams) => {
   const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_API || ''
+  const { x, y } = location
 
-  const { data } = await axios.get(API_PATH.KAKAO.SEARCH(query, categoryCode), {
-    headers: {
-      Authorization: `KakaoAK ${KAKAO_API_KEY}`,
+  const { data } = await axios.get(
+    API_PATH.KAKAO.SEARCH(query, KAKAO_CATEGORY_CODE[categoryCode], x, y),
+    {
+      headers: {
+        Authorization: `KakaoAK ${KAKAO_API_KEY}`,
+      },
     },
-  })
+  )
 
   return data
 }

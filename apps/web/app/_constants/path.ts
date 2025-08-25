@@ -18,8 +18,8 @@ export const API_PATH = {
     DETAIL: (id: string) => `/places/${id}`,
   },
   KAKAO: {
-    SEARCH: (query: string, categoryCode: string) =>
-      `https://dapi.kakao.com/v2/local/search/keyword.json?query=${query}&category_group_code=${categoryCode}`,
+    SEARCH: (query: string, categoryCode: string, x: number, y: number) =>
+      `https://dapi.kakao.com/v2/local/search/keyword.json?query=${query}&category_group_code=${categoryCode}&x=${x}&y=${y}`,
   },
 }
 

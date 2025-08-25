@@ -87,6 +87,7 @@ const PlaceNewPage = () => {
         </Step>
         <Step name={'PLACE_SEARCH'}>
           <PlaceSearch
+            campus={getValues().campus}
             setValue={setValue}
             nextStep={() => {
               nextStep('PLACE_CHECK')
