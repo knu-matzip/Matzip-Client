@@ -15,6 +15,7 @@ export const ChoiceCategoryItem = ({ category, removeCategory }: Props) => {
   return (
     <Column
       as={'button'}
+      type={'button'}
       className={cn(
         'min-w-16.5 items-center rounded-md bg-gray-50 py-1',
         'border-3 border-blue',
