@@ -6,9 +6,9 @@ import QueryProvider from './QueryClientProvider'
 import localFont from 'next/font/local'
 import { initServerMSW } from '@/_mocks/initMSW'
 import { MSWProvider } from '@/_mocks/MSWProvider'
-import { HeroUIProvider } from '@heroui/system'
 import { Column } from '@repo/ui/components/Layout'
 import { NaverMapProvider } from '@/NaverMapProvider'
+import { HeroProvider } from '@/HeroProvider'
 
 export const metadata: Metadata = {
   title: 'Create Turborepo',
@@ -33,7 +33,7 @@ export default async function RootLayout({
       <body className={pretendard.className}>
         <MSWProvider>
           <QueryProvider>
-            <HeroUIProvider>
+            <HeroProvider>
               <NaverMapProvider>
                 <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
                   <Column className={'relative w-full max-w-[450px] bg-white'}>
@@ -41,7 +41,7 @@ export default async function RootLayout({
                   </Column>
                 </div>
               </NaverMapProvider>
-            </HeroUIProvider>
+            </HeroProvider>
           </QueryProvider>
         </MSWProvider>
       </body>
