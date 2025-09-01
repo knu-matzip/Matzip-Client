@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react'
 import { Column } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
@@ -11,13 +12,24 @@ type Props = {
 }
 
 export const CategoryItem = ({ category, isActive, onClick }: Props) => {
+  const activeCategory = useRef<HTMLButtonElement>(null)
   const { iconKey, name } = category
+
+  useEffect(() => {
+    activeCategory.current?.scrollIntoView({
+      behavior: 'smooth',
+      inline: 'center',
+    })
+  }, [isActive])
 
   return (
     <Column
       as={'button'}
       onClick={onClick}
       className={'w-10 items-center gap-1'}
+      ref={(el) => {
+        if (isActive) activeCategory.current = el
+      }}
     >
       <Icon type={iconKey} size={26} />
       <Text
