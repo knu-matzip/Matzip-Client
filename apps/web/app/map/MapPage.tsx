@@ -68,6 +68,7 @@ export const MapPage = () => {
       <CurrentLocationButton
         onClick={centerMapToUserLocation}
         isCenteredOnUser={isCenteredOnUser}
+        previewPlaceId={previewPlaceId}
       />
       <CampusButtonBax map={map} />
       <Container
