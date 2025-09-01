@@ -17,7 +17,7 @@ type Props = {
 
 export const PlaceCheck = ({ setValue, nextStep }: Props) => {
   // Todo: 테스트용 api 요청 삭제 예정 (id prop으로 전달받을 예정)
-  const { data } = useSuspenseQuery(usePlaceQueries.detail('1'))
+  const { data } = useSuspenseQuery(usePlaceQueries.byPreview('1'))
   const { placeName, photos, menus, location } = data
   setValue('menus', menus)
   return (

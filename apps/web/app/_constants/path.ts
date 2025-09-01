@@ -16,6 +16,10 @@ export const API_PATH = {
     }: MapBounds) =>
       `/places?northEastLatitude=${maxLatitude}&northEastLongitudede=${maxLongitude}&southWestLatitude=${minLatitude}&southWestLongitude=${minLongitude}`,
     DETAIL: (id: string) => `/places/${id}`,
+    NEW: {
+      PREVIEW: (kakaoPlaceId: string) =>
+        `/places/preview?kakaoPlaceId=${kakaoPlaceId}`,
+    },
   },
   KAKAO: {
     SEARCH: (query: string, categoryCode: string, x: number, y: number) =>

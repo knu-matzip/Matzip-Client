@@ -8,9 +8,11 @@ import {
   type PlaceDetail,
   type MapBounds,
   type PlaceByMap,
+  type PlaceByPreview,
   BasePlaceSchema,
   PlaceByMapSchema,
   PlaceDetailSchema,
+  PlaceByPreviewSchema,
 } from '../schemas/place'
 import {
   type KakaoSearchFuncParams,
@@ -78,4 +80,13 @@ export const getSearchPlaceByKakao = async ({
   )
 
   return data
+}
+
+export const getPlaceByPreview = async (
+  kakaoPlaceId: string,
+): Promise<PlaceByPreview> => {
+  const { data } = await axiosInstance.get(
+    API_PATH.PLACES.NEW.PREVIEW(kakaoPlaceId),
+  )
+  return PlaceByPreviewSchema.parse(data)
 }

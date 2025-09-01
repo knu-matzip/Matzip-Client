@@ -1,6 +1,11 @@
 import { http, HttpResponse } from 'msw'
 import { API_PATH } from '@/_constants/path'
-import { PlaceDetail, Places, PlacesWithLocation } from '../data/place'
+import {
+  PlaceDetail,
+  Places,
+  PlacesWithLocation,
+  PlacePreview,
+} from '../data/place'
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL || ''
 
@@ -33,5 +38,8 @@ export const PlaceHandlers = [
   }),
   http.get(addBaseUrl(API_PATH.PLACES.DETAIL('1')), () => {
     return HttpResponse.json(PlaceDetail)
+  }),
+  http.get(addBaseUrl(API_PATH.PLACES.NEW.PREVIEW('1')), () => {
+    return HttpResponse.json(PlacePreview)
   }),
 ]

@@ -2,6 +2,7 @@ import { queryOptions } from '@tanstack/react-query'
 import type { CampusType } from '@/_constants/campus'
 import type { MapBounds, RankingPlaceSort } from '@/_apis/schemas/place'
 import {
+  getPlaceByPreview,
   getPlaceDetail,
   getPlacesByCategory,
   getPlacesByMap,
@@ -16,6 +17,8 @@ export const PlaceQueryKeys = {
   byCategory: (id: string, campus: CampusType) =>
     [...PlaceQueryKeys.all(), 'category', id, campus] as const,
   byMap: () => [...PlaceQueryKeys.all(), 'map'] as const,
+  byPreview: (kakaoPlaceId: string) =>
+    [...PlaceQueryKeys.all(), 'preview', kakaoPlaceId] as const,
 }
 
 export const usePlaceQueries = {
@@ -48,4 +51,10 @@ export const usePlaceQueries = {
       enabled: !!bounds,
     })
   },
+
+  byPreview: (kakaoPlaceId: string) =>
+    queryOptions({
+      queryKey: PlaceQueryKeys.byPreview(kakaoPlaceId),
+      queryFn: () => getPlaceByPreview(kakaoPlaceId),
+    }),
 }
