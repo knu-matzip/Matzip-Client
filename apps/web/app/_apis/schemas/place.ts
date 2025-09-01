@@ -2,6 +2,27 @@ import { z } from 'zod'
 import { CategorySchema } from '@/_apis/schemas/category'
 import { CAMPUS_LIST } from '@/_constants/campus'
 
+const location = z.object({
+  latitude: z.number(),
+  longitude: z.number(),
+})
+
+const menus = z.array(
+  z.object({
+    name: z.string(),
+    price: z.number(),
+    isRecommended: z.boolean(),
+  }),
+)
+
+const photos = z.array(
+  z.object({
+    photoId: z.number().transform(String),
+    photoUrl: z.url(),
+    displayOrder: z.number(),
+  }),
+)
+
 export const BasePlaceSchema = z.object({
   placeId: z.number().transform(String),
   placeName: z.string(),
@@ -11,74 +32,36 @@ export const BasePlaceSchema = z.object({
 })
 
 export const PlaceByMapSchema = BasePlaceSchema.extend({
-  location: z.object({
-    latitude: z.number(),
-    longitude: z.number(),
-  }),
+  location,
+  photos,
 })
 
 export const PlaceDetailSchema = BasePlaceSchema.extend({
-  photos: z.array(
-    z.object({
-      photoId: z.number().transform(String),
-      photoUrl: z.url(),
-      displayOrder: z.number(),
-    }),
-  ),
-  location: z.object({
-    latitude: z.number(),
-    longitude: z.number(),
-  }),
+  location,
   isLiked: z.boolean(),
   description: z.string(),
-  menus: z.array(
-    z.object({
-      name: z.string(),
-      price: z.number(),
-      isRecommended: z.boolean(),
-    }),
-  ),
+  photos,
+  menus,
 })
 
 export const PlaceByPreviewSchema = z.object({
   alreadyRegistered: z.boolean(),
   placeName: z.string(),
   address: z.string(),
-  location: z.object({
-    latitude: z.number(),
-    longitude: z.number(),
-  }),
-  photos: z.array(
-    z.object({
-      photoId: z.number().transform(String),
-      photoUrl: z.url(),
-      displayOrder: z.number(),
-    }),
-  ),
-  menus: z.array(
-    z.object({
-      name: z.string(),
-      price: z.number(),
-      isRecommended: z.boolean(),
-    }),
-  ),
+  location,
+  photos,
+  menus,
 })
 
 export const NewPlaceRequestSchema = z.object({
   kakaoPlaceId: z.string(),
   campus: z.enum(CAMPUS_LIST),
   description: z.string().trim().nonempty('설명을 입력해주세요!'),
-  menus: z.array(
-    z.object({
-      name: z.string(),
-      price: z.number(),
-      isRecommended: z.boolean(),
-    }),
-  ),
   tagIds: z.array(z.string()),
   categoryIds: z
     .array(z.string())
     .min(1, '카테고리를 최소 1개 이상 선택해주세요!'),
+  menus,
 })
 
 export type RankingPlaceSort = 'views' | 'likes'
