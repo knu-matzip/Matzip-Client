@@ -36,4 +36,5 @@ export const CLIENT_PATH = {
   CATEGORY_DETAIL: (id: string | number) => `/categories/${id}`,
   LIKES: '/likes',
   PROFILE: '/profile',
+  EVENTS_FOOD_SLOT: '/events/food-slot',
 }

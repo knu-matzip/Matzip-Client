@@ -1,0 +1,1 @@
+export { FoodSlotMachineBanner } from './FoodSlotMachineBanner'

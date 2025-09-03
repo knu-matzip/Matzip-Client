@@ -15,6 +15,7 @@ import { Banner } from '@/_components/Banner'
 import { Categories } from '@/_components/Categories'
 import { CampusSelector } from '@/_components/CampusSelector'
 import { BottomNavigation } from '@/_components/BottomNavigation'
+import { FoodSlotMachineBanner } from '@/_components/eventBanners'
 
 export default function Page() {
   return (
@@ -37,7 +38,7 @@ export default function Page() {
       <SearchBar href={CLIENT_PATH.PLACE_SEARCH} className={'mx-5 mb-5'} />
       <VerticalScrollArea className={'gap-4'}>
         <Categories />
-        <Banner contents={[1, 2, 3, 4]} />
+        <Banner contents={[<FoodSlotMachineBanner key='food-slot-1' />]} />
         <MostLikesPlaces />
         <Divider />
         <MostViewsPlaces />
