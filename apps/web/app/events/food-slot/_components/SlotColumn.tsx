@@ -21,14 +21,14 @@ export const SlotColumn = ({
         <motion.div
           className='absolute inset-0 flex flex-col'
           initial={{ y: 0 }}
-          animate={{ y: -2000 }}
+          animate={{ y: -1300 }}
           transition={{
             duration: 3,
             delay: delay,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
         >
-          {[...Array(15)].map((_, index: number) => {
+          {[...Array(27)].map((_, index: number) => {
             const categoryIndex: number = index % categories.length
             const category: Category = categories[categoryIndex]!
             return (
