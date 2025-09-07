@@ -70,7 +70,7 @@ export const MapPage = () => {
         isCenteredOnUser={isCenteredOnUser}
         previewPlaceId={previewPlaceId}
       />
-      <CampusButtonBax map={map} />
+      <CampusButtonBax map={map} onCenterChanged={onCenterChanged} />
       <Container
         className={cn('map-wrapper', 'w-full', 'h-full')}
         onTouchEnd={onCenterChanged}

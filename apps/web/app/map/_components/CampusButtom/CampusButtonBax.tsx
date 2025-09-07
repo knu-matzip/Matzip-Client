@@ -11,6 +11,11 @@ import { toLatLng } from '@/map/_utils/toLatLng'
 import { CampusButton } from './CampusButton'
 import { Column } from '@repo/ui/components/Layout'
 
+type Props = {
+  map: naver.maps.Map | null
+  onCenterChanged: VoidFunction
+}
+
 /**
  * 지도에서 여러 캠퍼스 위치 중 하나를 선택할 수 있는 버튼 목록을 표시합니다.
  * 사용자가 버튼을 클릭하면 해당 캠퍼스가 활성화되고, 지도 중심이 해당 캠퍼스 위치로 이동합니다.
@@ -25,7 +30,7 @@ import { Column } from '@repo/ui/components/Layout'
  *
  * @returns 캠퍼스 선택 버튼 그룹 UI
  */
-export const CampusButtonBax = ({ map }: { map: naver.maps.Map | null }) => {
+export const CampusButtonBax = ({ map, onCenterChanged }: Props) => {
   const { campus: initCampus } = useCampusStore()
   const [activeCampus, setActiveCampus] = useState<CampusType>(initCampus)
 
@@ -34,6 +39,7 @@ export const CampusButtonBax = ({ map }: { map: naver.maps.Map | null }) => {
 
     setActiveCampus(campus)
     map.setCenter(toLatLng(CAMPUS_LOCATION[campus]))
+    onCenterChanged()
   }
 
   return (
