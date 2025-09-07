@@ -37,4 +37,5 @@ export const CLIENT_PATH = {
   LIKES: '/likes',
   PROFILE: '/profile',
   EVENTS_FOOD_SLOT: '/events/food-slot',
+  EVENTS_LUCKY_DRAW: '/events/lucky-draw',
 }
