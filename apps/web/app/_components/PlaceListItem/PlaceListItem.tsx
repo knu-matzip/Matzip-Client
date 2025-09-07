@@ -7,6 +7,7 @@ import { Chip } from '@repo/ui/components/Chip'
 import { Column, Flex } from '@repo/ui/components/Layout'
 
 type Props = {
+  showCategory?: boolean
   showBorder?: boolean
 } & BasePlace
 
@@ -16,6 +17,7 @@ export const PlaceListItem = ({
   address,
   categories,
   tags,
+  showCategory = true,
   showBorder = true,
 }: Props) => {
   const mainCategoryIcon = categories[0]?.iconKey || 'logo'
@@ -33,7 +35,7 @@ export const PlaceListItem = ({
           <Text as={'span'} variant={'title2'}>
             {placeName}
           </Text>
-          <Icon type={mainCategoryIcon} size={18} />
+          {showCategory && <Icon type={mainCategoryIcon} size={18} />}
         </Flex>
         <Text variant={'caption2'} className={'text-gray-300'}>
           {address}

@@ -21,6 +21,7 @@ export const Places = ({ id }: { id: string }) => {
         <PlaceListItem
           key={place.placeId}
           {...place}
+          showCategory={false}
           showBorder={index !== places.length - 1}
         />
       ))}
