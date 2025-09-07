@@ -49,6 +49,8 @@ import { SwapArrow } from './assets/icons/swapArrow'
 import { MapMarker } from './assets/icons/mapMarker'
 import { Slot } from './assets/icons/slot'
 import { Target } from './assets/icons/target'
+import { LuckyMoney } from './assets/icons/LuckyMoney'
+import { Clover } from './assets/icons/clover'
 
 export const iconMap = {
   // 메뉴
@@ -106,6 +108,8 @@ export const iconMap = {
   mapMarker: MapMarker,
   slot: Slot,
   target: Target,
+  luckMoney: LuckyMoney,
+  clover: Clover,
 }
 
 export type IconType = keyof typeof iconMap
