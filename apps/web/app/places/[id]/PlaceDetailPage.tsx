@@ -35,6 +35,7 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
             />
           ))}
           minHeight={180}
+          showIndicator={true}
         />
         <Column className={'flex-1 justify-around gap-4 p-5'}>
           <Location location={location} />

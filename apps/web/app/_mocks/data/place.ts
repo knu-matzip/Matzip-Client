@@ -1,6 +1,6 @@
 export const Places = [
   {
-    placeId: 15,
+    placeId: 1,
     placeName: '우돈탄 다산본점',
     address: '경기 남양주시 다산중앙로82번길 25',
     categories: [
@@ -32,7 +32,7 @@ export const Places = [
 ]
 
 export const PlaceDetail = {
-  placeId: 15,
+  placeId: 1,
   placeName: '우돈탄 다산본점',
   photos: [
     {
