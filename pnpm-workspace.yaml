@@ -1,3 +1,67 @@
 packages:
-  - "apps/*"
-  - "packages/*"
+  - 'apps/*'
+  - 'packages/*'
+
+catalog:
+  # react
+  'react': '^19.1.0'
+  '@types/react': '^19.1.0'
+  'react-dom': '^19.1.0'
+  '@types/react-dom': '^19.1.1'
+
+  # typescript
+  'typescript': '^5.8.2'
+  '@types/node': '^22.15.30'
+
+  # tailwindcss
+  'autoprefixer': '^10.4.20'
+  'postcss': '^8.5.3'
+  'tailwindcss': '^4.1.5'
+  'clsx': '^2.1.1'
+  'tailwind-merge': '^3.3.1'
+  '@tailwindcss/postcss': '^4.1.5'
+  '@tailwindcss/cli': '^4.1.5'
+
+  # next
+  'next': '^15.4.7'
+  '@next/eslint-plugin-next': '^15.4.2'
+
+  # motion
+  'motion': '^12.23.12'
+  'framer-motion': '^12.23.12'
+
+  # react-query
+  '@tanstack/react-query': '^5.84.1'
+  '@tanstack/react-query-devtools': '^5.84.1'
+
+  # eslint
+  'eslint': '^9.32.0'
+  '@typescript-eslint/eslint-plugin': '^8.38.0'
+  '@typescript-eslint/parser': '^8.38.0'
+  'eslint-plugin-react': '^7.37.4'
+  'typescript-eslint': '^8.37.0'
+
+  # storybook
+  'storybook': '^9.1.0'
+  '@storybook/nextjs': '^9.1.0'
+  'eslint-plugin-storybook': '^9.1.0'
+
+  # testing
+  'vitest': '^3.2.4'
+  '@testing-library/react': '^16.3.0'
+  '@testing-library/dom': '^10.4.1'
+  '@testing-library/jest-dom': '^6.6.4'
+  '@testing-library/user-event': '^14.6.1'
+  '@vitejs/plugin-react': '^4.7.0'
+  'jsdom': '^26.1.0'
+
+  # heroui
+  '@heroui/react': '^2.8.2'
+  '@heroui/system': '^2.4.20'
+  '@heroui/theme': '^2.4.20'
+
+  # utilities
+  'axios': '^1.11.0'
+  'zod': '^4.0.17'
+  'zustand': '^5.0.7'
+
