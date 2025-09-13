@@ -19,9 +19,16 @@ export const LottoBalls: React.FC = () => {
     const width = container.clientWidth
     const radius = width / 2
 
-    // 엔진 생성
+    // 엔진 생성 및 터널링 방지 설정
     const engine = Engine.create()
-    engine.gravity.y = 0
+    engine.gravity.y = 1
+
+    // 터널링 방지를 위한 엔진 설정
+    engine.constraintIterations = 2 // 기본값보다 증가
+    engine.positionIterations = 6 // 기본값보다 증가
+    engine.velocityIterations = 4 // 기본값보다 증가
+    engine.enableSleeping = false // 슬리핑 비활성화
+
     engineRef.current = engine
     const world = engine.world
 
@@ -62,14 +69,6 @@ export const LottoBalls: React.FC = () => {
           density: 0.001,
         },
       )
-
-      // 초기 랜덤 속도 & 회전
-      Body.setVelocity(ball, {
-        x: (Math.random() - 0.5) * 10,
-        y: (Math.random() - 0.5) * 10,
-      })
-      Body.setAngularVelocity(ball, (Math.random() - 0.5) * 0.1)
-
       balls.push(ball)
     }
     ballsRef.current = balls
@@ -81,24 +80,38 @@ export const LottoBalls: React.FC = () => {
         const el = ballRefs.current[i]
         if (!el) return
 
-        // 최소 속도 유지
-        const speed = Math.hypot(ball.velocity.x, ball.velocity.y)
-        const minSpeed = 2
-        if (speed < minSpeed) {
-          Body.setVelocity(ball, {
-            x: (Math.random() - 0.5) * 10,
-            y: (Math.random() - 0.5) * 10,
-          })
+        // ✅ isRunning 상태일 때만 최소 속도 유지
+        if (isRunning) {
+          const speed = Math.hypot(ball.velocity.x, ball.velocity.y)
+          const minSpeed = 2
+          if (speed < minSpeed) {
+            Body.setVelocity(ball, {
+              x: (Math.random() - 0.5) * 10,
+              y: (Math.random() - 0.5) * 10,
+            })
+          }
+        } else {
+          // 멈춤 상태에서는 점진적으로 공기 저항 증가
+          const currentSpeed = Math.hypot(ball.velocity.x, ball.velocity.y)
+          if (currentSpeed > 0.1) {
+            Body.setVelocity(ball, {
+              x: ball.velocity.x * 0.98, // 점진적으로 속도 감소
+              y: ball.velocity.y * 0.98,
+            })
+            Body.setAngularVelocity(ball, ball.angularVelocity * 0.98)
+          }
         }
 
         el.style.transform = `translate(${ball.position.x - 12}px, ${ball.position.y - 12}px) rotate(${ball.angle}rad)`
       })
     }
+
     Events.on(engine, 'afterUpdate', updateDOM)
 
-    // Runner 생성 (초기엔 멈춤)
+    // Runner 생성 (항상 실행)
     const runner = Runner.create()
     runnerRef.current = runner
+    Runner.run(runner, engine) // ✅ 항상 실행 (버튼으로 물리조건만 바꿈)
 
     return () => {
       Events.off(engine, 'afterUpdate', updateDOM)
@@ -106,18 +119,34 @@ export const LottoBalls: React.FC = () => {
       World.clear(world, false)
       Engine.clear(engine)
     }
-  }, [])
+  }, [isRunning]) // ✅ isRunning을 dependency에 추가
 
   // 버튼 토글
   const handleToggle = () => {
-    if (!engineRef.current || !runnerRef.current) return
+    if (!engineRef.current) return
+
     if (isRunning) {
-      Runner.stop(runnerRef.current)
+      // ✅ 멈춤 상태
+      engineRef.current.gravity.y = 1 // 바닥으로 떨어지게
+      ballsRef.current.forEach((ball) => {
+        Body.setVelocity(ball, { x: 0, y: 0 })
+        Body.setAngularVelocity(ball, 0)
+      })
     } else {
-      Runner.run(runnerRef.current, engineRef.current)
+      // ✅ 튀기기 상태
+      engineRef.current.gravity.y = 0 // 중력 제거
+      ballsRef.current.forEach((ball) => {
+        Body.setVelocity(ball, {
+          x: (Math.random() - 0.5) * 6, // 속도 더 줄임
+          y: (Math.random() - 0.5) * 6,
+        })
+        Body.setAngularVelocity(ball, (Math.random() - 0.5) * 0.1)
+      })
     }
+
     setIsRunning(!isRunning)
   }
+
   const colors = [
     'bg-yellow-400',
     'bg-blue-400',
