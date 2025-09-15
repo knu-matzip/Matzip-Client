@@ -3,28 +3,26 @@
 import { Column, JustifyBetween } from '@repo/ui/components/Layout'
 import { useFunnel } from '@/_hooks/useFunnel'
 import { NavBarItem } from './_components/NavBarItem'
-import { Status } from './_components/Pages'
+import { Result } from './_components/Pages'
 
-export type StepType = 'status' | 'entry' | 'result'
+export type StepType = 'entry' | 'result'
 const STEP_ORDER: Record<StepType, string> = {
-  status: 'status',
   entry: 'entry',
   result: 'result',
 }
 const STEP_NAME = {
-  status: '응모권 현황',
   entry: '응모 하기',
   result: '응모 결과',
 }
-const TABS: StepType[] = ['status', 'entry', 'result']
+const TABS: StepType[] = ['entry', 'result']
 
 export const LuckyDraw = () => {
   const { nextStep, Step, step } = useFunnel(STEP_ORDER, 'tab')
 
   return (
     <>
-      <Column className={'p-5'}>
-        <JustifyBetween as={'nav'} className={'gap-7'}>
+      <Column className={'h-full p-5'}>
+        <JustifyBetween as={'nav'} className={'gap-10'}>
           {TABS.map((tab) => (
             <NavBarItem
               key={tab}
@@ -36,8 +34,8 @@ export const LuckyDraw = () => {
             />
           ))}
         </JustifyBetween>
-        <Step name={'status'}>
-          <Status />
+        <Step name={'result'}>
+          <Result />
         </Step>
       </Column>
     </>

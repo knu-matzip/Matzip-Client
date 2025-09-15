@@ -8,12 +8,12 @@ export const NavBarItem = ({ name, isActive, onClick }: Props) => {
   return (
     <Column
       as={'button'}
-      className={'flex-1 items-center gap-1'}
+      className={'flex-1 items-center gap-1.5'}
       onClick={onClick}
     >
       <Text
-        fontSize={'lg'}
-        fontWeight={isActive ? 'semibold' : 'light'}
+        fontSize={'xl'}
+        fontWeight={isActive ? 'semibold' : 'normal'}
         className={'text-nowrap'}
       >
         {name}
