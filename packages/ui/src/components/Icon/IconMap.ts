@@ -53,6 +53,7 @@ import { LuckyMoney } from './assets/icons/LuckyMoney'
 import { Clover } from './assets/icons/clover'
 import { Peoples } from './assets/icons/peoples'
 import { Congratulation } from './assets/icons/congratulation'
+import { Ticket } from './assets/icons/ticket'
 
 export const iconMap = {
   // 메뉴
@@ -114,6 +115,7 @@ export const iconMap = {
   clover: Clover,
   peoples: Peoples,
   congratulation: Congratulation,
+  ticket: Ticket,
 }
 
 export type IconType = keyof typeof iconMap
