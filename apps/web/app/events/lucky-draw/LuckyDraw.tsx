@@ -5,16 +5,16 @@ import { useFunnel } from '@/_hooks/useFunnel'
 import { NavBarItem } from './_components/NavBarItem'
 import { Result } from './_components/Pages'
 
-export type StepType = 'entry' | 'result'
+export type StepType = 'participation' | 'result'
 const STEP_ORDER: Record<StepType, string> = {
-  entry: 'entry',
+  participation: 'participation',
   result: 'result',
 }
 const STEP_NAME = {
-  entry: '응모 하기',
+  participation: '응모 하기',
   result: '응모 결과',
 }
-const TABS: StepType[] = ['entry', 'result']
+const TABS: StepType[] = ['participation', 'result']
 
 export const LuckyDraw = () => {
   const { nextStep, Step, step } = useFunnel(STEP_ORDER, 'tab')

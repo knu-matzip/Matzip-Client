@@ -5,8 +5,8 @@ import { useDisclosure } from '@heroui/react'
 import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
 import { Column } from '@repo/ui/components/Layout'
-import { LottoBalls } from '../../LottoBalls/LottoBalls'
-import { ParticipationStatus } from '../../ParticipationStatus/ParticipationStatus'
+import { LottoBalls } from '../../LottoBalls'
+import { ParticipationStatus } from '../../ParticipationStatus'
 import { ResultModal } from '../../ResultModal'
 
 export const Result = () => {
