@@ -18,7 +18,7 @@ type Copy = {
 
 const participationCopyMap: Record<Mode, Copy> = {
   current: {
-    participants: (c) => <>현재 {c.toLocaleString()}명 참여 완료</>,
+    participants: (c) => <>현재 {c.toLocaleString()}명이 참여 중이에요</>,
     tickets: (c) => (
       <>
         내가 넣은 응모권{' '}
