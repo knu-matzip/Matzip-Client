@@ -14,6 +14,7 @@ export const Participation = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const { data } = useSuspenseQuery(useEventQueries.info())
   const {
+    eventId,
     prize,
     totalWinnersCount,
     participantsCount,
@@ -43,6 +44,7 @@ export const Participation = () => {
       <ParticipationModal
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+        eventId={eventId}
         remainingTicketsCount={remainingTicketsCount}
       />
     </>
