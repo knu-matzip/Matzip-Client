@@ -1,0 +1,1 @@
+export { LikePlacesList } from './LikePlacesList'

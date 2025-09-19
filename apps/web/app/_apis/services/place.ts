@@ -90,3 +90,8 @@ export const getPlaceByPreview = async (
   )
   return PlaceByPreviewSchema.parse(data)
 }
+
+export const getPlacesByLike = async (): Promise<BasePlace[]> => {
+  const { data } = await axiosInstance.get(API_PATH.PLACES.LIKE.GET)
+  return BasePlaceSchema.array().parse(data)
+}

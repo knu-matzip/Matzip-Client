@@ -1,11 +1,15 @@
 'use client'
 
+import { useState } from 'react'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
+import { cn } from '@repo/ui/utils/cn'
+import { Flex } from '@repo/ui/components/Layout'
 
 type Props = {
   contents: React.ReactNode[]
   minHeight?: number
+  showIndicator?: boolean
 }
 
 /**
@@ -17,6 +21,7 @@ type Props = {
  *
  * @param contents 렌더링할 React 노드 배열 (각각의 배너 콘텐츠)
  * @param minHeight 배너의 최소 높이(px). 기본값은 150입니다.
+ * @param showIndicator 인디케이터 노출 유무. 기본값은 false 입니다.
  *
  * @example
  * ```tsx
@@ -30,10 +35,23 @@ type Props = {
  * />
  * ```
  */
-export const Banner = ({ contents, minHeight = 150 }: Props) => {
-  const [sliderRef] = useKeenSlider<HTMLDivElement>(
+export const Banner = ({
+  contents,
+  minHeight = 150,
+  showIndicator = false,
+}: Props) => {
+  const [currentSlide, setCurrentSlide] = useState(0)
+  const [loaded, setLoaded] = useState(false)
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
     {
       loop: true,
+      initial: 0,
+      slideChanged(slider) {
+        setCurrentSlide(slider.track.details.rel)
+      },
+      created() {
+        setLoaded(true)
+      },
     },
     [
       (slider) => {
@@ -68,13 +86,37 @@ export const Banner = ({ contents, minHeight = 150 }: Props) => {
   )
 
   return (
-    <div ref={sliderRef} className={'keen-slider'} style={{ minHeight }}>
+    <div
+      ref={sliderRef}
+      className={'keen-slider relative'}
+      style={{ minHeight }}
+    >
       {contents.map((content, index) => (
         //TODO: bg 색상 고민 하기
         <div key={index} className='keen-slider__slide bg-white'>
           {content}
         </div>
       ))}
+      {showIndicator && loaded && instanceRef.current && (
+        <Flex className='absolute bottom-3 left-1/2 -translate-x-1/2 gap-2'>
+          {[
+            ...Array(
+              instanceRef.current?.track.details.slides.length ?? 0,
+            ).keys(),
+          ].map((idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                instanceRef.current?.moveToIdx(idx)
+              }}
+              className={cn(
+                'block h-1 w-1 rounded-full transition-colors duration-300',
+                currentSlide === idx ? 'bg-gray-100' : 'bg-gray-50',
+              )}
+            />
+          ))}
+        </Flex>
+      )}
     </div>
   )
 }

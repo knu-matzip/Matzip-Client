@@ -5,6 +5,7 @@ import {
   getPlaceByPreview,
   getPlaceDetail,
   getPlacesByCategory,
+  getPlacesByLike,
   getPlacesByMap,
   getPlacesByRanking,
 } from '@/_apis/services/place'
@@ -19,6 +20,7 @@ export const PlaceQueryKeys = {
   byMap: () => [...PlaceQueryKeys.all(), 'map'] as const,
   byPreview: (kakaoPlaceId: string) =>
     [...PlaceQueryKeys.all(), 'preview', kakaoPlaceId] as const,
+  byLike: () => [...PlaceQueryKeys.all(), 'like'] as const,
 }
 
 export const usePlaceQueries = {
@@ -56,5 +58,11 @@ export const usePlaceQueries = {
     queryOptions({
       queryKey: PlaceQueryKeys.byPreview(kakaoPlaceId),
       queryFn: () => getPlaceByPreview(kakaoPlaceId),
+    }),
+
+  byLike: () =>
+    queryOptions({
+      queryKey: PlaceQueryKeys.byLike(),
+      queryFn: () => getPlacesByLike(),
     }),
 }

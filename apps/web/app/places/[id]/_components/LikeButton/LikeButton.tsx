@@ -3,15 +3,29 @@
 import { useState } from 'react'
 import { motion } from 'motion/react'
 import { Icon } from '@repo/ui/components/Icon'
+import { useAddLike } from '@/_apis/mutations/useAddLike'
+import { useRemoveLike } from '@/_apis/mutations/useRemoveLike'
 
-export const LikeButton = () => {
-  const [isLiked, setIsLiked] = useState(false)
+type Props = {
+  placeId: string
+  initIsLiked: boolean
+}
+
+export const LikeButton = ({ placeId, initIsLiked }: Props) => {
+  const [isLiked, setIsLiked] = useState(initIsLiked)
   const [isAnimating, setIsAnimating] = useState(false)
+  const { mutate: addLike } = useAddLike()
+  const { mutate: removeLike } = useRemoveLike()
+  const toggleLikeMutate = isLiked ? removeLike : addLike
 
   const onClick = () => {
-    setIsLiked((prev) => !prev)
-    setIsAnimating(true)
-    setTimeout(() => setIsAnimating(false), 200) // 0.2초 동안 팝 애니메이션
+    toggleLikeMutate(placeId, {
+      onSuccess: () => {
+        setIsLiked((prev) => !prev)
+        setIsAnimating(true)
+        setTimeout(() => setIsAnimating(false), 200) // 0.2초 동안 팝 애니메이션
+      },
+    })
   }
 
   return (

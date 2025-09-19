@@ -20,6 +20,11 @@ export const API_PATH = {
       PREVIEW: (kakaoPlaceId: string) =>
         `/places/preview?kakaoPlaceId=${kakaoPlaceId}`,
     },
+    LIKE: {
+      GET: '/places/like',
+      POST: (id: string) => `/places/${id}/like`,
+      DELETE: (id: string) => `/places/${id}/like`,
+    },
   },
   KAKAO: {
     SEARCH: (query: string, categoryCode: string, x: number, y: number) =>
