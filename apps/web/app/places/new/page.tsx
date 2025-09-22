@@ -24,6 +24,7 @@ import {
   Description,
   Category,
   Success,
+  Fail,
 } from './_components/Step'
 
 export type StepType =
@@ -35,6 +36,7 @@ export type StepType =
   | 'DESCRIPTION'
   | 'CATEGORY'
   | 'SUCCESS'
+  | 'FAIL'
 
 const STEP_ORDER: Record<StepType, string> = {
   EVENT_WELCOME: 'welcome',
@@ -45,6 +47,7 @@ const STEP_ORDER: Record<StepType, string> = {
   DESCRIPTION: '5',
   CATEGORY: '6',
   SUCCESS: 'success',
+  FAIL: 'fail',
 }
 
 const PlaceNewPage = () => {
@@ -163,12 +166,16 @@ const PlaceNewPage = () => {
             getValues={getValues}
             isSubmitting={isSubmitting}
             nextStep={() => {
+              // Todo: api 요청 후 status boolean 값으로 success 또는 fail로 이동
               nextStep('SUCCESS')
             }}
           />
         </Step>
         <Step name={'SUCCESS'}>
           <Success />
+        </Step>
+        <Step name={'FAIL'}>
+          <Fail />
         </Step>
       </Column>
     </>
