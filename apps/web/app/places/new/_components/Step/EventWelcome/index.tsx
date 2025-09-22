@@ -1,0 +1,1 @@
+export { EventWelcome } from './EventWelcome'

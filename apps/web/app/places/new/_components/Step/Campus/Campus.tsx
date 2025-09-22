@@ -14,7 +14,10 @@ type Props = {
 export const Campus = ({ control, nextStep }: Props) => {
   return (
     <>
-      <Title title={'맛집에 가까운 캠퍼스는?'} />
+      <Title
+        title={'맛집에 가까운 캠퍼스는?'}
+        description={'선택한 캠퍼스의 맛집으로 소개돼요!'}
+      />
       <Controller
         name={'campus'}
         control={control}
@@ -38,7 +41,12 @@ export const Campus = ({ control, nextStep }: Props) => {
           </RadioGroup>
         )}
       />
-      <Button size={'medium'} className={'ui:min-w-full'} onClick={nextStep}>
+      <Button
+        size={'medium'}
+        type={'button'}
+        className={'ui:min-w-full'}
+        onClick={nextStep}
+      >
         다음
       </Button>
     </>

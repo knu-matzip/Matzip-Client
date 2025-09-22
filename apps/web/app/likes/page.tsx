@@ -3,6 +3,7 @@ import { OnlyLeftHeader } from '@repo/ui/components/Header'
 import { VerticalScrollArea } from '@repo/ui/components/Layout'
 import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
 import { LikePlacesList } from './_components/LikePlacesList'
+import { BottomNavigation } from '@/_components/BottomNavigation'
 
 const Page = () => {
   return (
@@ -15,6 +16,7 @@ const Page = () => {
       <VerticalScrollArea className={'gap-1.5 px-5'}>
         <LikePlacesList />
       </VerticalScrollArea>
+      <BottomNavigation />
     </HydrationBoundaryPage>
   )
 }

@@ -3,7 +3,7 @@ import { SubTitle } from '../SubTitle'
 import { Menu } from './Menu'
 import { cn } from '@repo/ui/utils/cn'
 import { Text } from '@repo/ui/components/Text'
-import { Column } from '@repo/ui/components/Layout'
+import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
 
 type Props = {
   menus: PlaceDetail['menus']
@@ -25,8 +25,15 @@ export const Menus = ({ menus }: Props) => {
   return (
     <Column className={'gap-2.5'}>
       <SubTitle icon={'note'} title={'메뉴'} />
-      <Column
-        className={cn('gap-2.5', 'rounded-xl', 'bg-gray-50', 'px-4 py-3')}
+      <VerticalScrollArea
+        className={cn(
+          'gap-2.5',
+          'rounded-xl',
+          'bg-gray-50',
+          'px-4 py-3',
+          'max-h-60',
+          'show-scrollbar',
+        )}
       >
         {/*메뉴 존재 유무*/}
         {menus.length === 0 && (
@@ -53,7 +60,7 @@ export const Menus = ({ menus }: Props) => {
         {unRecommendedMenu.map((menu, index) => (
           <Menu key={index} menu={menu} />
         ))}
-      </Column>
+      </VerticalScrollArea>
     </Column>
   )
 }

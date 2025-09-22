@@ -30,6 +30,7 @@ export const Description = ({ control, getValues, nextStep }: Props) => {
       <Tags control={control} tagInitialValues={tagInitialValues} />
       <Button
         size={'medium'}
+        type={'button'}
         className={'ui:min-w-full mt-auto'}
         onClick={nextStep}
       >

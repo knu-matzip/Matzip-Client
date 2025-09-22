@@ -16,29 +16,38 @@ import { Icon } from '@repo/ui/components/Icon'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { HeaderHomeButton } from './_components/HeaderHomeButton'
 import {
+  EventWelcome,
   Campus,
   PlaceSearch,
   PlacePreview,
   RecommendedMenu,
   Description,
   Category,
+  Success,
+  Fail,
 } from './_components/Step'
 
 export type StepType =
+  | 'EVENT_WELCOME'
   | 'CAMPUS'
   | 'PLACE_SEARCH'
   | 'PLACE_PREVIEW'
   | 'RECOMMENDED_MENU'
   | 'DESCRIPTION'
   | 'CATEGORY'
+  | 'SUCCESS'
+  | 'FAIL'
 
 const STEP_ORDER: Record<StepType, string> = {
+  EVENT_WELCOME: 'welcome',
   CAMPUS: '1',
   PLACE_SEARCH: '2',
   PLACE_PREVIEW: '3',
   RECOMMENDED_MENU: '4',
   DESCRIPTION: '5',
   CATEGORY: '6',
+  SUCCESS: 'success',
+  FAIL: 'fail',
 }
 
 const PlaceNewPage = () => {
@@ -91,6 +100,13 @@ const PlaceNewPage = () => {
         onSubmit={handleSubmit(onSubmit, onError)}
         className={'min-h-0 flex-1 p-5'}
       >
+        <Step name={'EVENT_WELCOME'}>
+          <EventWelcome
+            nextStep={() => {
+              nextStep('CAMPUS')
+            }}
+          />
+        </Step>
         <Step name={'CAMPUS'}>
           <Campus
             control={control}
@@ -149,7 +165,17 @@ const PlaceNewPage = () => {
             setValue={setValue}
             getValues={getValues}
             isSubmitting={isSubmitting}
+            nextStep={() => {
+              // Todo: api 요청 후 status boolean 값으로 success 또는 fail로 이동
+              nextStep('SUCCESS')
+            }}
           />
+        </Step>
+        <Step name={'SUCCESS'}>
+          <Success />
+        </Step>
+        <Step name={'FAIL'}>
+          <Fail />
         </Step>
       </Column>
     </>

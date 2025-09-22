@@ -13,9 +13,15 @@ type Props = {
   setValue: UseFormSetValue<NewPlaceRequest>
   getValues: () => NewPlaceRequest
   isSubmitting: boolean
+  nextStep: VoidFunction
 }
 
-export const Category = ({ setValue, getValues, isSubmitting }: Props) => {
+export const Category = ({
+  setValue,
+  getValues,
+  isSubmitting,
+  nextStep,
+}: Props) => {
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
   const initialValues = getValues().categoryIds
   const initialCategory = categories.filter((category) =>
@@ -69,6 +75,10 @@ export const Category = ({ setValue, getValues, isSubmitting }: Props) => {
         includeInCategories={includeInCategories}
       />
       <Button
+        onClick={() => {
+          // Todo: 등록 성공 시 nextStep 실행
+          nextStep()
+        }}
         size={'medium'}
         className={'ui:min-w-full mt-auto'}
         disabled={isSubmitting}

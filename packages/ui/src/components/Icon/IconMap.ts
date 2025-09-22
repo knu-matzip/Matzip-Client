@@ -55,6 +55,7 @@ import { Peoples } from './assets/icons/peoples'
 import { Congratulation } from './assets/icons/congratulation'
 import { Ticket } from './assets/icons/ticket'
 import { QuestionMark } from './assets/icons/questionMark'
+import { Gift } from './assets/icons/gift'
 
 export const iconMap = {
   // 메뉴
@@ -118,6 +119,7 @@ export const iconMap = {
   congratulation: Congratulation,
   ticket: Ticket,
   questionMark: QuestionMark,
+  gift: Gift,
 }
 
 export type IconType = keyof typeof iconMap
