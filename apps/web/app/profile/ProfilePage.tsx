@@ -2,7 +2,7 @@ import { Column, Flex, JustifyBetween } from '@repo/ui/components/Layout'
 import { Icon, IconType } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import Image from 'next/image'
-// import { CLIENT_PATH } from '@/_constants/path'
+import { CLIENT_PATH } from '@/_constants/path'
 
 export const ProfilePage = () => {
   return (
@@ -10,7 +10,11 @@ export const ProfilePage = () => {
       <Profile />
       <Column className={'gap-4'}>
         <Menu href={'PROFILE'} title={'등록현황'} icon={'pencil'} />
-        <Menu href={'PROFILE'} title={'기프티콘'} icon={'gift'} />
+        <Menu
+          href={CLIENT_PATH.EVENT_GIFTICON}
+          title={'기프티콘'}
+          icon={'gift'}
+        />
         <Menu href={'PROFILE'} title={'이용약관'} icon={'paper'} />
       </Column>
     </Column>
