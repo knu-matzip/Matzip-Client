@@ -15,7 +15,13 @@ export const ProfilePage = () => {
           title={'기프티콘'}
           icon={'gift'}
         />
-        <Menu href={'PROFILE'} title={'이용약관'} icon={'paper'} />
+        <Menu
+          href={
+            'https://www.notion.so/woopaca/722d2e1180f94eeead36ec09436d4576?pvs=4'
+          }
+          title={'이용약관'}
+          icon={'paper'}
+        />
       </Column>
     </Column>
   )
