@@ -37,11 +37,11 @@ const Title = () => (
       근처 맛집을 간단하게 알리고
     </Text>
     <Flex className={'gap-1'}>
-      <Icon type={'gift'} />
+      <Icon type={'headerGift'} />
       <Text fontSize={'2xl'} fontWeight={'bold'}>
         기프티콘 응모권 까지!!
       </Text>
-      <Icon type={'gift'} />
+      <Icon type={'headerGift'} />
     </Flex>
     <Text variant={'body3'} className={'text-gray-300'}>
       작은 정보가 행운의 기회가 될 수 있어요. 지금 등록해보세요.
