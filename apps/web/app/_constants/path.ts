@@ -48,4 +48,6 @@ export const CLIENT_PATH = {
   PROFILE: '/profile',
   EVENTS_FOOD_SLOT: '/events/food-slot',
   EVENTS_LUCKY_DRAW: '/events/lucky-draw',
+  EVENT_GIFTICON: '/events/gifticon',
+  EVENT_GIFTICON_DETAIL: (id: string | number) => `/events/gifticon/${id}`,
 }
