@@ -9,7 +9,11 @@ export const ProfilePage = () => {
     <Column className={'gap-10 p-5'}>
       <Profile />
       <Column className={'gap-4'}>
-        <Menu href={'PROFILE'} title={'등록현황'} icon={'pencil'} />
+        <Menu
+          href={CLIENT_PATH.PLACE_STATUS}
+          title={'등록현황'}
+          icon={'pencil'}
+        />
         <Menu
           href={CLIENT_PATH.EVENT_GIFTICON}
           title={'기프티콘'}
