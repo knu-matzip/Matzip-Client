@@ -35,6 +35,10 @@ export const API_PATH = {
     PARTICIPATIONS: '/events/participations',
     RESULT: '/events/results',
   },
+  REQUEST: {
+    LIST: '/requests/places',
+    DETAIL: (id: string) => `/requests/places/${id}`,
+  },
 }
 
 export const CLIENT_PATH = {
@@ -47,6 +51,7 @@ export const CLIENT_PATH = {
   LIKES: '/likes',
   PROFILE: '/profile',
   REQUESTS: '/requests',
+  REQUEST_DETAIL: (id: string) => `/requests/${id}`,
   EVENTS_FOOD_SLOT: '/events/food-slot',
   EVENTS_LUCKY_DRAW: '/events/lucky-draw',
   EVENT_GIFTICON: '/events/gifticon',
