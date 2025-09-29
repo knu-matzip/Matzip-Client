@@ -1,4 +1,4 @@
-import { z } from 'zod/index'
+import { z } from 'zod'
 import { CategorySchema } from '@/_apis/schemas/category'
 
 export const RequestSchema = z.object({

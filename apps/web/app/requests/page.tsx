@@ -3,11 +3,18 @@ import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { Flex } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
-import { PlaceListItem } from './_components/PlaceListItem'
+
+import { useRequestQueries } from '@/_apis/queries/request'
+import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
+import { RequestPlacesList } from './_components/RequestPlacesList'
 
 const Page = () => {
   return (
-    <>
+    <HydrationBoundaryPage
+      prefetch={async (queryClient) => {
+        await queryClient.prefetchQuery(useRequestQueries.list())
+      }}
+    >
       <Header
         left={<HeaderBackButton />}
         center={
@@ -17,30 +24,8 @@ const Page = () => {
           </Flex>
         }
       />
-      <ul className={'p-5'}>
-        <PlaceListItem
-          placeId={'1'}
-          placeName={'김밥천국'}
-          categories={[{ id: '1', name: '중국집', iconKey: 'chinese' }]}
-          requestDate={'2020-05-09'}
-          registerStatus={'REJECTED'}
-        />{' '}
-        <PlaceListItem
-          placeId={'1'}
-          placeName={'김밥천국'}
-          categories={[{ id: '1', name: '중국집', iconKey: 'chinese' }]}
-          requestDate={'2020-05-09'}
-          registerStatus={'PENDING'}
-        />{' '}
-        <PlaceListItem
-          placeId={'1'}
-          placeName={'김밥천국'}
-          categories={[{ id: '1', name: '중국집', iconKey: 'chinese' }]}
-          requestDate={'2020-05-09'}
-          registerStatus={'APPROVED'}
-        />{' '}
-      </ul>
-    </>
+      <RequestPlacesList />
+    </HydrationBoundaryPage>
   )
 }
 

@@ -20,8 +20,7 @@ export const PlaceListItem = ({
       as={'li'}
       className={cn('gap-1', 'py-3.5', 'border-b-1 border-gray-50')}
     >
-      {/*Todo: href 주소 등록상세페이지로 변경 */}
-      <Column as={'a'} href={CLIENT_PATH.PLACE_DETAIL('1')}>
+      <Column as={'a'} href={CLIENT_PATH.REQUEST_DETAIL('1')}>
         <Flex className={'gap-1'}>
           <Text as={'span'} variant={'title2'}>
             {placeName}
