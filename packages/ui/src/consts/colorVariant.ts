@@ -1,26 +1,26 @@
 export const COLOR_VARIANTS = {
   red: {
-    text: 'text-red',
-    background: 'bg-red-light',
+    text: 'ui:text-red',
+    background: 'ui:bg-red-light',
     border: {
-      default: 'border-red-light',
-      active: 'border-red',
+      default: 'ui:border-red-light',
+      active: 'ui:border-red',
     },
   },
   blue: {
-    text: 'text-blue',
-    background: 'bg-blue-light',
+    text: 'ui:text-blue',
+    background: 'ui:bg-blue-light',
     border: {
-      default: 'border-blue-light',
-      active: 'border-blue',
+      default: 'ui:border-blue-light',
+      active: 'ui:border-blue',
     },
   },
   yellow: {
-    text: 'text-yellow',
-    background: 'bg-yellow-light',
+    text: 'ui:text-yellow',
+    background: 'ui:bg-yellow-light',
     border: {
-      default: 'border-yellow-light',
-      active: 'border-yellow',
+      default: 'ui:border-yellow-light',
+      active: 'ui:border-yellow',
     },
   },
 }
