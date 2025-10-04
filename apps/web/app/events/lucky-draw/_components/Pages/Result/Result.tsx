@@ -10,14 +10,14 @@ import { Column } from '@repo/ui/components/Layout'
 import { LottoBalls } from '../../LottoBalls'
 import { ParticipationStatus } from '../../ParticipationStatus'
 import { ResultModal } from './ResultModal'
+import { NoResult } from './NoResult'
 
 export const Result = () => {
   const [isRunning, setIsRunning] = useState(false)
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const { data } = useSuspenseQuery(useEventQueries.result())
 
-  // Todo: 이전 이벤트 없을 경우 화면 구현
-  if (!data) return null
+  if (!data) return <NoResult />
 
   const { isWinner, participantsCount, usedTicketsCount } = data
 
