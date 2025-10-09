@@ -26,7 +26,6 @@
     "@tanstack/react-query-devtools": "catalog:",
     "axios": "catalog:",
     "framer-motion": "catalog:",
-    "keen-slider": "catalog:",
     "matter-js": "^0.20.0",
     "motion": "catalog:",
     "next": "catalog:",

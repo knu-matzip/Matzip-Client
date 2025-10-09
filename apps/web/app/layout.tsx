@@ -1,6 +1,5 @@
 import '@repo/ui/styles.css'
 import './globals.css'
-import 'keen-slider/keen-slider.min.css'
 import type { Metadata } from 'next'
 import QueryProvider from './QueryClientProvider'
 import localFont from 'next/font/local'

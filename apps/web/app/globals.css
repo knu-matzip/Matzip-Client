@@ -2,7 +2,6 @@
 @import "@repo/tailwind-config";
 @plugin './hero.ts';
 @source '../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}';
-@import 'keen-slider/keen-slider.min.css';
 
 
 
