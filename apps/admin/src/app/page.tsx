@@ -1,12 +1,37 @@
-import { Column } from '@repo/ui/components/Layout'
-import { Text } from '@repo/ui/components/Text'
-import { Button } from '@repo/ui/components/Button'
+import { VerticalScrollArea } from '@repo/ui/components/Layout'
+import { RequestsByCampus } from '@/components/RequestsByCampus'
+import { OnlyLeftHeader } from '@repo/ui/components/Header'
 
 export default function Home() {
   return (
-    <Column>
-      <Text variant={'heading1'}>Hello World!</Text>
-      <Button size={'medium'}>버튼</Button>
-    </Column>
+    <>
+      <OnlyLeftHeader icon={'logo'} name={'대기중'} />
+      <VerticalScrollArea className={'gap-10 p-5'}>
+        <RequestsByCampus
+          campus={'SINGWAN'}
+          requestList={[
+            { placeName: '짬뽕집', icon: 'chinese', requestDate: '2025-10-29' },
+            { placeName: '짬뽕집', icon: 'chinese', requestDate: '2025-10-29' },
+            { placeName: '짬뽕집', icon: 'chinese', requestDate: '2025-10-29' },
+          ]}
+        />
+        <RequestsByCampus
+          campus={'CHEANAN'}
+          requestList={[
+            { placeName: '짬뽕집', icon: 'chinese', requestDate: '2025-10-29' },
+            { placeName: '짬뽕집', icon: 'chinese', requestDate: '2025-10-29' },
+            { placeName: '짬뽕집', icon: 'chinese', requestDate: '2025-10-29' },
+          ]}
+        />
+        <RequestsByCampus
+          campus={'YESAN'}
+          requestList={[
+            { placeName: '짬뽕집', icon: 'chinese', requestDate: '2025-10-29' },
+            { placeName: '짬뽕집', icon: 'chinese', requestDate: '2025-10-29' },
+            { placeName: '짬뽕집', icon: 'chinese', requestDate: '2025-10-29' },
+          ]}
+        />
+      </VerticalScrollArea>
+    </>
   )
 }

@@ -1,0 +1,23 @@
+import { Column } from '@repo/ui/components/Layout'
+import { Text } from '@repo/ui/components/Text'
+import { CAMPUS, type CampusType } from '@/consts/campus'
+import { RequestListItem } from '@/components/RequestListItem'
+import { type Request } from '@/components/RequestListItem/RequestListItem'
+
+type Props = {
+  campus: CampusType
+  requestList: Request[]
+}
+
+export const RequestsByCampus = ({ campus, requestList }: Props) => (
+  <Column as={'section'} className={'gap-1'}>
+    <Text variant={'heading2'} className={'text-main'}>
+      {CAMPUS[campus]}캠
+    </Text>
+    <ul>
+      {requestList.map((request) => (
+        <RequestListItem key={request.placeName} {...request} />
+      ))}
+    </ul>
+  </Column>
+)
