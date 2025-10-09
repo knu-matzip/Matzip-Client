@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { usePlaceQueries } from '@/_apis/queries/place'
-import { Banner } from '@/_components/Banner'
+import { Banner } from '@repo/ui/components/Banner'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { Text } from '@repo/ui/components/Text'
 import { Header } from '@repo/ui/components/Header'

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import { cn } from '@repo/ui/utils/cn'
-import { Flex } from '@repo/ui/components/Layout'
+import { Flex } from '../Layout'
 
 type Props = {
   contents: React.ReactNode[]

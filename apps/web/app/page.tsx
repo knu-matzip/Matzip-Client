@@ -11,7 +11,7 @@ import {
   MostViewsPlaces,
 } from '@/_components/RankingPlaceList'
 import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
-import { Banner } from '@/_components/Banner'
+import { Banner } from '@repo/ui/components/Banner'
 import { Categories } from '@/_components/Categories'
 import { CampusSelector } from '@/_components/CampusSelector'
 import { BottomNavigation } from '@/_components/BottomNavigation'

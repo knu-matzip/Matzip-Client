@@ -37,6 +37,7 @@
   "dependencies": {
     "clsx": "catalog:",
     "motion": "catalog:",
-    "tailwind-merge": "catalog:"
+    "tailwind-merge": "catalog:",
+    "keen-slider": "catalog:"
   }
 }
