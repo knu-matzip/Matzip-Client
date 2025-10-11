@@ -1,10 +1,12 @@
+export const BASE_URL = process.env.NEXT_PUBLIC_API_URL || ''
+
 export const API_PATH = {
   REQUEST: {
     GET: {
-      LIST: `request/places`,
-      DETAIL: (id: string | number) => `request/places/${id}`,
+      LIST: `/request/places`,
+      DETAIL: (id: string | number) => `/request/places/${id}`,
     },
-    POST: (id: string | number) => `request/places/${id}/review`,
+    POST: (id: string | number) => `/request/places/${id}/review`,
   },
 } as const
 
