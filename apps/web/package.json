@@ -21,6 +21,7 @@
     "@heroui/theme": "catalog:",
     "@hookform/resolvers": "^5.2.1",
     "@repo/ui": "workspace:*",
+    "@repo/utils": "workspace:*",
     "@suspensive/react": "^3.3.2",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-query-devtools": "catalog:",

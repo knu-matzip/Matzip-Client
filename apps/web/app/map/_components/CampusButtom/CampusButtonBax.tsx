@@ -7,7 +7,7 @@ import {
   CAMPUS_LIST,
   CAMPUS_LOCATION,
 } from '@/_constants/campus'
-import { toLatLng } from '@/map/_utils/toLatLng'
+import { toLatLng } from '@repo/utils/toLatLng'
 import { CampusButton } from './CampusButton'
 import { Column } from '@repo/ui/components/Layout'
 

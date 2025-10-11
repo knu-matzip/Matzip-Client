@@ -1,6 +1,6 @@
 import { ReactDOMServer } from 'next/dist/server/route-modules/app-page/vendored/ssr/entrypoints'
 import { Marker, useNavermaps } from 'react-naver-maps'
-import { type Coord, toLatLng } from '@/map/_utils/toLatLng'
+import { type Coord, toLatLng } from '@repo/utils/toLatLng'
 import { type IconType, Icon } from '@repo/ui/components/Icon'
 import { Column } from '@repo/ui/components/Layout'
 

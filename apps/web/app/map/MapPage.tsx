@@ -10,7 +10,7 @@ import { usePlaceQueries } from '@/_apis/queries/place'
 import type { MapBounds } from '@/_apis/schemas/place'
 
 import { cn } from '@repo/ui/utils/cn'
-import { toLatLng } from './_utils/toLatLng'
+import { toLatLng } from '@repo/utils/toLatLng'
 import { useWatchLocation } from './_hooks/useWatchLocation'
 import { PlaceList } from './_components/PlaceList'
 import { CampusButtonBax } from './_components/CampusButtom'

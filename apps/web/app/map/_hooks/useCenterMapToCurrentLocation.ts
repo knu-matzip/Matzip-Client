@@ -1,4 +1,4 @@
-import { toLatLng } from '@/map/_utils/toLatLng'
+import { toLatLng } from '@repo/utils/toLatLng'
 import getCurrentLocation from '@/map/_utils/getCurrentLocation'
 
 /**
