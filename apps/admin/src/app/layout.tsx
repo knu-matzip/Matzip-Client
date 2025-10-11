@@ -3,6 +3,7 @@ import '@repo/ui/styles.css'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { Column } from '@repo/ui/components/Layout'
+import { NaverMapProvider } from '@/app/NaverMapProvider'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -24,9 +25,11 @@ export default function RootLayout({
     <html lang='ko' suppressHydrationWarning={true}>
       <body className={pretendard.className}>
         <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
-          <Column className={'relative w-full max-w-[450px] bg-white'}>
-            {children}
-          </Column>
+          <NaverMapProvider>
+            <Column className={'relative w-full max-w-[450px] bg-white'}>
+              {children}
+            </Column>
+          </NaverMapProvider>
         </div>
       </body>
     </html>
