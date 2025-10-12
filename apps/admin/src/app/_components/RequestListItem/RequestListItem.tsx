@@ -3,6 +3,7 @@ import { cn } from '@repo/ui/utils/cn'
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
 import { CLIENT_PATH } from '@/consts/path'
+import { Request } from '@/app/_api/types'
 
 export const RequestListItem = ({
   placeId,

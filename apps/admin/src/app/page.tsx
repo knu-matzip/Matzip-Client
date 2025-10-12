@@ -1,7 +1,7 @@
 import { VerticalScrollArea } from '@repo/ui/components/Layout'
-import { RequestsByCampus } from '@/components/RequestsByCampus'
+import { RequestsByCampus } from './_components/RequestsByCampus'
 import { OnlyLeftHeader } from '@repo/ui/components/Header'
-import { type Request } from '@/components/RequestListItem/RequestListItem'
+import type { Request } from './_api/types'
 
 const MOCK_DATA: Request[] = [
   {

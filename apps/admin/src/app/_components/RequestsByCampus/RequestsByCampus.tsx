@@ -1,8 +1,8 @@
 import { Column } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
 import { CAMPUS, type CampusType } from '@/consts/campus'
-import { RequestListItem } from '@/components/RequestListItem'
-import { type Request } from '@/components/RequestListItem/RequestListItem'
+import { RequestListItem } from '@/app/_components/RequestListItem'
+import { Request } from '@/app/_api/types'
 
 type Props = {
   campus: CampusType
