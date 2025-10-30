@@ -6,7 +6,7 @@ import { Button } from '@repo/ui/components/Button'
 import { Column } from '@repo/ui/components/Layout'
 import { CLIENT_PATH } from '@/_constants/path'
 
-export default function Error() {
+export default function ErrorPage() {
   return (
     <Column className={'flex-1 items-center justify-center gap-20'}>
       <Column className={'items-center gap-2'}>
@@ -17,7 +17,7 @@ export default function Error() {
         </div>
       </Column>
       <Button as={'a'} size={'medium'} href={CLIENT_PATH.MAIN}>
-        새로고침
+        홈으로
       </Button>
     </Column>
   )
