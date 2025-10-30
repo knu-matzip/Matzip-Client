@@ -50,6 +50,7 @@ import { Crosshairs } from './assets/icons/crosshairs'
 import { DoubleHeart } from './assets/icons/doubleHeart'
 import { SwapArrow } from './assets/icons/swapArrow'
 import { MapMarker } from './assets/icons/mapMarker'
+import { Ghost } from './assets/icons/ghost'
 import { Slot } from './assets/icons/slot'
 import { Target } from './assets/icons/target'
 import { LuckyMoney } from './assets/icons/LuckyMoney'
@@ -119,6 +120,7 @@ export const iconMap = {
   doubleHeart: DoubleHeart,
   swapArrow: SwapArrow,
   mapMarker: MapMarker,
+  ghost: Ghost,
   slot: Slot,
   target: Target,
   luckMoney: LuckyMoney,
