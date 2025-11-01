@@ -8,6 +8,8 @@ import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
 import { useEventQueries } from '@/_apis/queries/event'
 import { InfoPopover } from './_components/InfoPopover'
 
+export const dynamic = 'force-dynamic'
+
 const Page = () => {
   return (
     <HydrationBoundaryPage

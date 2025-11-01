@@ -20,6 +20,8 @@ import {
   LuckyDrawBanner,
 } from '@/_components/eventBanners'
 
+export const dynamic = 'force-dynamic'
+
 export default function Page() {
   return (
     <HydrationBoundaryPage

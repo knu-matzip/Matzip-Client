@@ -8,7 +8,9 @@ import { useRequestQueries } from '@/_apis/queries/request'
 import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
 import { RequestPlacesList } from './_components/RequestPlacesList'
 
-const Page = () => {
+export const dynamic = 'force-dynamic'
+
+const Page = async () => {
   return (
     <HydrationBoundaryPage
       prefetch={async (queryClient) => {

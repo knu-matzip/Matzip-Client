@@ -4,6 +4,8 @@ import FoodSlotMachine from './FoodSlotMachine'
 import { Header } from '@repo/ui/components/Header'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 
+export const dynamic = 'force-dynamic'
+
 const Page = async () => {
   return (
     <>

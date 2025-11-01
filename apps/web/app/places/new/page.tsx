@@ -50,6 +50,8 @@ const STEP_ORDER: Record<StepType, string> = {
   FAIL: 'fail',
 }
 
+export const dynamic = 'force-dynamic'
+
 const PlaceNewPage = () => {
   const { Step, nextStep } = useFunnel<StepType>(STEP_ORDER)
 

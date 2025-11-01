@@ -5,6 +5,8 @@ import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
 import { LikePlacesList } from './_components/LikePlacesList'
 import { BottomNavigation } from '@/_components/BottomNavigation'
 
+export const dynamic = 'force-dynamic'
+
 const Page = () => {
   return (
     <HydrationBoundaryPage
