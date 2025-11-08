@@ -73,7 +73,7 @@ export const getSearchPlaceByKakao = async ({
   const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_API || ''
   const { x, y } = location
 
-  const { data: response } = await axios.get(
+  const { data } = await axios.get(
     API_PATH.KAKAO.SEARCH(query, KAKAO_CATEGORY_CODE[categoryCode], x, y),
     {
       headers: {
@@ -81,7 +81,6 @@ export const getSearchPlaceByKakao = async ({
       },
     },
   )
-  const { data } = response
   return data
 }
 
