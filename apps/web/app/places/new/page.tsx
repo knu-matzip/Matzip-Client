@@ -8,6 +8,7 @@ import {
   NewPlaceRequestSchema,
 } from '@/_apis/schemas/place'
 import { useFunnel } from '@/_hooks/useFunnel'
+import { useCreateNewPlace } from '@/_apis/mutations/useCreateNewPlace'
 import { useCampusStore } from '@/_store/campus'
 import { Header } from '@repo/ui/components/Header'
 import { Column, Flex } from '@repo/ui/components/Layout'
@@ -52,10 +53,9 @@ const STEP_ORDER: Record<StepType, string> = {
 
 const PlaceNewPage = () => {
   const { Step, nextStep } = useFunnel<StepType>(STEP_ORDER)
-
   const { campus: initCampus } = useCampusStore()
+  const { mutate, isPending } = useCreateNewPlace()
   const {
-    // register,
     handleSubmit,
     control,
     setValue,
@@ -74,7 +74,10 @@ const PlaceNewPage = () => {
     },
   })
 
-  const onSubmit: SubmitHandler<NewPlaceRequest> = (data) => console.log(data)
+  const onSubmit: SubmitHandler<NewPlaceRequest> = async (data) => {
+    mutate(data)
+  }
+
   const onError = (errors: FieldErrors<NewPlaceRequest>) => {
     if (errors.categoryIds) {
       addToast({
@@ -165,11 +168,7 @@ const PlaceNewPage = () => {
           <Category
             setValue={setValue}
             getValues={getValues}
-            isSubmitting={isSubmitting}
-            nextStep={() => {
-              // Todo: api 요청 후 status boolean 값으로 success 또는 fail로 이동
-              nextStep('SUCCESS')
-            }}
+            isLoading={isSubmitting || isPending}
           />
         </Step>
         <Step name={'SUCCESS'}>

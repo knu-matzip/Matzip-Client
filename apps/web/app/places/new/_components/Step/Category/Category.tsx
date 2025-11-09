@@ -12,16 +12,10 @@ import { Button } from '@repo/ui/components/Button'
 type Props = {
   setValue: UseFormSetValue<NewPlaceRequest>
   getValues: () => NewPlaceRequest
-  isSubmitting: boolean
-  nextStep: VoidFunction
+  isLoading: boolean
 }
 
-export const Category = ({
-  setValue,
-  getValues,
-  isSubmitting,
-  nextStep,
-}: Props) => {
+export const Category = ({ setValue, getValues, isLoading }: Props) => {
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
   const initialValues = getValues().categoryIds
   const initialCategory = categories.filter((category) =>
@@ -75,13 +69,10 @@ export const Category = ({
         includeInCategories={includeInCategories}
       />
       <Button
-        onClick={() => {
-          // Todo: 등록 성공 시 nextStep 실행
-          nextStep()
-        }}
+        type='submit'
         size={'medium'}
         className={'ui:min-w-full mt-auto'}
-        disabled={isSubmitting}
+        disabled={isLoading}
       >
         등록하기
       </Button>
