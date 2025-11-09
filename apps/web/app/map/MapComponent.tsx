@@ -13,7 +13,7 @@ import { cn } from '@repo/ui/utils/cn'
 import { toLatLng } from './_utils/toLatLng'
 import { useWatchLocation } from './_hooks/useWatchLocation'
 import { PlaceList } from './_components/PlaceList'
-import { CampusButtonBax } from './_components/CampusButtom'
+import { CampusButtonBox } from './_components/CampusButtom'
 import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
 import { PreviewPlace } from './_components/PreviewPlace'
@@ -88,7 +88,7 @@ const MapComponent = () => {
         isCenteredOnUser={isCenteredOnUser}
         previewPlaceId={previewPlaceId}
       />
-      <CampusButtonBax map={map} centerMapToCampus={centerMapToCampus} />
+      <CampusButtonBox map={map} centerMapToCampus={centerMapToCampus} />
       <Container
         className={cn('map-wrapper', 'w-full', 'h-full')}
         onClick={resetPreviewPlace}

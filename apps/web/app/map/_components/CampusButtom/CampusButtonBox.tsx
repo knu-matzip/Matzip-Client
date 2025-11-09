@@ -22,7 +22,7 @@ type Props = {
  *
  * @example
  * ```tsx
- * <CampusButtonBax map={map} />
+ * <CampusButtonBox map={map} />
  * ```
  *
  * @param {object} props
@@ -30,7 +30,7 @@ type Props = {
  *
  * @returns 캠퍼스 선택 버튼 그룹 UI
  */
-export const CampusButtonBax = ({ map, centerMapToCampus }: Props) => {
+export const CampusButtonBox = ({ map, centerMapToCampus }: Props) => {
   const { campus: initCampus } = useCampusStore()
   const [activeCampus, setActiveCampus] = useState<CampusType>(initCampus)
 

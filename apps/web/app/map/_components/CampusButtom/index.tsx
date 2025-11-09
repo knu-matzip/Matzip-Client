@@ -1,2 +1,2 @@
 export { CampusButton } from './CampusButton'
-export { CampusButtonBax } from './CampusButtonBax'
+export { CampusButtonBox } from './CampusButtonBox'
