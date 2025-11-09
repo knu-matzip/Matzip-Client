@@ -1,6 +1,7 @@
 import { CheckboxGroup, Checkbox } from '@heroui/react'
 import { type Control, Controller } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
+import { formatPrice } from '@/_utils/formatPrice'
 import { Title } from '@/places/new/_components/Title'
 import { Text } from '@repo/ui/components/Text'
 import { JustifyBetween, VerticalScrollArea } from '@repo/ui/components/Layout'
@@ -67,7 +68,7 @@ export const RecommendedMenu = ({ control, nextStep }: Props) => {
                         fontWeight='semibold'
                         className='text-gray-300'
                       >
-                        {menu.price.toLocaleString()} 원
+                        {formatPrice(menu.price)}
                       </Text>
                     </JustifyBetween>
                   </Checkbox>

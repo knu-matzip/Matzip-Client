@@ -1,4 +1,5 @@
-import { PlaceDetail } from '@/_apis/schemas/place'
+import type { PlaceDetail } from '@/_apis/schemas/place'
+import { formatPrice } from '@/_utils/formatPrice'
 import { Flex, JustifyBetween } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
@@ -20,7 +21,7 @@ export const Menu = ({ menu }: Props) => {
       </Flex>
 
       <Text fontSize={'sm'} fontWeight={'semibold'} className={'text-gray-300'}>
-        {price.toLocaleString()} 원
+        {formatPrice(price)}
       </Text>
     </JustifyBetween>
   )
