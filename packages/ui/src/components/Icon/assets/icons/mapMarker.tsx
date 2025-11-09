@@ -14,10 +14,27 @@ export const MapMarker = ({
     xmlns='http://www.w3.org/2000/svg'
     {...props}
   >
+    <defs>
+      <filter
+        id='map-marker-shadow'
+        x='-30%'
+        y='-30%'
+        width='160%'
+        height='160%'
+      >
+        <feDropShadow
+          dx='0'
+          dy='2'
+          stdDeviation='2'
+          floodColor='#000000'
+          floodOpacity='0.5'
+        />
+      </filter>
+    </defs>
     <path
       d='M46.5 22C46.5 30.1938 35.5312 44.7813 30.7219 50.8C29.5687 52.2344 27.4313 52.2344 26.2781 50.8C21.4688 44.7813 10.5 30.1938 10.5 22C10.5 12.0625 18.5625 4 28.5 4C38.4375 4 46.5 12.0625 46.5 22Z'
       fill={color || '#FEFCF9'}
-      style={{ filter: 'drop-shadow(0px 2px 2px rgba(0,0,0,0.5))' }}
+      filter='url(#map-marker-shadow)'
     />
   </svg>
 )
