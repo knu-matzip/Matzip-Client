@@ -1,7 +1,7 @@
 import { Flex, JustifyBetween } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
-import type { RequestDetail } from '@/app/request/[id]/_api/types'
+import type { RequestDetail } from '@/app/requests/[id]/_api/types'
 
 type Props = {
   menu: RequestDetail['menus'][0]

@@ -1,7 +1,7 @@
 import { Text } from '@repo/ui/components/Text'
 import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { cn } from '@repo/ui/utils/cn'
-import type { RequestDetail } from '@/app/request/[id]/_api/types'
+import type { RequestDetail } from '@/app/requests/[id]/_api/types'
 import { Menu } from './Menu'
 
 type Props = {
