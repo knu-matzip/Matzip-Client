@@ -14,7 +14,9 @@ export const StatusChip = ({
     className={cn(
       STATUS_COLOR[registerStatus].text,
       STATUS_COLOR[registerStatus].background,
+      'h-fit',
       'rounded-full',
+      'my-auto',
       'px-2.5 py-2',
     )}
   >

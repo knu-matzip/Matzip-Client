@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { CLIENT_PATH } from '@/_constants/path'
 import type { BasePlace } from '@/_apis/schemas/place'
 import { cn } from '@repo/ui/utils/cn'
@@ -25,7 +26,7 @@ export const PlaceListItem = ({
   return (
     <li>
       <Column
-        as={'a'}
+        as={Link}
         className={cn('gap-1', 'pb-4 pt-2.5', {
           'border-b-1 border-gray-50': showBorder,
         })}

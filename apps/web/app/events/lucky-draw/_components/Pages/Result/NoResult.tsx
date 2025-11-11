@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Column } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
@@ -14,7 +15,7 @@ export const NoResult = () => (
       </Text>
     </div>
     <Button
-      as={'a'}
+      as={Link}
       href={CLIENT_PATH.PLACE_NEW}
       size={'medium'}
       className={'w-full'}

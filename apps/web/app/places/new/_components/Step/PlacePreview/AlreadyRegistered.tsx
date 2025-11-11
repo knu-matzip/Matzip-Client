@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Image from 'next/image'
 import { CLIENT_PATH } from '@/_constants/path'
 import { Column } from '@repo/ui/components/Layout'
@@ -28,7 +29,7 @@ export const AlreadyRegistered = ({ placeName }: { placeName: string }) => {
         height={200}
       />
       <Button
-        as={'a'}
+        as={Link}
         size={'medium'}
         className={'ui:min-w-full mt-auto'}
         href={CLIENT_PATH.MAIN}
