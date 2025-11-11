@@ -11,7 +11,6 @@ export const VerticalScrollArea: FlexType = ({
 
   return (
     <Component
-      as={as}
       className={cn('ui:flex ui:flex-col', 'ui:overflow-auto', className)}
       {...restProps}
     >

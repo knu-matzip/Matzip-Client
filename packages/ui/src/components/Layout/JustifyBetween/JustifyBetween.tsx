@@ -11,7 +11,6 @@ export const JustifyBetween: FlexType = ({
 
   return (
     <Component
-      as={as}
       className={cn('ui:flex ui:items-center ui:justify-between', className)}
       {...restProps}
     >

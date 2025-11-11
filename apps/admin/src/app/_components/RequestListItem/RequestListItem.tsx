@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { cn } from '@repo/ui/utils/cn'
 import { Text } from '@repo/ui/components/Text'
@@ -13,7 +14,7 @@ export const RequestListItem = ({
 }: Request) => (
   <li>
     <Column
-      as={'a'}
+      as={Link}
       href={CLIENT_PATH.REQUEST_DETAIL(placeId)}
       className={cn('gap-1', 'py-3.5', 'border-b-1 border-gray-50')}
     >

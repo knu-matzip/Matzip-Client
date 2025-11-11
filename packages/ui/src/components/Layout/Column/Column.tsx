@@ -5,11 +5,7 @@ export const Column: FlexType = ({ as, className, children, ...restProps }) => {
   const Component = as || 'div'
 
   return (
-    <Component
-      as={as}
-      className={cn('ui:flex ui:flex-col', className)}
-      {...restProps}
-    >
+    <Component className={cn('ui:flex ui:flex-col', className)} {...restProps}>
       {children}
     </Component>
   )

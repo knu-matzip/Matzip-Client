@@ -11,7 +11,6 @@ export const JustifyAround: FlexType = ({
 
   return (
     <Component
-      as={as}
       className={cn('ui:flex ui:items-center ui:justify-around', className)}
       {...restProps}
     >

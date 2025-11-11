@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
@@ -5,7 +6,7 @@ import { CLIENT_PATH } from '@/_constants/path'
 
 export const LuckyDrawBanner = () => (
   <Flex
-    as={'a'}
+    as={Link}
     href={CLIENT_PATH.EVENTS_LUCKY_DRAW}
     className={
       'mx-auto h-full w-[95%] justify-center gap-6 rounded-xl bg-green-100'

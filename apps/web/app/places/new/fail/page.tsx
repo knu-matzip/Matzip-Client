@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Column } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
@@ -21,7 +22,7 @@ const FailPage = () => (
       </Column>
     </Column>
     <Button
-      as={'a'}
+      as={Link}
       href={CLIENT_PATH.MAIN}
       size={'medium'}
       className={'w-full'}

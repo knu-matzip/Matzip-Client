@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { CLIENT_PATH } from '@/_constants/path'
 import { Category } from '@/_apis/schemas/category'
 import { Icon } from '@repo/ui/components/Icon'
@@ -6,7 +7,7 @@ import { Column } from '@repo/ui/components/Layout'
 
 export const CategoryItem = ({ id, name, iconKey }: Category) => (
   <Column
-    as={'a'}
+    as={Link}
     href={CLIENT_PATH.CATEGORY_DETAIL(id)}
     className={'items-center gap-1'}
   >

@@ -11,7 +11,6 @@ export const JustifyEnd: FlexType = ({
 
   return (
     <Component
-      as={as}
       className={cn('ui:flex ui:items-center ui:justify-end', className)}
       {...restProps}
     >
