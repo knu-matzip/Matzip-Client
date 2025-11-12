@@ -1,7 +1,6 @@
 'use client'
 
 import type { Selection } from '@heroui/react'
-import type { SharedSelection } from '@heroui/system'
 import {
   Dropdown,
   DropdownTrigger,
@@ -18,8 +17,11 @@ export const CampusSelector = () => {
   const { campus, setCampus } = useCampusStore()
   const selectedKeys = new Set([campus]) as Selection
 
-  const onSelectionChange = ({ currentKey }: SharedSelection) => {
-    if (isCampusType(currentKey)) setCampus(currentKey)
+  const onSelectionChange = (keys: Selection) => {
+    const newKey = Array.from(keys)[0] as string | undefined
+    if (isCampusType(newKey)) {
+      setCampus(newKey)
+    }
   }
 
   return (
@@ -27,8 +29,8 @@ export const CampusSelector = () => {
       <DropdownTrigger className='flex items-center gap-1'>
         <Text
           as={'button'}
-          fontSize='base'
-          fontWeight='semibold'
+          fontSize={'base'}
+          fontWeight={'semibold'}
           className='text-gray-300'
         >
           <Icon type='swapArrow' size={18} />
@@ -41,7 +43,7 @@ export const CampusSelector = () => {
         selectedKeys={selectedKeys}
         selectionMode='single'
         variant='flat'
-        onSelectionChange={onSelectionChange}
+        onSelectionChange={onSelectionChange} // 5. [수정됨] 이제 이 핸들러가 올바르게 작동합니다.
       >
         {CAMPUS_LIST.map((campusKey) => (
           <DropdownItem key={campusKey}>{CAMPUS[campusKey]}</DropdownItem>
@@ -53,6 +55,5 @@ export const CampusSelector = () => {
 
 function isCampusType(value: string | undefined): value is CampusType {
   if (value === undefined) return false
-
-  return value in CAMPUS
+  return (CAMPUS_LIST as readonly string[]).includes(value)
 }
