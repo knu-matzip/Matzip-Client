@@ -1,17 +1,27 @@
 import { queryOptions } from '@tanstack/react-query'
-import { getEventInfo, getEventResult } from '@/_apis/services/event'
+import {
+  getPublicEventInfo,
+  getPrivateEventInfo,
+  getEventResult,
+} from '@/_apis/services/event'
 
 export const EventQueryKeys = {
   all: () => ['event'] as const,
-  info: () => [...EventQueryKeys.all(), 'info'] as const,
+  publicInfo: () => [...EventQueryKeys.all(), 'info', 'public'] as const,
+  privateInfo: () => [...EventQueryKeys.all(), 'info', 'private'] as const,
   result: () => [...EventQueryKeys.all(), 'result'] as const,
 }
 
 export const useEventQueries = {
-  info: () =>
+  publicInfo: () =>
     queryOptions({
-      queryKey: EventQueryKeys.info(),
-      queryFn: getEventInfo,
+      queryKey: EventQueryKeys.publicInfo(),
+      queryFn: getPublicEventInfo,
+    }),
+  privateInfo: () =>
+    queryOptions({
+      queryKey: EventQueryKeys.privateInfo(),
+      queryFn: getPrivateEventInfo,
     }),
   result: () =>
     queryOptions({

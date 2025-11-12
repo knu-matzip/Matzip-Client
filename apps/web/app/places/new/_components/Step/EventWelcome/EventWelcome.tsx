@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const EventWelcome = ({ nextStep }: Props) => {
-  const { data } = useSuspenseQuery(useEventQueries.info())
+  const { data } = useSuspenseQuery(useEventQueries.publicInfo())
   const { prize } = data
 
   return (

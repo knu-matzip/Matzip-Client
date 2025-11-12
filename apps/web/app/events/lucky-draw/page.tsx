@@ -15,7 +15,7 @@ const Page = () => {
     <HydrationBoundaryPage
       prefetch={async (queryClient) => {
         await Promise.all([
-          queryClient.prefetchQuery(useEventQueries.info()),
+          queryClient.prefetchQuery(useEventQueries.privateInfo()),
           queryClient.prefetchQuery(useEventQueries.result()),
         ])
       }}

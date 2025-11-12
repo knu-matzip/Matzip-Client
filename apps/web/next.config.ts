@@ -30,6 +30,11 @@ const nextConfig: NextConfig = {
         hostname: 'blog.kakaocdn.net',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'example.com',
+        pathname: '/**',
+      },
     ],
   },
 }

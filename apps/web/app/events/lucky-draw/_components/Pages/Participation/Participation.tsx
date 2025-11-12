@@ -12,7 +12,7 @@ import { RemainingTickets } from './RemainingTickets'
 
 export const Participation = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
-  const { data } = useSuspenseQuery(useEventQueries.info())
+  const { data } = useSuspenseQuery(useEventQueries.privateInfo())
   const {
     eventId,
     prize,
