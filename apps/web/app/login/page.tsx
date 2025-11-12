@@ -6,6 +6,7 @@ import { API_PATH } from '@/_constants/path'
 
 const LoginPage = () => {
   const BASE_URL = process.env.NEXT_PUBLIC_API_URL || ''
+  const CLIENT_URL = process.env.NEXT_PUBLIC_CLIENT_URL || ''
 
   return (
     <Column className={'h-full px-5 py-10'}>
@@ -17,7 +18,7 @@ const LoginPage = () => {
         </Text>
       </Column>
       <Link
-        href={BASE_URL + API_PATH.AUTH.AUTHORIZE}
+        href={BASE_URL + API_PATH.AUTH.AUTHORIZE(CLIENT_URL)}
         className={'relative rounded-lg bg-[#FEE500] p-3 text-center'}
       >
         <Icon type={'kakaoLogo'} className={'absolute left-[20px]'} />

@@ -40,7 +40,9 @@ export const API_PATH = {
     DETAIL: (id: string) => `/requests/places/${id}`,
   },
   AUTH: {
-    AUTHORIZE: '/auth/authorize',
+    AUTHORIZE: (clientOrigin: string) =>
+      `/auth/authorize?clientOrigin=${clientOrigin}`,
+    TOKEN: '/auth/token',
   },
 }
 
