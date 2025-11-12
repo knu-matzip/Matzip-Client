@@ -25,7 +25,7 @@ const FailPage = () => (
       as={Link}
       href={CLIENT_PATH.MAIN}
       size={'medium'}
-      className={'w-full'}
+      className={'ui:w-full'}
     >
       홈으로
     </Button>

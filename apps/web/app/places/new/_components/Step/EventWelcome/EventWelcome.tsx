@@ -17,7 +17,7 @@ export const EventWelcome = ({ nextStep }: Props) => {
   const { prize } = data
 
   return (
-    <Column className={'flex-1 justify-between gap-10 pt-5'}>
+    <Column className={'flex-1 justify-between gap-10 py-5'}>
       <Title />
       <Prize {...prize} />
       <NextStepButton nextStep={nextStep} />

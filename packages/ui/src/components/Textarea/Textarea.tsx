@@ -65,7 +65,9 @@ export const Textarea = ({
           'ui:pt-2.5 ui:px-0.5',
           'ui:border-t ui:border-gray-100',
           'ui:outline-none',
-          'ui:text-sm ui:font-regular',
+          'ui:text-base',
+          'ui:scale-[0.875]', // 16px * 0.875 = 14px
+          'ui:origin-top-left',
           'ui:text-gray-500',
           'ui:placeholder:text-gray-200',
           'ui:caret-blue',
@@ -75,6 +77,10 @@ export const Textarea = ({
           'scrollbar-hide',
           className,
         )}
+        style={{
+          // scale로 줄어든 만큼 여백 조정
+          width: 'calc(100% / 0.875)',
+        }}
       />
       {value.length > 0 && (
         <Text
