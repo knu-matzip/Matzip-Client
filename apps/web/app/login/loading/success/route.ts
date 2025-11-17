@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 import axiosInstanceV2 from '@/_lib/axiosInstanceV2'
 import { API_PATH, CLIENT_PATH } from '@/_constants/path'
 
-// Todo: path 변경 필요
 export const GET = async (request: NextRequest) => {
   try {
     const searchParams = request.nextUrl.searchParams
@@ -20,13 +19,6 @@ export const GET = async (request: NextRequest) => {
       new URL(CLIENT_PATH.MAIN, request.url),
     )
 
-    const backendCookies = response.headers['set-cookie']
-    if (backendCookies) {
-      backendCookies.forEach((cookie) => {
-        nextRes.headers.append('Set-Cookie', cookie)
-      })
-    }
-
     const accessToken = response?.data?.data
     if (accessToken) {
       nextRes.cookies.set('accessToken', accessToken, {
@@ -35,9 +27,15 @@ export const GET = async (request: NextRequest) => {
       })
     }
 
+    const backendCookies = response.headers['set-cookie']
+    if (backendCookies) {
+      backendCookies.forEach((cookie) => {
+        nextRes.headers.append('Set-Cookie', cookie)
+      })
+    }
+
     return nextRes
   } catch (error) {
-    // Todo: 로그인 실패 처리 필요
     console.log(error)
     return NextResponse.json(
       { message: 'Internal Server Error' },
