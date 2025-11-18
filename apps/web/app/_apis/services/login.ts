@@ -1,4 +1,6 @@
-import { CLIENT_PATH } from '@/_constants/path'
+import { API_PATH, CLIENT_PATH } from '@/_constants/path'
+import axiosInstance from '@/_lib/axiosInstance'
+import { setCookie } from 'cookies-next'
 
 const CLIENT_URL = process.env.NEXT_PUBLIC_CLIENT_URL || ''
 const KAKAO_CLIENT_ID = process.env.NEXT_PUBLIC_KAKAO_CLIENT_ID || ''
@@ -19,11 +21,14 @@ export const getKakaoInga = async () => {
   }
 }
 
-// export const getToken = async (): Promise<{
-//   tokenType: string
-//   accessToken: string
-//   accessTokenExpiresIn: number
-// }> => {
-//   const res = await axiosInstance.post(API_PATH.AUTH.TOKEN)
-//   return res.data
-// }
+export const getToken = async (): Promise<{
+  tokenType: string
+  accessToken: string
+  accessTokenExpiresIn: number
+}> => {
+  const res = await axiosInstance.post(API_PATH.AUTH.TOKEN)
+  const { data } = res
+  const { accessToken } = data
+  setCookie('accessToken', accessToken)
+  return res.data
+}
