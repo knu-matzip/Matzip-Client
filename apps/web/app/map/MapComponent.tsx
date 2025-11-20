@@ -107,6 +107,8 @@ const MapComponent = () => {
         onMouseUp={onCenterChanged}
       >
         <NaverMap
+          defaultZoom={15}
+          minZoom={12}
           ref={setMap}
           defaultCenter={defaultCenter}
           onZoomChanged={onCenterChanged}

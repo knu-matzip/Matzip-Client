@@ -17,7 +17,12 @@ export const Location = ({ location }: Props) => {
     <Column className={'gap-1.5'}>
       <Text>위치</Text>
       <Container className={'h-[150px] overflow-hidden rounded-xl'}>
-        <NaverMap ref={setMap} defaultCenter={setLocation}>
+        <NaverMap
+          defaultZoom={18}
+          minZoom={15}
+          ref={setMap}
+          defaultCenter={setLocation}
+        >
           <Marker position={setLocation} icon={'logo'} />
         </NaverMap>
       </Container>

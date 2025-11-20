@@ -12,7 +12,12 @@ export const Location = ({ location }: { location: Coord }) => {
     <Column className={'gap-1.5'}>
       <SubTitle icon={'pin'} title={'위치'} />
       <Container className={'h-[150px] overflow-hidden rounded-xl'}>
-        <NaverMap ref={setMap} defaultCenter={toLatLng(location)}>
+        <NaverMap
+          defaultZoom={18}
+          minZoom={15}
+          ref={setMap}
+          defaultCenter={toLatLng(location)}
+        >
           <PlaceMarker position={location} icon={'logo'} />
         </NaverMap>
       </Container>
