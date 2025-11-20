@@ -25,10 +25,9 @@ export const getPlacesByRanking = async (
   sort: RankingPlaceSort,
   campus: CampusType,
 ): Promise<BasePlace[]> => {
-  const { data: response } = await axiosInstance.get(
+  const { data } = await axiosInstance.get(
     API_PATH.PLACES.BY_RANKING(sort, campus),
   )
-  const { data } = response
   return BasePlaceSchema.array().parse(data)
 }
 
@@ -36,10 +35,9 @@ export const getPlacesByCategory = async (
   id: string,
   campus: CampusType,
 ): Promise<BasePlace[]> => {
-  const { data: response } = await axiosInstance.get(
+  const { data } = await axiosInstance.get(
     API_PATH.PLACES.BY_CATEGORY(id, campus),
   )
-  const { data } = response
   return BasePlaceSchema.array().parse(data)
 }
 
@@ -49,7 +47,7 @@ export const getPlacesByMap = async ({
   maxLatitude,
   maxLongitude,
 }: MapBounds): Promise<PlaceByMap[]> => {
-  const { data: response } = await axiosInstance.get(
+  const { data } = await axiosInstance.get(
     API_PATH.PLACES.BY_MAP({
       minLatitude,
       minLongitude,
@@ -57,13 +55,11 @@ export const getPlacesByMap = async ({
       maxLongitude,
     }),
   )
-  const { data } = response
   return PlaceByMapSchema.array().parse(data)
 }
 
 export const getPlaceDetail = async (id: string): Promise<PlaceDetail> => {
-  const { data: response } = await axiosInstance.get(API_PATH.PLACES.DETAIL(id))
-  const { data } = response
+  const { data } = await axiosInstance.get(API_PATH.PLACES.DETAIL(id))
   return PlaceDetailSchema.parse(data)
 }
 
@@ -89,16 +85,14 @@ export const getSearchPlaceByKakao = async ({
 export const getPlaceByPreview = async (
   kakaoPlaceId: string,
 ): Promise<PlaceByPreview> => {
-  const { data: response } = await axiosInstance.get(
+  const { data } = await axiosInstance.get(
     API_PATH.PLACES.NEW.PREVIEW(kakaoPlaceId),
   )
-  const { data } = response
   return PlaceByPreviewSchema.parse(data)
 }
 
 export const getPlacesByLike = async (): Promise<BasePlace[]> => {
-  const { data: response } = await axiosInstance.get(API_PATH.PLACES.LIKE.GET)
-  const { data } = response
+  const { data } = await axiosInstance.get(API_PATH.PLACES.LIKE.GET)
   return BasePlaceSchema.array().parse(data)
 }
 

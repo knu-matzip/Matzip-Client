@@ -8,15 +8,11 @@ import {
 } from '@/_apis/schemas/request'
 
 export const getRequests = async (): Promise<Request[]> => {
-  const { data: response } = await axiosInstance.get(API_PATH.REQUEST.LIST)
-  const { data } = response
+  const { data } = await axiosInstance.get(API_PATH.REQUEST.LIST)
   return RequestSchema.array().parse(data)
 }
 
 export const getRequestDetail = async (id: string): Promise<RequestDetail> => {
-  const { data: response } = await axiosInstance.get(
-    API_PATH.REQUEST.DETAIL(id),
-  )
-  const { data } = response
+  const { data } = await axiosInstance.get(API_PATH.REQUEST.DETAIL(id))
   return RequestDetailSchema.parse(data)
 }
