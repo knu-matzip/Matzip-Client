@@ -6,6 +6,7 @@ import { Container, NaverMap } from 'react-naver-maps'
 
 import { CAMPUS_LOCATION } from '@/_constants/campus'
 import { useCampusStore } from '@/_store/campus'
+import { useLastMapCenterStore } from '@/_store/prevMapCenter'
 import { usePlaceQueries } from '@/_apis/queries/place'
 import type { MapBounds } from '@/_apis/schemas/place'
 
@@ -27,9 +28,11 @@ const MapComponent = () => {
   const [showUpdateButton, setShowUpdateButton] = useState(false)
 
   const { campus } = useCampusStore()
+  const { lastMapCenter, setLastMapCenter } = useLastMapCenterStore()
   const { userLocation } = useWatchLocation()
   const { data = [] } = useQuery(usePlaceQueries.byMap(currentBounds))
 
+  const defaultCenter = toLatLng(lastMapCenter || CAMPUS_LOCATION[campus])
   const previewPlace = previewPlaceId
     ? data.find((place) => place.placeId === previewPlaceId)!
     : null
@@ -77,6 +80,14 @@ const MapComponent = () => {
   }
 
   useEffect(refreshMapBounds, [refreshMapBounds])
+  useEffect(() => {
+    return () => {
+      if (!map) return
+      const { x: longitude, y: latitude } = map.getCenter()
+
+      setLastMapCenter({ longitude, latitude })
+    }
+  }, [map, setLastMapCenter])
 
   return (
     <>
@@ -97,7 +108,7 @@ const MapComponent = () => {
       >
         <NaverMap
           ref={setMap}
-          defaultCenter={toLatLng(CAMPUS_LOCATION[campus])}
+          defaultCenter={defaultCenter}
           onZoomChanged={onCenterChanged}
         >
           {userLocation && <UserMarker position={userLocation} />}
