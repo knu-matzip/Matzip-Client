@@ -15,16 +15,23 @@ const Page = () => {
 
   useEffect(() => {
     ;(async () => {
-      const response = await axiosInstanceV2.get(
-        API_PATH.AUTH.AUTHORIZE(code, redirectUri),
-      )
+      try {
+        const response = await axiosInstanceV2.get(
+          API_PATH.AUTH.AUTHORIZE(code, redirectUri),
+        )
 
-      const accessToken = response?.data?.data
-      if (accessToken) {
-        setCookie('accessToken', accessToken)
+        const accessToken = response?.data?.data
+        if (accessToken) {
+          setCookie('accessToken', accessToken)
+          replace(CLIENT_PATH.MAIN)
+        } else {
+          console.error('Access token missing in response')
+          replace(`${CLIENT_PATH.LOGIN}?error=token-missing`)
+        }
+      } catch (error) {
+        console.error('Login process failed:', error)
+        replace(`${CLIENT_PATH.LOGIN}?error=auth-failed`)
       }
-
-      replace(CLIENT_PATH.MAIN)
     })()
   }, [code, redirectUri, replace])
 
