@@ -3,8 +3,8 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from 'axios'
-import { getCookie } from 'cookies-next'
 import { getToken } from '@/_apis/services/login'
+import { getCookie } from '@/_utils/getCookie'
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -16,15 +16,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    const isServer = typeof window === 'undefined'
-    let token: string | undefined
-
-    if (isServer) {
-      const { cookies } = await import('next/headers')
-      token = await getCookie('accessToken', { cookies })
-    } else {
-      token = await getCookie('accessToken')
-    }
+    const token = await getCookie('accessToken')
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
