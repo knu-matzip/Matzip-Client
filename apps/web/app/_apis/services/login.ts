@@ -46,7 +46,7 @@ export const getToken = async (): Promise<{
       path: '/',
     })
 
-    return res.data
+    return data.data
   } catch (error) {
     console.error('토큰 재발급 실패(세션 만료):', error)
     deleteCookie('accessToken')
