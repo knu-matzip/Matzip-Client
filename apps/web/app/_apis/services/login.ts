@@ -41,6 +41,9 @@ export const getToken = async (): Promise<{
 
     setCookie('accessToken', accessToken, {
       expires: expireDate,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      path: '/',
     })
 
     return res.data

@@ -29,7 +29,11 @@ const Page = () => {
 
         const accessToken = response?.data?.data
         if (accessToken) {
-          setCookie('accessToken', accessToken)
+          setCookie('accessToken', accessToken, {
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            path: '/',
+          })
           replace(CLIENT_PATH.MAIN)
         } else {
           console.error('Access token missing in response')
