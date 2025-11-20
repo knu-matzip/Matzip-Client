@@ -40,7 +40,7 @@ export const getToken = async (): Promise<{
     const expireDate = new Date(Date.now() + accessTokenExpiresIn)
 
     setCookie('accessToken', accessToken, {
-      expiresIn: expireDate,
+      expires: expireDate,
     })
 
     return res.data
