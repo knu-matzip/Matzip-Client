@@ -24,7 +24,7 @@ export const PlaceList = ({ places }: { places: PlaceByMap[] }) => {
       expandOnContentDrag
     >
       {places.length > 0 ? (
-        <ul className={'px-5'}>
+        <ul className={'pb-15 px-5'}>
           {places.map((place) => (
             <PlaceListItem key={place.placeId} {...place} />
           ))}

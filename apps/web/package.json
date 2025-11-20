@@ -25,6 +25,7 @@
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-query-devtools": "catalog:",
     "axios": "catalog:",
+    "cookies-next": "^6.1.1",
     "framer-motion": "catalog:",
     "matter-js": "^0.20.0",
     "motion": "catalog:",

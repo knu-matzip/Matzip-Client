@@ -40,6 +40,11 @@ export const API_PATH = {
     LIST: '/requests/places',
     DETAIL: (id: string) => `/requests/places/${id}`,
   },
+  AUTH: {
+    AUTHORIZE: (code: string, redirectUri: string) =>
+      `/auth/oauth2?code=${code}&redirectUri=${redirectUri}`,
+    TOKEN: '/auth/token',
+  },
 }
 
 export const CLIENT_PATH = {
@@ -59,4 +64,6 @@ export const CLIENT_PATH = {
   EVENTS_LUCKY_DRAW: '/events/lucky-draw',
   EVENT_GIFTICON: '/events/gifticon',
   EVENT_GIFTICON_DETAIL: (id: string | number) => `/events/gifticon/${id}`,
+  LOGIN: '/login',
+  LOGIN_SUCCESS: '/login/loading/success', // Todo: path 변경 필요
 }
