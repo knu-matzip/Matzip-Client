@@ -35,7 +35,7 @@ export const PreviewPlace = ({ place }: { place: PlaceByMap }) => {
             {address}
           </Text>
           <Flex className='mt-1 gap-2'>
-            {photos.map((photo) => (
+            {photos.slice(0, 5).map((photo) => (
               <Flex
                 key={photo.photoId || photo.displayOrder}
                 className={
