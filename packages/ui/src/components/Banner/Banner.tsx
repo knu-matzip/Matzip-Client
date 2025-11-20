@@ -4,7 +4,6 @@ import { useState } from 'react'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import { cn } from '@repo/ui/utils/cn'
-import { Flex } from '../Layout'
 
 type Props = {
   contents: React.ReactNode[]
@@ -92,30 +91,28 @@ export const Banner = ({
       style={{ minHeight }}
     >
       {contents.map((content, index) => (
-        //TODO: bg 색상 고민 하기
         <div key={index} className='keen-slider__slide bg-white'>
           {content}
         </div>
       ))}
       {showIndicator && loaded && instanceRef.current && (
-        <Flex className='ui:absolute ui:bottom-3 ui:left-1/2 ui:-translate-x-1/2 ui:gap-2'>
-          {[
-            ...Array(
-              instanceRef.current?.track.details.slides.length ?? 0,
-            ).keys(),
-          ].map((idx) => (
-            <button
-              key={idx}
-              onClick={() => {
-                instanceRef.current?.moveToIdx(idx)
-              }}
-              className={cn(
-                'ui:block ui:h-1 ui:w-1 ui:rounded-full ui:transition-colors ui:duration-300',
-                currentSlide === idx ? 'ui:bg-gray-100' : 'ui:bg-gray-50',
-              )}
-            />
-          ))}
-        </Flex>
+        <div
+          className={cn(
+            'ui:absolute',
+            'ui:bottom-0 ui:right-3',
+            'ui:gap-2',
+            'ui:bg-gray-50',
+            'ui:text-gray-300',
+            'ui:py-0.5 px-2',
+            'ui:rounded-full',
+            'ui:text-xs',
+            'ui:font-semibold',
+          )}
+        >
+          {currentSlide + 1}
+          {` `}/{` `}
+          {instanceRef.current?.track.details.slides.length ?? 0}
+        </div>
       )}
     </div>
   )
