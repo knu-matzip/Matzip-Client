@@ -11,7 +11,7 @@ export const useCreateNewPlace = () => {
     mutationFn: async (placeData: NewPlaceRequest) =>
       await createNewPlace(placeData),
     onSuccess: (res) => {
-      if (res.status === 'OK') {
+      if (res.placeId) {
         replace(CLIENT_PATH.PLACE_NEW_SUCCESS)
       } else {
         replace(CLIENT_PATH.PLACE_NEW_FAIL)
