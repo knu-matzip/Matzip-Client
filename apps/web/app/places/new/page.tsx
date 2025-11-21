@@ -141,6 +141,7 @@ const PlaceNewPage = () => {
         <Step name={'RECOMMENDED_MENU'}>
           <RecommendedMenu
             control={control}
+            getValues={getValues}
             nextStep={() => {
               nextStep('DESCRIPTION')
             }}

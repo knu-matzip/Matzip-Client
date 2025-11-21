@@ -1,13 +1,17 @@
 import { Title } from '@/places/new/_components/Title'
 import { Textarea } from '@repo/ui/components/Textarea'
 import { Button } from '@repo/ui/components/Button'
-import { type Control, Controller } from 'react-hook-form'
+import {
+  type Control,
+  type UseFormGetValues,
+  Controller,
+} from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { Tags } from '@/places/new/_components/Step/Description/Tags'
 
 type Props = {
   control: Control<NewPlaceRequest>
-  getValues: () => NewPlaceRequest
+  getValues: UseFormGetValues<NewPlaceRequest>
   nextStep: VoidFunction
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import type { UseFormSetValue } from 'react-hook-form'
+import type { UseFormGetValues, UseFormSetValue } from 'react-hook-form'
 import { Spinner } from '@heroui/react'
 import { useCategoryQueries } from '@/_apis/queries/category'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
@@ -12,7 +12,7 @@ import { Button } from '@repo/ui/components/Button'
 
 type Props = {
   setValue: UseFormSetValue<NewPlaceRequest>
-  getValues: () => NewPlaceRequest
+  getValues: UseFormGetValues<NewPlaceRequest>
   isLoading: boolean
 }
 

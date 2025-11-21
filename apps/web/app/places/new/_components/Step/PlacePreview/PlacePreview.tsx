@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useSuspenseQuery } from '@tanstack/react-query'
-import type { UseFormSetValue } from 'react-hook-form'
+import type { UseFormGetValues, UseFormSetValue } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { usePlaceQueries } from '@/_apis/queries/place'
 import { Banner } from '@repo/ui/components/Banner'
@@ -13,7 +13,7 @@ import { AlreadyRegistered } from './AlreadyRegistered'
 import { Title } from '@/places/new/_components/Title'
 
 type Props = {
-  getValues: () => NewPlaceRequest
+  getValues: UseFormGetValues<NewPlaceRequest>
   setValue: UseFormSetValue<NewPlaceRequest>
   nextStep: VoidFunction
 }
