@@ -18,9 +18,9 @@ export const config = {
     '/likes',
     '/profile',
 
-    '/places/new',
-    '/places/new/success',
-    '/places/new/fail',
+    // '/places/new',
+    // '/places/new/success',
+    // '/places/new/fail',
 
     '/requests',
     '/requests/:path*',
