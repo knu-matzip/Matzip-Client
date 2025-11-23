@@ -1,4 +1,3 @@
-import axios from 'axios'
 import axiosInstance from '@/_lib/axiosInstance'
 import { API_PATH } from '@/_constants/path'
 import type { CampusType } from '@/_constants/campus'
@@ -16,10 +15,6 @@ import {
   PlaceDetailSchema,
   PlaceByPreviewSchema,
 } from '../schemas/place'
-import {
-  type KakaoSearchFuncParams,
-  KAKAO_CATEGORY_CODE,
-} from '@/_hooks/useSearchPlaceByKakao'
 
 export const getPlacesByRanking = async (
   sort: RankingPlaceSort,
@@ -61,25 +56,6 @@ export const getPlacesByMap = async ({
 export const getPlaceDetail = async (id: string): Promise<PlaceDetail> => {
   const { data } = await axiosInstance.get(API_PATH.PLACES.DETAIL(id))
   return PlaceDetailSchema.parse(data)
-}
-
-export const getSearchPlaceByKakao = async ({
-  query,
-  categoryCode,
-  location,
-}: KakaoSearchFuncParams) => {
-  const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_API || ''
-  const { x, y } = location
-
-  const { data } = await axios.get(
-    API_PATH.KAKAO.SEARCH(query, KAKAO_CATEGORY_CODE[categoryCode], x, y),
-    {
-      headers: {
-        Authorization: `KakaoAK ${KAKAO_API_KEY}`,
-      },
-    },
-  )
-  return data
 }
 
 // 타입 변경 필요

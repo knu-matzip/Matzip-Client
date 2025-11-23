@@ -1,6 +1,11 @@
 import { useCallback } from 'react'
 import { SearchPage } from '@/_components/SearchPage'
-import { useSearchPlaceByKakao } from '@/_hooks/useSearchPlaceByKakao'
+import useSearch from '@/_hooks/useSearch'
+import { getSearchPlaceByKakao } from '@/_apis/services/kakaoSearch'
+import type {
+  KakaoSearchFuncParams,
+  SearchPlaceByKakao,
+} from '@/_apis/schemas/kakaoSearch'
 import type { UseFormSetValue } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { type CampusType, CAMPUS_LOCATION } from '@/_constants/campus'
@@ -13,9 +18,11 @@ type Props = {
 
 export const PlaceSearch = ({ campus, setValue, nextStep }: Props) => {
   const { searchResult: restaurantResult, searchFunc: restaurantSearchFunc } =
-    useSearchPlaceByKakao()
-  const { searchResult: cafeResult, searchFunc: cafeSearchFunc } =
-    useSearchPlaceByKakao()
+    useSearch<SearchPlaceByKakao, KakaoSearchFuncParams>(getSearchPlaceByKakao)
+  const { searchResult: cafeResult, searchFunc: cafeSearchFunc } = useSearch<
+    SearchPlaceByKakao,
+    KakaoSearchFuncParams
+  >(getSearchPlaceByKakao)
 
   const places = [...restaurantResult, ...cafeResult].map((item) => ({
     id: item.id,
@@ -26,17 +33,9 @@ export const PlaceSearch = ({ campus, setValue, nextStep }: Props) => {
   const searchFunc = useCallback(
     (query: string) => {
       const { longitude: x, latitude: y } = CAMPUS_LOCATION[campus]
-      const location = {
-        x,
-        y,
-      }
-
+      const location = { x, y }
       cafeSearchFunc({ query, categoryCode: 'cafe', location })
-      restaurantSearchFunc({
-        query,
-        categoryCode: 'restaurant',
-        location,
-      })
+      restaurantSearchFunc({ query, categoryCode: 'restaurant', location })
     },
     [cafeSearchFunc, campus, restaurantSearchFunc],
   )
