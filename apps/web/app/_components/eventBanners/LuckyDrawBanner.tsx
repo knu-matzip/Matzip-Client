@@ -20,7 +20,11 @@ export const LuckyDrawBanner = () => (
         </Text>
         <Icon type={'clover'} />
       </Flex>
-      <Text fontSize={'xl'} fontWeight={'semibold'} className={'text-main'}>
+      <Text
+        fontSize={'lg'}
+        fontWeight={'semibold'}
+        className={'text-main sm:text-xl'}
+      >
         지금, 행운의 주인공이 되어보세요!
       </Text>
     </Column>

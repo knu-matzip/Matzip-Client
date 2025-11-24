@@ -19,7 +19,11 @@ export const FoodSlotMachineBanner = () => (
         </Text>
         <Icon type={'slot'} />
       </Flex>
-      <Text fontSize={'xl'} fontWeight={'semibold'} className={'text-main'}>
+      <Text
+        fontSize={'lg'}
+        fontWeight={'semibold'}
+        className={'text-main sm:text-xl'}
+      >
         고민은 그만, 바로 결정해드려요!
       </Text>
     </Column>
