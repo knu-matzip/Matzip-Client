@@ -1,5 +1,5 @@
 import { useSuspenseQuery } from '@tanstack/react-query'
-import { motion, PanInfo } from 'motion/react' // motion/react 사용
+import { motion, PanInfo } from 'motion/react'
 import { useCampusStore } from '@/_store/campus'
 import { usePlaceQueries } from '@/_apis/queries/place'
 import { PlaceListItem } from '@/_components/PlaceListItem'
@@ -12,7 +12,7 @@ type Props = {
 }
 
 // 스와이프 감도
-const SWIPE_CONFIDENCE_THRESHOLD = 50
+const SWIPE_CONFIDENCE_THRESHOLD = 20
 
 export const Places = ({ id, setIdFunc }: Props) => {
   const { campus } = useCampusStore()
@@ -20,26 +20,18 @@ export const Places = ({ id, setIdFunc }: Props) => {
     usePlaceQueries.byCategory(id, campus),
   )
 
-  /**
-   * 스와이프 종료 시 호출되는 핸들러
-   * - 왼쪽으로 스와이프 (Next): ID 증가
-   * - 오른쪽으로 스와이프 (Prev): ID 감소
-   */
+  const currentCategoryId = Number(id)
   const onDragEnd = (
     _e: MouseEvent | TouchEvent | PointerEvent,
     { offset, velocity }: PanInfo,
   ) => {
-    const currentCategoryId = Number(id)
     const swipePower = Math.abs(offset.x) * velocity.x
 
-    // 왼쪽으로 스와이프 (다음 페이지)
     if (swipePower < -SWIPE_CONFIDENCE_THRESHOLD) {
       if (currentCategoryId < 15) {
         setIdFunc(String(currentCategoryId + 1))
       }
-    }
-    // 오른쪽으로 스와이프 (이전 페이지)
-    else if (swipePower > SWIPE_CONFIDENCE_THRESHOLD) {
+    } else if (swipePower > SWIPE_CONFIDENCE_THRESHOLD) {
       if (currentCategoryId > 1) {
         setIdFunc(String(currentCategoryId - 1))
       }
@@ -67,6 +59,11 @@ export const Places = ({ id, setIdFunc }: Props) => {
       <motion.div
         key={id}
         drag='x'
+        dragConstraints={{
+          right: currentCategoryId <= 1 ? 0 : undefined,
+          left: currentCategoryId >= 15 ? 0 : undefined,
+        }}
+        dragElastic={0.2}
         onDragEnd={onDragEnd}
         className='relative h-full w-full bg-white'
       >
