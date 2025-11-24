@@ -30,7 +30,7 @@ const Page = () => {
       }}
     >
       <OnlyLeftHeader icon={'headerHeart'} name={'찜'} />
-      <VerticalScrollArea className={'gap-1.5 px-5'}>
+      <VerticalScrollArea className={'h-full gap-1.5 px-5'}>
         <LikePlacesList />
       </VerticalScrollArea>
       <BottomNavigation />
