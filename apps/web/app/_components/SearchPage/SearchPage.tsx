@@ -48,7 +48,7 @@ export const SearchPage = ({
   useBackHandler = false,
 }: Props) => {
   const [inputValue, setInputValue] = useState('')
-  const [isNavigating, setIsNavigating] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -58,19 +58,9 @@ export const SearchPage = ({
     }
   }
 
-  const handleSelect = (id: string) => {
-    setIsNavigating(true)
-    try {
-      onSelectPlace(id)
-    } catch (error) {
-      console.error(error)
-      setIsNavigating(false)
-    }
-  }
-
   return (
     <>
-      {isNavigating && (
+      {isLoading && (
         <Spinner className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' />
       )}
       <Flex className={'border-b-1 gap-2.5 border-gray-100 p-3.5'}>
@@ -94,7 +84,8 @@ export const SearchPage = ({
               inputValue={inputValue}
               place={place}
               onClick={() => {
-                handleSelect(place.id)
+                setIsLoading(true)
+                onSelectPlace(place.id)
               }}
             />
           ))}
