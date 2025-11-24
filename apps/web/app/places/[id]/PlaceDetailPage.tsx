@@ -23,23 +23,20 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
         right={<LikeButton placeId={placeId} initIsLiked={isLiked} />}
       />
       <VerticalScrollArea className={'flex-1'}>
-        {photos.length > 0 && (
-          <Banner
-            contents={photos.map((photo) => (
-              <Image
-                key={photo.displayOrder}
-                src={photo.photoUrl}
-                alt='place-photo'
-                width={450}
-                height={180}
-                className={'max-h-[180px] object-contain'}
-              />
-            ))}
-            minHeight={180}
-            showIndicator={true}
-          />
-        )}
-
+        <Banner
+          contents={photos.map((photo) => (
+            <Image
+              key={photo.displayOrder}
+              src={photo.photoUrl}
+              alt='place-photo'
+              width={450}
+              height={180}
+              className={'max-h-[180px] object-contain'}
+            />
+          ))}
+          minHeight={180}
+          showIndicator={true}
+        />
         <Column className={'flex-1 justify-around gap-4 p-5'}>
           <Location location={location} />
           <Menus menus={menus} />

@@ -26,6 +26,7 @@ export const API_PATH = {
       POST: (id: string) => `/places/${id}/like`,
       DELETE: (id: string) => `/places/${id}/like`,
     },
+    SEARCH: (keyword: string) => `/places/search?keyword=${keyword}`,
   },
   KAKAO: {
     SEARCH: (query: string, categoryCode: string, x: number, y: number) =>

@@ -56,16 +56,21 @@ export const Banner = ({
       (slider) => {
         let timeout: ReturnType<typeof setTimeout>
         let mouseOver = false
+
         function clearNextTimeout() {
           clearTimeout(timeout)
         }
+
         function nextTimeout() {
           clearTimeout(timeout)
           if (mouseOver) return
           timeout = setTimeout(() => {
-            slider.next()
+            if (slider.track && slider.track.details) {
+              slider.next()
+            }
           }, 2000)
         }
+
         slider.on('created', () => {
           slider.container.addEventListener('mouseover', () => {
             mouseOver = true
@@ -80,9 +85,14 @@ export const Banner = ({
         slider.on('dragStarted', clearNextTimeout)
         slider.on('animationEnded', nextTimeout)
         slider.on('updated', nextTimeout)
+        slider.on('destroyed', clearNextTimeout)
       },
     ],
   )
+
+  if (contents.length === 0) {
+    return null
+  }
 
   return (
     <div
@@ -111,7 +121,7 @@ export const Banner = ({
         >
           {currentSlide + 1}
           {` `}/{` `}
-          {instanceRef.current?.track.details.slides.length ?? 0}
+          {instanceRef.current.track?.details?.slides.length ?? 0}
         </div>
       )}
     </div>

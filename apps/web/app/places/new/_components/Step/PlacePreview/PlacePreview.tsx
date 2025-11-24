@@ -60,6 +60,7 @@ export const PlacePreview = ({ getValues, setValue, nextStep }: Props) => {
               className={'max-h-[180px] object-contain'}
             />
           ))}
+          showIndicator={true}
           minHeight={180}
         />
         <Column className={'flex-1 justify-around gap-4'}>
