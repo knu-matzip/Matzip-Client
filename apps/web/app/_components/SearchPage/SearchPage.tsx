@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
+import { Spinner } from '@heroui/react'
 import { Icon } from '@repo/ui/components/Icon'
 import { Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { SearchPlaceListItem } from './SearchPlaceListItem'
@@ -47,15 +48,31 @@ export const SearchPage = ({
   useBackHandler = false,
 }: Props) => {
   const [inputValue, setInputValue] = useState('')
+  const [isNavigating, setIsNavigating] = useState(false)
 
-  useEffect(() => {
-    if (inputValue.length > 0) {
-      searchFunc(inputValue)
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setInputValue(value)
+    if (value.length > 0) {
+      searchFunc(value)
     }
-  }, [inputValue, searchFunc])
+  }
+
+  const handleSelect = (id: string) => {
+    setIsNavigating(true)
+    try {
+      onSelectPlace(id)
+    } catch (error) {
+      console.error(error)
+      setIsNavigating(false)
+    }
+  }
 
   return (
     <>
+      {isNavigating && (
+        <Spinner className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' />
+      )}
       <Flex className={'border-b-1 gap-2.5 border-gray-100 p-3.5'}>
         {useBackHandler ? (
           <HeaderBackButton />
@@ -64,7 +81,7 @@ export const SearchPage = ({
         )}
         <input
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={handleInputChange}
           className={'w-full text-lg font-medium outline-none'}
           placeholder={placeholder || '장소 또는 주소를 검색하세요'}
         />
@@ -76,7 +93,9 @@ export const SearchPage = ({
               key={place.id}
               inputValue={inputValue}
               place={place}
-              onClick={() => onSelectPlace(place.id)}
+              onClick={() => {
+                handleSelect(place.id)
+              }}
             />
           ))}
         </VerticalScrollArea>
