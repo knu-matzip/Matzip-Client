@@ -6,10 +6,7 @@ import { Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { Divider } from '@repo/ui/components/Divider'
-import {
-  MostLikesPlaces,
-  MostViewsPlaces,
-} from '@/_components/RankingPlaceList'
+import { RankingPlaceList } from '@/_components/RankingPlaceList'
 import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
 import { Banner } from '@repo/ui/components/Banner'
 import { Categories } from '@/_components/Categories'
@@ -24,11 +21,7 @@ export const dynamic = 'force-dynamic'
 
 export default function Page() {
   return (
-    <HydrationBoundaryPage
-      prefetch={async (queryClient) => {
-        await queryClient.prefetchQuery(useCategoryQueries.list())
-      }}
-    >
+    <>
       <Header
         left={
           <Flex className='gap-1'>
@@ -42,18 +35,32 @@ export default function Page() {
       />
       <SearchBar href={CLIENT_PATH.PLACE_SEARCH} className={'mx-5 mb-5'} />
       <VerticalScrollArea className={'gap-4'}>
-        <Categories />
+        <HydrationBoundaryPage
+          prefetch={async (queryClient) => {
+            await queryClient.prefetchQuery(useCategoryQueries.list())
+          }}
+        >
+          <Categories />
+        </HydrationBoundaryPage>
         <Banner
           contents={[
             <FoodSlotMachineBanner key='banner-1' />,
             <LuckyDrawBanner key='banner-2' />,
           ]}
         />
-        <MostLikesPlaces />
+        <RankingPlaceList
+          title={'찜많은 맛집'}
+          icon={'fireHeart'}
+          rankingPlaceSort={'likes'}
+        />
         <Divider />
-        <MostViewsPlaces />
+        <RankingPlaceList
+          title={'오늘의 맛집'}
+          icon={'fire'}
+          rankingPlaceSort={'views'}
+        />
       </VerticalScrollArea>
       <BottomNavigation />
-    </HydrationBoundaryPage>
+    </>
   )
 }

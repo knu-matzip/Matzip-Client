@@ -1,1 +1,0 @@
-export { MostViewsPlaces } from './MostViewsPlaces'
