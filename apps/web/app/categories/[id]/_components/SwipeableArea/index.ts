@@ -1,0 +1,1 @@
+export { SwipeableArea } from './SwipeableArea'
