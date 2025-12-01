@@ -6,10 +6,10 @@ import { cn } from '@repo/ui/utils/cn'
 type Props = {
   categories: Category[]
   id: string
-  setIdFunc: (id: string) => void
+  setId: (id: string) => void
 }
 
-export const RowCategories = ({ id, categories, setIdFunc }: Props) => {
+export const RowCategories = ({ id, categories, setId }: Props) => {
   return (
     <div className={'relative px-5 py-2.5'}>
       <Flex className={'scrollbar-hide gap-4 overflow-x-auto'}>
@@ -19,7 +19,7 @@ export const RowCategories = ({ id, categories, setIdFunc }: Props) => {
             category={category}
             isActive={id === category.id}
             onClick={() => {
-              setIdFunc(category.id)
+              setId(category.id)
             }}
           />
         ))}

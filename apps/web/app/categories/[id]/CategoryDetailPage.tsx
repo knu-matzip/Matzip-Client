@@ -19,7 +19,7 @@ export const CategoryDetailPage = () => {
     (category) => category.id === activeCategoryId,
   )
 
-  const setIdFunc = (id: string) => {
+  const setId = (id: string) => {
     window.history.replaceState(null, '', `/categories/${id}`)
   }
 
@@ -44,11 +44,11 @@ export const CategoryDetailPage = () => {
       <RowCategories
         id={activeCategoryId}
         categories={categories}
-        setIdFunc={setIdFunc}
+        setId={setId}
       />
       {/*Todo: 맛집 리스트 스켈레톤으로 변경하기*/}
       <Suspense fallback={<Spinner className={'my-auto'} />}>
-        <Places id={activeCategoryId} setIdFunc={setIdFunc} />
+        <Places id={activeCategoryId} setId={setId} />
       </Suspense>
     </>
   )

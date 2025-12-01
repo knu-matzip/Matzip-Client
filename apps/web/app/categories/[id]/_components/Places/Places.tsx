@@ -8,13 +8,13 @@ import { EmptyPlaces } from './EmptyPlaces'
 
 type Props = {
   id: string
-  setIdFunc: (id: string) => void
+  setId: (id: string) => void
 }
 
 // 스와이프 감도
 const SWIPE_CONFIDENCE_THRESHOLD = 20
 
-export const Places = ({ id, setIdFunc }: Props) => {
+export const Places = ({ id, setId }: Props) => {
   const { campus } = useCampusStore()
   const { data: places } = useSuspenseQuery(
     usePlaceQueries.byCategory(id, campus),
@@ -29,11 +29,11 @@ export const Places = ({ id, setIdFunc }: Props) => {
 
     if (swipePower < -SWIPE_CONFIDENCE_THRESHOLD) {
       if (currentCategoryId < 15) {
-        setIdFunc(String(currentCategoryId + 1))
+        setId(String(currentCategoryId + 1))
       }
     } else if (swipePower > SWIPE_CONFIDENCE_THRESHOLD) {
       if (currentCategoryId > 1) {
-        setIdFunc(String(currentCategoryId - 1))
+        setId(String(currentCategoryId - 1))
       }
     }
   }
