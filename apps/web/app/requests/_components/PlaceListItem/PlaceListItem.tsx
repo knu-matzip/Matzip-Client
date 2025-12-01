@@ -8,7 +8,7 @@ import { StatusChip } from '../StatusChip'
 import type { Request } from '@/_apis/schemas/request'
 
 export const PlaceListItem = ({
-  // placeId,
+  placeId,
   placeName,
   categories,
   requestDate,
@@ -21,7 +21,7 @@ export const PlaceListItem = ({
       <JustifyBetween
         as={Link}
         prefetch={false}
-        href={CLIENT_PATH.REQUEST_DETAIL('1')}
+        href={CLIENT_PATH.REQUEST_DETAIL(placeId)}
         className={cn('gap-1', 'py-3.5', 'border-b-1 border-gray-50')}
       >
         <Column as={'div'}>

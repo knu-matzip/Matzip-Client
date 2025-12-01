@@ -16,7 +16,7 @@ export const RequestDetailSchema = PlaceDetailSchema.omit({
   isLiked: true,
 }).extend({
   registerStatus,
-  rejectedReason: z.optional(z.string()),
+  rejectedReason: z.nullable(z.string()),
 })
 
 export type Request = z.infer<typeof RequestSchema>

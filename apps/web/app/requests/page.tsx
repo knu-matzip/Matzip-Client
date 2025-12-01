@@ -12,11 +12,7 @@ export const dynamic = 'force-dynamic'
 
 const Page = async () => {
   return (
-    <HydrationBoundaryPage
-      prefetch={async (queryClient) => {
-        await queryClient.prefetchQuery(useRequestQueries.list())
-      }}
-    >
+    <>
       <Header
         left={<HeaderBackButton />}
         center={
@@ -26,8 +22,14 @@ const Page = async () => {
           </Flex>
         }
       />
-      <RequestPlacesList />
-    </HydrationBoundaryPage>
+      <HydrationBoundaryPage
+        prefetch={async (queryClient) => {
+          await queryClient.prefetchQuery(useRequestQueries.list())
+        }}
+      >
+        <RequestPlacesList />
+      </HydrationBoundaryPage>
+    </>
   )
 }
 
