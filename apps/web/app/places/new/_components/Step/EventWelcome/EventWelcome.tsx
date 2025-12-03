@@ -1,15 +1,37 @@
+'use client'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { motion } from 'motion/react'
+import { motion, stagger, type Variants } from 'motion/react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useEventQueries } from '@/_apis/queries/event'
+import { getCookie } from '@/_utils/getCookie'
 
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
 import { Button } from '@repo/ui/components/Button'
-import { Column, Flex } from '@repo/ui/components/Layout'
+import { Column, Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 
 type Props = {
   nextStep: VoidFunction
+}
+
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      delayChildren: stagger(0.4, { from: 'first' }),
+    },
+  },
+}
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: 'easeOut' },
+  },
 }
 
 export const EventWelcome = ({ nextStep }: Props) => {
@@ -17,36 +39,46 @@ export const EventWelcome = ({ nextStep }: Props) => {
   const { prize } = data
 
   return (
-    <Column className={'flex-1 justify-between gap-10 py-5'}>
-      <Title />
-      <Prize {...prize} />
-      <NextStepButton nextStep={nextStep} />
-    </Column>
+    <VerticalScrollArea
+      as={motion.div}
+      variants={containerVariants}
+      initial='hidden'
+      animate='visible'
+      className={'flex-1 justify-between gap-10'}
+    >
+      <motion.div variants={itemVariants}>
+        <Title />
+      </motion.div>
+
+      <motion.div variants={itemVariants} className='flex justify-center'>
+        <Prize {...prize} />
+      </motion.div>
+
+      <motion.div variants={itemVariants}>
+        <NextStepButton nextStep={nextStep} />
+      </motion.div>
+    </VerticalScrollArea>
   )
 }
 
 const Title = () => (
-  <motion.div
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: 40 }}
-    transition={{ duration: 0.5, ease: 'easeOut' }}
-    className={'flex flex-col items-center'}
-  >
+  <Column className={'items-center gap-2'}>
     <Text fontSize={'2xl'} fontWeight={'bold'}>
       근처 맛집을 간단하게 알리고
     </Text>
-    <Flex className={'gap-1'}>
-      <Icon type={'headerGift'} />
+    <Flex className={'gap-2'}>
+      <Icon type={'headerGift'} size={28} />
       <Text fontSize={'2xl'} fontWeight={'bold'}>
         기프티콘 응모권 까지!!
       </Text>
-      <Icon type={'headerGift'} />
+      <Icon type={'headerGift'} size={28} />
     </Flex>
-    <Text variant={'body3'} className={'text-gray-300'}>
-      작은 정보가 행운의 기회가 될 수 있어요. 지금 등록해보세요.
+    <Text variant={'body3'} className={'mt-2 text-center text-gray-300'}>
+      작은 정보가 행운의 기회가 될 수 있어요.
+      <br />
+      지금 바로 등록해보세요.
     </Text>
-  </motion.div>
+  </Column>
 )
 
 const Prize = ({
@@ -58,33 +90,65 @@ const Prize = ({
 }) => {
   return (
     <Column className={'gap-15 items-center'}>
-      <Text fontSize={'2xl'} fontWeight={'bold'}>
-        이번주 행운의 상품은?
-      </Text>
-      <Image src={imageUrl} alt={'상품 이미지'} width={200} height={200} />
-      <Text variant={'title3'}>{description}</Text>
+      <Image
+        src={imageUrl}
+        alt={description}
+        width={220}
+        height={220}
+        priority
+      />
+      <Column className='items-center gap-1'>
+        <Text variant={'body1'} className='text-gray-400'>
+          이번 주 행운의 상품
+        </Text>
+        <Text variant={'heading2'} className='text-gray-800'>
+          {description}
+        </Text>
+      </Column>
     </Column>
   )
 }
 
-const NextStepButton = ({ nextStep }: Props) => (
-  <Column className={'gap-4'}>
-    <Text
-      fontSize={'sm'}
-      fontWeight={'semibold'}
-      className={'mx-auto text-gray-300'}
-    >
-      잠깐!
-      <br />
-      로그인이 되어 있지 않으면 응모권 지급이 이뤄지지 않아요!
-    </Text>
-    <Button
-      size={'medium'}
-      type={'button'}
-      className={'ui:min-w-full'}
-      onClick={nextStep}
-    >
-      다음
-    </Button>
-  </Column>
-)
+const NextStepButton = ({ nextStep }: Props) => {
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    const checkToken = async () => {
+      const token = await getCookie('accessToken')
+      setIsLoggedIn(!!token)
+    }
+    checkToken()
+  }, [])
+
+  return (
+    <Column className={'gap-4'}>
+      {isLoggedIn === false && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className='rounded-lg bg-gray-50 p-3 text-center'
+        >
+          <Text
+            fontSize={'sm'}
+            fontWeight={'semibold'}
+            className={'text-gray-500'}
+          >
+            잠깐! 로그인이 되어있지 않으시네요 👀
+            <br />
+            <span className='text-blue-500'>로그인</span>해야 응모권을 받을 수
+            있어요!
+          </Text>
+        </motion.div>
+      )}
+
+      <Button
+        size={'medium'}
+        type={'button'}
+        className={'ui:min-w-full'}
+        onClick={nextStep}
+      >
+        참여하기
+      </Button>
+    </Column>
+  )
+}
