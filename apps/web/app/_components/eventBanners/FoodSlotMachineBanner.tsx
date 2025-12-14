@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { CLIENT_PATH } from '@/_constants/path'
 import { Icon } from '@repo/ui/components/Icon'
@@ -5,7 +6,7 @@ import { Text } from '@repo/ui/components/Text'
 
 export const FoodSlotMachineBanner = () => (
   <Flex
-    as={'a'}
+    as={Link}
     href={CLIENT_PATH.EVENTS_FOOD_SLOT}
     className={
       'mx-auto h-full w-[95%] justify-center gap-6 rounded-xl bg-yellow-100'
@@ -19,11 +20,7 @@ export const FoodSlotMachineBanner = () => (
         </Text>
         <Icon type={'slot'} />
       </Flex>
-      <Text
-        fontSize={'lg'}
-        fontWeight={'semibold'}
-        className={'text-main sm:text-xl'}
-      >
+      <Text fontSize={'lg'} fontWeight={'semibold'} className={'text-main'}>
         고민은 그만, 바로 결정해드려요!
       </Text>
     </Column>
