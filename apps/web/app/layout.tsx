@@ -3,8 +3,8 @@ import './globals.css'
 import type { Metadata } from 'next'
 import QueryProvider from './QueryClientProvider'
 import localFont from 'next/font/local'
-import { initServerMSW } from '@/_mocks/initMSW'
-import { MSWProvider } from '@/_mocks/MSWProvider'
+// import { initServerMSW } from '@/_mocks/initMSW'
+// import { MSWProvider } from '@/_mocks/MSWProvider'
 import { Column } from '@repo/ui/components/Layout'
 import { NaverMapProvider } from '@/NaverMapProvider'
 import { HeroProvider } from '@/HeroProvider'
@@ -33,9 +33,55 @@ export const metadata: Metadata = {
 }
 
 const pretendard = localFont({
-  src: '../public/fonts/PretendardVariable.woff2',
+  src: [
+    {
+      path: '../public/fonts/Pretendard-Thin-Subset.woff2',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Pretendard-ExtraLight-Subset.woff2',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Pretendard-Light-Subset.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Pretendard-Regular-Subset.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Pretendard-Medium-Subset.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Pretendard-SemiBold-Subset.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Pretendard-Bold-Subset.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Pretendard-ExtraBold-Subset.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Pretendard-Black-Subset.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
-  weight: '45 920',
+  variable: '--font-pretendard',
 })
 
 export default async function RootLayout({
@@ -43,24 +89,24 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  await initServerMSW()
+  // await initServerMSW()
 
   return (
     <html lang='ko' suppressHydrationWarning={true}>
       <body className={pretendard.className}>
-        <MSWProvider>
-          <QueryProvider>
-            <HeroProvider>
-              <NaverMapProvider>
-                <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
-                  <Column className={'relative w-full max-w-[450px] bg-white'}>
-                    {children}
-                  </Column>
-                </div>
-              </NaverMapProvider>
-            </HeroProvider>
-          </QueryProvider>
-        </MSWProvider>
+        {/*<MSWProvider>*/}
+        <QueryProvider>
+          <HeroProvider>
+            <NaverMapProvider>
+              <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
+                <Column className={'relative w-full max-w-[450px] bg-white'}>
+                  {children}
+                </Column>
+              </div>
+            </NaverMapProvider>
+          </HeroProvider>
+        </QueryProvider>
+        {/*</MSWProvider>*/}
         <Script
           src='https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js'
           integrity='sha384-JpLApTkB8lPskhVMhT+m5Ln8aHlnS0bsIexhaak0jOhAkMYedQoVghPfSpjNi9K1'
