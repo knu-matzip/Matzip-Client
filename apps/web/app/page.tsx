@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { CLIENT_PATH } from '@/_constants/path'
 import { useCategoryQueries } from '@/_apis/queries/category'
 import { Header } from '@repo/ui/components/Header'
@@ -33,7 +34,11 @@ export default function Page() {
         }
         right={<CampusSelector />}
       />
-      <SearchBar href={CLIENT_PATH.PLACE_SEARCH} className={'mx-5 mb-5'} />
+      <SearchBar
+        as={Link}
+        href={CLIENT_PATH.PLACE_SEARCH}
+        className={'mx-5 mb-5'}
+      />
       <VerticalScrollArea className={'gap-4'}>
         <HydrationBoundaryPage
           prefetch={async (queryClient) => {
