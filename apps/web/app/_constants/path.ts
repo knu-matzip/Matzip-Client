@@ -34,7 +34,7 @@ export const API_PATH = {
   },
   EVENT: {
     INFO: '/events',
-    PARTICIPATIONS: '/events/participations',
+    PARTICIPATIONS: '/events/entries',
     RESULT: '/events/results',
   },
   REQUEST: {
