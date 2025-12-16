@@ -1,18 +1,24 @@
+import type { ElementType } from 'react'
 import { Icon } from '../Icon'
 import { Flex } from '../Layout'
 import { cn } from '../../utils/cn'
 import { Text } from '../Text'
 
-export const SearchBar = ({
-  href,
-  className,
-}: {
+type Props = {
+  as?: ElementType
   href: string
   className?: string
-}) => {
+}
+
+export const SearchBar = ({
+  as = 'a',
+  href,
+  className,
+  ...restProps
+}: Props) => {
   return (
     <Flex
-      as='a'
+      as={as}
       href={href}
       className={cn(
         'ui:border ui:border-gray-200',
@@ -23,6 +29,7 @@ export const SearchBar = ({
         className,
       )}
       aria-label={'검색 페이지로 이동'}
+      {...restProps}
     >
       <Icon type={'search'} size={16} />
       <Text
