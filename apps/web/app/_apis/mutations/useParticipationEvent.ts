@@ -11,7 +11,9 @@ export const useParticipationEvent = () => {
       await participationEvent(body)
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [...EventQueryKeys.info()] })
+      queryClient.invalidateQueries({
+        queryKey: [...EventQueryKeys.privateInfo()],
+      })
       addToast({
         title: '응모가 성공적으로 완료되었습니다!',
         severity: 'success',
