@@ -1,37 +1,23 @@
 import Image from 'next/image'
 import { Text } from '@repo/ui/components/Text'
 import { Column } from '@repo/ui/components/Layout'
-import { ParticipationStatus } from '../../ParticipationStatus'
 
 type Props = {
+  imageUrl: string
   description: string
   totalWinnersCount: number
-  imageUrl: string
-  participantsCount: number
-  usedTicketsCount: number
 }
 
 export const ParticipationPrize = ({
+  imageUrl,
   description,
   totalWinnersCount,
-  imageUrl,
-  participantsCount,
-  usedTicketsCount,
 }: Props) => (
-  <Column className={'items-center gap-3'}>
-    <Text fontSize={'2xl'} fontWeight={'bold'}>
-      이번주 행운의 상품은?
-    </Text>
-    <Column className={'items-center gap-5'}>
-      <Column className={'items-center'}>
-        <Text variant={'title3'}>{description}</Text>
-        <Text variant={'title3'}>총 당첨자: {totalWinnersCount}명</Text>
-      </Column>
-      <Image src={imageUrl} alt={'상품 이미지'} width={200} height={200} />
-      <ParticipationStatus
-        participantsCount={participantsCount}
-        usedTicketsCount={usedTicketsCount}
-      />
+  <>
+    <Column className={'items-center'}>
+      <Text variant={'title3'}>{description}</Text>
+      <Text variant={'title3'}>총 당첨자: {totalWinnersCount}명</Text>
     </Column>
-  </Column>
+    <Image src={imageUrl} alt={'상품 이미지'} width={200} height={200} />
+  </>
 )
