@@ -1,5 +1,6 @@
 import '@repo/ui/styles.css'
 import './globals.css'
+import Script from 'next/script'
 import type { Metadata } from 'next'
 import QueryProvider from './QueryClientProvider'
 import localFont from 'next/font/local'
@@ -8,7 +9,7 @@ import localFont from 'next/font/local'
 import { Column } from '@repo/ui/components/Layout'
 import { NaverMapProvider } from '@/NaverMapProvider'
 import { HeroProvider } from '@/HeroProvider'
-import Script from 'next/script'
+import { CampusInitializer } from '@/CampusInitializer'
 
 const SITE_URL = new URL('https://knu-matzip.vercel.app')
 
@@ -107,6 +108,7 @@ export default async function RootLayout({
           </HeroProvider>
         </QueryProvider>
         {/*</MSWProvider>*/}
+        <CampusInitializer />
         <Script
           src='https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js'
           integrity='sha384-JpLApTkB8lPskhVMhT+m5Ln8aHlnS0bsIexhaak0jOhAkMYedQoVghPfSpjNi9K1'
