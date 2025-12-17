@@ -1,8 +1,10 @@
 'use client'
 
+import { useEffect } from 'react'
 import Image from 'next/image'
-import { useSuspenseQuery } from '@tanstack/react-query'
-import { usePlaceQueries } from '@/_apis/queries/place'
+import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
+import { useCampusStore } from '@/_store/campus'
+import { PlaceQueryKeys, usePlaceQueries } from '@/_apis/queries/place'
 import { Banner } from '@repo/ui/components/Banner'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { Text } from '@repo/ui/components/Text'
@@ -14,6 +16,15 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
   const { data } = useSuspenseQuery(usePlaceQueries.detail(id))
   const { placeId, placeName, photos, menus, description, location, isLiked } =
     data
+  const { campus } = useCampusStore()
+  const queryClient = useQueryClient()
+
+  useEffect(() => {
+    // 상세 페이지 진입 시, '조회수' 쿼리를 무효화하여 최신 조회수 반영
+    queryClient.invalidateQueries({
+      queryKey: [...PlaceQueryKeys.byRanking('views', campus)],
+    })
+  }, [campus, queryClient])
 
   return (
     <>
