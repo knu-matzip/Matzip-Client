@@ -2,6 +2,7 @@ import '@repo/ui/styles.css'
 import './globals.css'
 import Script from 'next/script'
 import type { Metadata } from 'next'
+import { Suspense } from 'react'
 import QueryProvider from './QueryClientProvider'
 import localFont from 'next/font/local'
 // import { initServerMSW } from '@/_mocks/initMSW'
@@ -104,11 +105,13 @@ export default async function RootLayout({
                   {children}
                 </Column>
               </div>
+              <Suspense fallback={null}>
+                <CampusInitializer />
+              </Suspense>
             </NaverMapProvider>
           </HeroProvider>
         </QueryProvider>
         {/*</MSWProvider>*/}
-        <CampusInitializer />
         <Script
           src='https://t1.kakaocdn.net/kakao_js_sdk/2.7.9/kakao.min.js'
           integrity='sha384-JpLApTkB8lPskhVMhT+m5Ln8aHlnS0bsIexhaak0jOhAkMYedQoVghPfSpjNi9K1'
