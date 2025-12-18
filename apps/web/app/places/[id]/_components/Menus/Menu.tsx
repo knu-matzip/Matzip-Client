@@ -12,12 +12,12 @@ export const Menu = ({ menu }: Props) => {
   const { name, price, isRecommended } = menu
 
   return (
-    <JustifyBetween>
-      <Flex className={'gap-1'}>
-        <Text fontSize={'sm'} fontWeight={'semibold'}>
+    <JustifyBetween className={'gap-2'}>
+      <Flex className={'min-w-0 flex-1 gap-1'}>
+        <Text fontSize={'sm'} fontWeight={'semibold'} className={'truncate'}>
           {name}
         </Text>
-        {isRecommended && <Icon type={'doubleHeart'} />}
+        {isRecommended && <Icon type={'doubleHeart'} className={'shrink-0'} />}
       </Flex>
 
       <Text fontSize={'sm'} fontWeight={'semibold'} className={'text-gray-300'}>
