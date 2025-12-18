@@ -4,6 +4,7 @@ import { Menu } from './Menu'
 import { cn } from '@repo/ui/utils/cn'
 import { Text } from '@repo/ui/components/Text'
 import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
+import { EmptyFallback } from '@/_components/EmptyFallback'
 
 type Props = {
   menus: PlaceDetail['menus']
@@ -21,6 +22,7 @@ export const Menus = ({ menus }: Props) => {
       unRecommendedMenu: [] as typeof menus,
     },
   )
+  const showDivider = recommendedMenu.length > 0 && unRecommendedMenu.length > 0
 
   return (
     <Column className={'gap-2.5'}>
@@ -35,31 +37,23 @@ export const Menus = ({ menus }: Props) => {
           'show-scrollbar',
         )}
       >
-        {/*메뉴 존재 유무*/}
-        {menus.length === 0 && (
-          <Text
-            fontSize={'sm'}
-            fontWeight={'semibold'}
-            className={'mx-auto my-3'}
-          >
-            등록된 메뉴가 존재하지 않습니다
-          </Text>
-        )}
-        {/*추천 메뉴 존재 유무*/}
-        {recommendedMenu.length > 0 && (
-          <>
+        <EmptyFallback
+          isEmpty={menus.length === 0}
+          fallbackDescription={'등록된 메뉴가 존재하지 않습니다'}
+        >
+          {recommendedMenu.length > 0 && (
             <Text variant={'caption1'} className={'text-gray-300'}>
               추천메뉴
             </Text>
-            {recommendedMenu.map((menu, index) => (
-              <Menu key={index} menu={menu} />
-            ))}
-            <hr className={'w-full border border-gray-200'} />
-          </>
-        )}
-        {unRecommendedMenu.map((menu, index) => (
-          <Menu key={index} menu={menu} />
-        ))}
+          )}
+          {recommendedMenu.map((menu, index) => (
+            <Menu key={index} menu={menu} />
+          ))}
+          {showDivider && <hr className={'w-full border border-gray-200'} />}
+          {unRecommendedMenu.map((menu, index) => (
+            <Menu key={index} menu={menu} />
+          ))}
+        </EmptyFallback>
       </VerticalScrollArea>
     </Column>
   )
