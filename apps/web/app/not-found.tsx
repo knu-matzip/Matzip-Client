@@ -1,9 +1,12 @@
 'use client'
+
+import Link from 'next/link'
 import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
 import { Column } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { motion } from 'motion/react'
+import { CLIENT_PATH } from '@/_constants/path'
 
 export default function NotFound() {
   return (
@@ -41,7 +44,7 @@ export default function NotFound() {
       >
         <Icon type={'ghost'} size={200} />
       </motion.div>
-      <Button as={'a'} size={'large'} href={'/'}>
+      <Button as={Link} size={'large'} href={CLIENT_PATH.MAIN}>
         홈으로
       </Button>
     </Column>

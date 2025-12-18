@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
 import { Button } from '@repo/ui/components/Button'
@@ -16,7 +17,7 @@ export default function ErrorPage() {
           <Text fontSize={'lg'}>페이지를 새로고침해주세요</Text>
         </div>
       </Column>
-      <Button as={'a'} size={'medium'} href={CLIENT_PATH.MAIN}>
+      <Button as={Link} size={'medium'} href={CLIENT_PATH.MAIN}>
         홈으로
       </Button>
     </Column>
