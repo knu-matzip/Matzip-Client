@@ -29,8 +29,12 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
   return (
     <>
       <Header
-        left={<HeaderBackButton />}
-        center={<Text variant={'heading2'}>{placeName}</Text>}
+        left={<HeaderBackButton className={'px-2'} />}
+        center={
+          <Text variant={'heading2'} className={'truncate'}>
+            {placeName}
+          </Text>
+        }
         right={<LikeButton placeId={placeId} initIsLiked={isLiked} />}
       />
       <VerticalScrollArea className={'flex-1'}>
