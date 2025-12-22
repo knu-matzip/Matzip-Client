@@ -7,16 +7,16 @@ import { Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { Divider } from '@repo/ui/components/Divider'
-import { RankingPlaceList } from '@/(home)/_components/RankingPlaceList'
 import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
 import { Banner } from '@repo/ui/components/Banner'
 import { Categories } from '@/_components/Categories'
-import { CampusSelector } from '@/(home)/_components/CampusSelector'
 import { BottomNavigation } from '@/_components/BottomNavigation'
+import { RankingSection } from './_components/RankingSection'
+import { CampusSelector } from './_components/CampusSelector'
 import {
   FoodSlotMachineBanner,
   LuckyDrawBanner,
-} from '@/(home)/_components/eventBanners'
+} from './_components/eventBanners'
 
 export const dynamic = 'force-dynamic'
 
@@ -53,13 +53,13 @@ export default function Page() {
             <LuckyDrawBanner key='banner-2' />,
           ]}
         />
-        <RankingPlaceList
+        <RankingSection
           title={'찜많은 맛집'}
           icon={'fireHeart'}
           rankingPlaceSort={'likes'}
         />
         <Divider />
-        <RankingPlaceList
+        <RankingSection
           title={'오늘의 맛집'}
           icon={'fire'}
           rankingPlaceSort={'views'}

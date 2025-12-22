@@ -16,18 +16,18 @@ type Props = {
   rankingPlaceSort: RankingPlaceSort
 }
 
-export const RankingPlaceList = ({ title, icon, rankingPlaceSort }: Props) => {
+export const RankingSection = ({ title, icon, rankingPlaceSort }: Props) => {
   return (
     <Column className={'gap-1.5 px-5'}>
       <SubTitle title={title} icon={icon} />
       <Suspense fallback={<PlaceListItem.Skeleton />}>
-        <PlaceList rankingPlaceSort={rankingPlaceSort} />
+        <RankingListFetcher rankingPlaceSort={rankingPlaceSort} />
       </Suspense>
     </Column>
   )
 }
 
-const PlaceList = ({
+const RankingListFetcher = ({
   rankingPlaceSort,
 }: {
   rankingPlaceSort: RankingPlaceSort

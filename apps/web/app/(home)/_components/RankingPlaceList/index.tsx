@@ -1,1 +1,0 @@
-export { RankingPlaceList } from './RankingPlaceList'
