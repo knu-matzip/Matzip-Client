@@ -43,7 +43,7 @@ export const Banner = ({
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
     {
-      loop: true,
+      loop: contents.length > 1,
       initial: 0,
       slideChanged(slider) {
         setCurrentSlide(slider.track.details.rel)
@@ -101,7 +101,13 @@ export const Banner = ({
       style={{ minHeight }}
     >
       {contents.map((content, index) => (
-        <div key={index} className='keen-slider__slide bg-white'>
+        <div
+          key={index}
+          className={cn(
+            'keen-slider__slide bg-white',
+            !loaded && index !== 0 && 'hidden',
+          )}
+        >
           {content}
         </div>
       ))}
