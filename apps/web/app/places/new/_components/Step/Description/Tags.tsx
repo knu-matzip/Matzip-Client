@@ -29,6 +29,16 @@ const CHIP_TAGS: {
     label: '친절해요',
     icon: 'waiter',
   },
+  {
+    id: '5',
+    label: '빨리 나와요',
+    icon: 'lightning',
+  },
+  {
+    id: '6',
+    label: '양이 많아요',
+    icon: 'pig',
+  },
 ]
 
 type Props = {
