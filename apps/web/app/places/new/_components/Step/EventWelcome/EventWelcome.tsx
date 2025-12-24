@@ -1,7 +1,9 @@
 'use client'
-import { useEffect, useState } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import { motion, stagger, type Variants } from 'motion/react'
+import { CLIENT_PATH } from '@/_constants/path'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useEventQueries } from '@/_apis/queries/event'
 import { getCookie } from '@/_utils/getCookie'
@@ -135,8 +137,13 @@ const NextStepButton = ({ nextStep }: Props) => {
           >
             잠깐! 로그인이 되어있지 않으시네요 👀
             <br />
-            <span className='text-blue-500'>로그인</span>해야 응모권을 받을 수
-            있어요!
+            <Link
+              className='text-blue-500 underline underline-offset-2'
+              href={CLIENT_PATH.LOGIN}
+            >
+              로그인
+            </Link>
+            해야 응모권을 받을 수 있어요!
           </Text>
         </motion.div>
       )}
