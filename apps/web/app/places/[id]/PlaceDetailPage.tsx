@@ -54,7 +54,7 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
       />
       <VerticalScrollArea className={'flex-1'}>
         <Banner
-          contents={photos.map((photo) => (
+          contents={photos.map((photo, index) => (
             <Image
               key={photo.displayOrder}
               src={photo.photoUrl}
@@ -62,6 +62,7 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
               width={450}
               height={180}
               className={'max-h-[180px] object-contain'}
+              priority={index === 0}
             />
           ))}
           minHeight={180}
