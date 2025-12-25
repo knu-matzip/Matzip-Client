@@ -4,11 +4,11 @@ import { Suspense } from 'react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useCampusStore } from '@/_store/campus'
 import { usePlaceQueries } from '@/_apis/queries/place'
-import type { IconType } from '@repo/ui/components/Icon'
+import { Icon, IconType } from '@repo/ui/components/Icon'
 import type { RankingPlaceSort } from '@/_apis/schemas/place'
-import { Column } from '@repo/ui/components/Layout'
-import { SubTitle } from '@/_components/SubTitle'
+import { Column, Flex } from '@repo/ui/components/Layout'
 import { PlaceListItem } from '@/_components/PlaceListItem'
+import { Text } from '@repo/ui/components/Text'
 
 type Props = {
   title: string
@@ -19,7 +19,12 @@ type Props = {
 export const RankingSection = ({ title, icon, rankingPlaceSort }: Props) => {
   return (
     <Column className={'gap-1.5 px-5'}>
-      <SubTitle title={title} icon={icon} />
+      <Flex className={'gap-1'}>
+        <Icon type={icon} size={30} />
+        <Text as={'h2'} variant={'title1'}>
+          {title}
+        </Text>
+      </Flex>
       <Suspense fallback={<PlaceListItem.Skeleton />}>
         <RankingListFetcher rankingPlaceSort={rankingPlaceSort} />
       </Suspense>

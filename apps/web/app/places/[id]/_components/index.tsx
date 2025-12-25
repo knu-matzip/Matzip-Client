@@ -1,5 +1,5 @@
 export * from './LikeButton'
-export * from './SubTitle'
 export * from './Location'
 export * from './Menus'
 export * from './Description'
+export * from './Tags'

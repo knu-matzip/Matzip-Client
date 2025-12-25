@@ -9,9 +9,10 @@ import { Text } from '@repo/ui/components/Text'
 import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Banner } from '@repo/ui/components/Banner'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
-import { Description, Location, Menus } from '@/places/[id]/_components'
+import { Description, Location, Menus, Tags } from '@/places/[id]/_components'
 import { StatusChip } from '@/requests/_components/StatusChip'
 import { RejectedReason } from './_components/RejectedReason'
+import { Section } from '@/_components/Section'
 
 export const RequestDetailPage = ({ id }: { id: string }) => {
   const { data } = useSuspenseQuery(useRequestQueries.detail(id))
@@ -23,6 +24,7 @@ export const RequestDetailPage = ({ id }: { id: string }) => {
     location,
     registerStatus,
     rejectedReason,
+    tags,
   } = data
 
   return (
@@ -55,9 +57,16 @@ export const RequestDetailPage = ({ id }: { id: string }) => {
           showIndicator={true}
         />
         <Column className={'flex-1 justify-around gap-4 p-5'}>
-          <Location location={location} />
-          <Menus menus={menus} />
-          <Description description={description} />
+          <Section icon={'pin'} title={'위치'}>
+            <Location location={location} />
+          </Section>
+          <Section icon={'note'} title={'메뉴'}>
+            <Menus menus={menus} />
+          </Section>
+          <Section icon={'smile'} title={'소개'}>
+            <Description description={description} />
+            <Tags tags={tags} />
+          </Section>
         </Column>
       </VerticalScrollArea>
     </>

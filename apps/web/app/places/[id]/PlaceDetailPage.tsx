@@ -10,12 +10,21 @@ import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { Text } from '@repo/ui/components/Text'
 import { Header } from '@repo/ui/components/Header'
 import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
-import { Description, LikeButton, Location, Menus } from './_components'
+import { Section } from '@/_components/Section'
+import { Description, LikeButton, Location, Menus, Tags } from './_components'
 
 export const PlaceDetailPage = ({ id }: { id: string }) => {
   const { data } = useSuspenseQuery(usePlaceQueries.detail(id))
-  const { placeId, placeName, photos, menus, description, location, isLiked } =
-    data
+  const {
+    placeId,
+    placeName,
+    photos,
+    menus,
+    description,
+    location,
+    isLiked,
+    tags,
+  } = data
   const { campus } = useCampusStore()
   const queryClient = useQueryClient()
 
@@ -39,7 +48,7 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
       />
       <VerticalScrollArea className={'flex-1'}>
         <Banner
-          contents={photos.map((photo) => (
+          contents={photos.map((photo, index) => (
             <Image
               key={photo.displayOrder}
               src={photo.photoUrl}
@@ -47,15 +56,23 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
               width={450}
               height={180}
               className={'max-h-[180px] object-contain'}
+              priority={index === 0}
             />
           ))}
           minHeight={180}
           showIndicator={true}
         />
         <Column className={'flex-1 justify-around gap-4 p-5'}>
-          <Location location={location} />
-          <Menus menus={menus} />
-          <Description description={description} />
+          <Section icon={'pin'} title={'위치'}>
+            <Location location={location} />
+          </Section>
+          <Section icon={'note'} title={'메뉴'}>
+            <Menus menus={menus} />
+          </Section>
+          <Section icon={'smile'} title={'소개'}>
+            <Description description={description} />
+            <Tags tags={tags} />
+          </Section>
         </Column>
       </VerticalScrollArea>
     </>
