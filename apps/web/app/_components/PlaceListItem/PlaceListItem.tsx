@@ -29,7 +29,7 @@ export const PlaceListItem = ({
       <Column
         as={Link}
         prefetch={false}
-        className={cn('gap-1', 'pb-4 pt-2.5', {
+        className={cn('gap-1', 'py-3', {
           'border-b-1 border-gray-50': showBorder,
         })}
         href={CLIENT_PATH.PLACE_DETAIL(placeId)}
@@ -47,7 +47,8 @@ export const PlaceListItem = ({
         </Text>
         {tags.length > 0 && (
           <Flex
-            className={'gap-1 overflow-x-auto'}
+            className={'-my-3 gap-1 overflow-x-auto py-3'}
+            onClick={(e) => e.preventDefault()}
             onPointerDown={(e) => e.stopPropagation()}
             onTouchStart={(e) => e.stopPropagation()}
           >
