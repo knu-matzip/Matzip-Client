@@ -13,7 +13,7 @@ import { HeroProvider } from '@/HeroProvider'
 import { CampusInitializer } from '@/CampusInitializer'
 import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
 
-const SITE_URL = new URL('https://knu-matzip.vercel.app')
+const SITE_URL = new URL(process.env.NEXT_PUBLIC_CLIENT_URL || '')
 
 export const metadata: Metadata = {
   metadataBase: SITE_URL,
