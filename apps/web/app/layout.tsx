@@ -31,7 +31,11 @@ export const metadata: Metadata = {
     type: 'website',
   },
   verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS,
+    google: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || '',
+    other: {
+      'naver-site-verification':
+        process.env.NEXT_PUBLIC_NAVER_ANALYTICS_ID || '',
+    },
   },
 }
 
