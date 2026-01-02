@@ -33,7 +33,7 @@ export const SwipeableArea = ({
   }
 
   return (
-    <div className='relative h-full w-full overflow-hidden px-8'>
+    <div className='relative h-full w-full overflow-x-hidden px-8'>
       <motion.div
         key={categoryId}
         drag='x'

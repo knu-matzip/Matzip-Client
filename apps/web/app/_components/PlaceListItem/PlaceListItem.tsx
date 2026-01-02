@@ -46,7 +46,7 @@ export const PlaceListItem = ({
           {address}
         </Text>
         {tags.length > 0 && (
-          <Flex className={'gap-1'}>
+          <Flex className={'gap-1 overflow-x-auto'}>
             {tags.map((tag) => (
               <Chip key={tag.id} icon={tag.iconKey} label={tag.name} />
             ))}

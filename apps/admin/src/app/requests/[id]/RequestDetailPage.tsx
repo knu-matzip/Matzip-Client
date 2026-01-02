@@ -13,9 +13,11 @@ import { Banner } from '@repo/ui/components/Banner'
 import type { RequestDetail } from './_api/types'
 import { CLIENT_PATH } from '@/consts/path'
 import { requestReview } from './_api/services/request'
-import { Location } from './_components/Location/Location'
-import { Menus } from './_components/Menus/Menus'
+import { Section } from './_components/Section'
+import { Location } from './_components/Location'
+import { Menus } from './_components/Menus'
 import { Description } from './_components/Description'
+import { Tags } from './_components/Tags'
 import { ActionButtonGroup } from './_components/ActionButtonGroup'
 import { RejectModal } from './_components/RejectModal'
 
@@ -70,9 +72,16 @@ export const RequestDetailPage = ({ data }: Props) => {
           />
         )}
         <Column className={'flex-1 justify-around gap-4 px-5'}>
-          <Location location={location} />
-          <Menus menus={menus} />
-          <Description description={description} tags={tags} />
+          <Section icon={'pin'} title={'위치'}>
+            <Location location={location} />
+          </Section>
+          <Section icon={'note'} title={'메뉴'}>
+            <Menus menus={menus} />
+          </Section>
+          <Section icon={'smile'} title={'소개'}>
+            <Description description={description} />
+            <Tags tags={tags} />
+          </Section>
           <ActionButtonGroup onOpen={onOpen} handleReview={handleReview} />
         </Column>
       </VerticalScrollArea>

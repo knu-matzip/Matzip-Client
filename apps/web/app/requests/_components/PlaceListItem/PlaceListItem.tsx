@@ -26,10 +26,10 @@ export const PlaceListItem = ({
       >
         <Column as={'div'} className={'max-w-2/3'}>
           <Flex className={'gap-1'}>
-            <Text as={'span'} variant={'title2'} className={'flex-1 truncate'}>
+            <Text as={'span'} variant={'title2'} className={'truncate'}>
               {placeName}
             </Text>
-            <Icon type={mainCategoryIcon} size={18} />
+            <Icon type={mainCategoryIcon} size={18} className={'min-w-4.5'} />
           </Flex>
           <Text variant={'caption2'} className={'text-gray-300'}>
             등록 신청 일자: {requestDate}
