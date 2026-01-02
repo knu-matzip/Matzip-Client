@@ -22,7 +22,27 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 't1.kakaocdn.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'http',
+        hostname: 't1.kakaocdn.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: 'blog.kakaocdn.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'example.com',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_PUBLIC_API_URL_HOST || '', //테스트용 주소
         pathname: '/**',
       },
     ],
