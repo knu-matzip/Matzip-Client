@@ -12,9 +12,55 @@ export const metadata: Metadata = {
 }
 
 const pretendard = localFont({
-  src: '../../public/fonts/PretendardVariable.woff2',
+  src: [
+    {
+      path: '../../public/fonts/Pretendard-Thin-Subset.woff2',
+      weight: '100',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-ExtraLight-Subset.woff2',
+      weight: '200',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Light-Subset.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Regular-Subset.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Medium-Subset.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-SemiBold-Subset.woff2',
+      weight: '600',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Bold-Subset.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-ExtraBold-Subset.woff2',
+      weight: '800',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Pretendard-Black-Subset.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
   display: 'swap',
-  weight: '45 920',
+  variable: '--font-pretendard',
 })
 
 export default function RootLayout({
