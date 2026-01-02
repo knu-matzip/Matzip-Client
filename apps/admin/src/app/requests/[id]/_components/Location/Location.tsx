@@ -19,7 +19,7 @@ export const Location = ({ location }: Props) => {
         ref={setMap}
         defaultCenter={setLocation}
       >
-        <Marker position={setLocation} icon={'logo'} />
+        <Marker position={setLocation} />
       </NaverMap>
     </Container>
   )
