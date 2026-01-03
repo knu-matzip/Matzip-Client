@@ -48,10 +48,8 @@ export const PlaceListItem = ({
         {tags.length > 0 && (
           <Flex
             className={'-my-3 gap-1 overflow-x-auto py-3'}
-            onClick={(e) => e.preventDefault()}
-            // onPointerDown={(e) => e.stopPropagation()}
-            // onTouchStart={(e) => e.stopPropagation()}
-            onDragEnd={(e) => e.stopPropagation()}
+            onPointerDown={(e) => e.stopPropagation()}
+            onTouchStart={(e) => e.stopPropagation()}
           >
             {tags.map((tag) => (
               <Chip key={tag.id} icon={tag.iconKey} label={tag.name} />
