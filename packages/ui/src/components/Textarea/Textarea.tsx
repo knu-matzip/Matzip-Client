@@ -82,15 +82,16 @@ export const Textarea = ({
           width: 'calc(100% / 0.875)',
         }}
       />
-      {value.length > 0 && (
-        <Text
-          fontSize={'xs'}
-          fontWeight={'semibold'}
-          className={'ui:ml-auto ui:text-gray-200'}
-        >
-          {maxLength - value.length}
-        </Text>
-      )}
+      <Text
+        fontSize={'xs'}
+        fontWeight={'semibold'}
+        className={cn(
+          'ui:ml-auto ui:text-gray-200',
+          value.length === 0 && 'ui:invisible',
+        )}
+      >
+        {maxLength - value.length}
+      </Text>
     </Column>
   )
 }
