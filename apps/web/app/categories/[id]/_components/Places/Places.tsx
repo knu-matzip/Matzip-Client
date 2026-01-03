@@ -1,8 +1,8 @@
+import { motion } from 'motion/react'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useCampusStore } from '@/_store/campus'
 import { usePlaceQueries } from '@/_apis/queries/place'
 import { PlaceListItem } from '@/_components/PlaceListItem'
-import { VerticalScrollArea } from '@repo/ui/components/Layout'
 import { EmptyPlaces } from './EmptyPlaces'
 
 type Props = {
@@ -20,7 +20,7 @@ export const Places = ({ categoryId }: Props) => {
       {places.length === 0 ? (
         <EmptyPlaces />
       ) : (
-        <VerticalScrollArea as={'ul'}>
+        <motion.ul>
           {places.map((place, index) => (
             <PlaceListItem
               key={place.placeId}
@@ -29,7 +29,7 @@ export const Places = ({ categoryId }: Props) => {
               showBorder={index !== places.length - 1}
             />
           ))}
-        </VerticalScrollArea>
+        </motion.ul>
       )}
     </>
   )
