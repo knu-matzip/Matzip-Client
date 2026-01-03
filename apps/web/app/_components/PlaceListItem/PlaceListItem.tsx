@@ -47,7 +47,8 @@ export const PlaceListItem = ({
         </Text>
         {tags.length > 0 && (
           <Flex
-            className={'-my-3 gap-1 overflow-x-auto py-3'}
+            className={'-my-3 h-14 gap-1 overflow-x-auto'}
+            onClick={(e) => e.preventDefault()}
             onPointerDown={(e) => e.stopPropagation()}
             onTouchStart={(e) => e.stopPropagation()}
           >
