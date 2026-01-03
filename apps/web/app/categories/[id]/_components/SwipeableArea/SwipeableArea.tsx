@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode
 }
 
-const SWIPE_CONFIDENCE_THRESHOLD = 10000
+const SWIPE_CONFIDENCE_THRESHOLD = 5000
 
 export const SwipeableArea = ({
   categoryId,
@@ -33,7 +33,7 @@ export const SwipeableArea = ({
   }
 
   return (
-    <div className='relative h-full w-full overflow-x-hidden px-8'>
+    <div className='relative h-full w-full overflow-x-hidden px-6'>
       <motion.div
         key={categoryId}
         drag='x'
