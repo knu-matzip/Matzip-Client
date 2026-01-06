@@ -29,6 +29,7 @@ export const PlaceListItem = ({
       <Column
         as={Link}
         prefetch={false}
+        draggable={false}
         className={cn('gap-1', 'py-3', {
           'border-b-1 border-gray-50': showBorder,
         })}
