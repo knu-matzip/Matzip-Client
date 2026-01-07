@@ -23,7 +23,7 @@ export const ParticipationAction = ({
       </Flex>
       <Button
         size={'medium'}
-        className={'w-full'}
+        className={'ui:w-full'}
         onClick={onParticipate}
         disabled={!remainingTicketsCount}
       >

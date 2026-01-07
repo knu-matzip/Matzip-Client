@@ -46,7 +46,7 @@ export const Result = () => {
             usedTicketsCount={usedTicketsCount}
           />
         </Column>
-        <Button className='mt-auto w-full' size='medium' onClick={onClick}>
+        <Button className='ui:w-full mt-auto' size='medium' onClick={onClick}>
           확인하기
         </Button>
       </Column>
