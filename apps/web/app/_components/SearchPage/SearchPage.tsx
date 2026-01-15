@@ -48,7 +48,7 @@ export const SearchPage = ({
 }: Props) => {
   const [places, setPlaces] = useDebouncedFetch(searchFunc)
   const [inputValue, setInputValue] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [isSelecting, setIsSelecting] = useState(false)
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -60,7 +60,7 @@ export const SearchPage = ({
 
   return (
     <>
-      {isLoading && (
+      {isSelecting && (
         <Spinner className='absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2' />
       )}
       <Flex className={'border-b-1 gap-2.5 border-gray-100 p-3.5'}>
@@ -84,8 +84,9 @@ export const SearchPage = ({
               inputValue={inputValue}
               place={place}
               onClick={() => {
-                setIsLoading(true)
+                setIsSelecting(true)
                 onSelectPlace(place.id)
+                setIsSelecting(false)
               }}
             />
           ))}
