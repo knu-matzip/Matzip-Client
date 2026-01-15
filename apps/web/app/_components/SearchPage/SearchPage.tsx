@@ -86,7 +86,6 @@ export const SearchPage = ({
               onClick={() => {
                 setIsSelecting(true)
                 onSelectPlace(place.id)
-                setIsSelecting(false)
               }}
             />
           ))}
