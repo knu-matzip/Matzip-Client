@@ -50,5 +50,5 @@ export const useDebouncedFetch = <T, P>(
     }
   }, [])
 
-  return { data, trigger }
+  return [data, trigger] as const
 }

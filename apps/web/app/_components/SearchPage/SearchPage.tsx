@@ -46,7 +46,7 @@ export const SearchPage = ({
   onSelectPlace,
   useBackHandler = false,
 }: Props) => {
-  const { data: places, trigger } = useDebouncedFetch(searchFunc)
+  const [places, setPlaces] = useDebouncedFetch(searchFunc)
   const [inputValue, setInputValue] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
@@ -54,7 +54,7 @@ export const SearchPage = ({
     const value = e.target.value
     setInputValue(value)
     if (value.length > 0) {
-      trigger(value)
+      setPlaces(value)
     }
   }
 
