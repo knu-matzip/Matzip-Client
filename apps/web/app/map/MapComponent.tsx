@@ -17,7 +17,7 @@ import { PlaceList } from './_components/PlaceList'
 import { CampusButtonBox } from './_components/CampusButtom'
 import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
-import { PreviewPlace } from './_components/PreviewPlace'
+import { PlaceSummaryCard } from './_components/PlaceSummaryCard'
 import { RefreshButton } from './_components/RefreshButton'
 
 const MapComponent = () => {
@@ -127,7 +127,7 @@ const MapComponent = () => {
         </NaverMap>
       </Container>
       {previewPlace ? (
-        <PreviewPlace place={previewPlace} />
+        <PlaceSummaryCard place={previewPlace} />
       ) : (
         <PlaceList places={data} />
       )}

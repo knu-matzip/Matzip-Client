@@ -8,7 +8,7 @@ import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
 import { Column, Flex } from '@repo/ui/components/Layout'
 
-export const PreviewPlace = ({ place }: { place: PlaceByMap }) => {
+export const PlaceSummaryCard = ({ place }: { place: PlaceByMap }) => {
   const { placeId, placeName, categories, address, photos } = place
   const mainCategoryIcon = categories[0]?.iconKey || 'logo'
 
