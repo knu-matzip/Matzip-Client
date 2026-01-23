@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { usePlaceQueries } from '@/_apis/queries/place'
-import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
+import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
 import { PlaceDetailPage } from './PlaceDetailPage'
 import { getPlaceDetail } from '@/_apis/services/place'
 

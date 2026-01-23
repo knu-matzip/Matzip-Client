@@ -4,7 +4,7 @@ import { Flex } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { LuckyDraw } from './LuckyDraw'
-import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
+import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
 import { useEventQueries } from '@/_apis/queries/event'
 import { InfoPopover } from './_components/InfoPopover'
 

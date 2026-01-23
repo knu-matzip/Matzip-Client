@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
+import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
 import { useCategoryQueries } from '@/_apis/queries/category'
 import { CategoryDetailPage } from '@/categories/[id]/CategoryDetailPage'
 import { getCategories } from '@/_apis/services/category'

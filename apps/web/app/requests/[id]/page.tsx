@@ -1,5 +1,5 @@
 import { RequestDetailPage } from './RequestDetailPage'
-import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
+import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
 import { useRequestQueries } from '@/_apis/queries/request'
 
 export const dynamic = 'force-dynamic'

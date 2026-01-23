@@ -1,6 +1,6 @@
 import { CLIENT_PATH } from '@/_constants/path'
 import { useUserQueries } from '@/_apis/queries/user'
-import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
+import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
 import { BottomNavigation } from '@/_components/BottomNavigation'
 import { OnlyLeftHeader } from '@repo/ui/components/Header'
 import { Column } from '@repo/ui/components/Layout'

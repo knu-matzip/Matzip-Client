@@ -5,7 +5,7 @@ import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 
 import { useRequestQueries } from '@/_apis/queries/request'
-import { HydrationBoundaryPage } from '@/HydrationBoundaryPage'
+import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
 import { RequestPlacesList } from './_components/RequestPlacesList'
 
 export const dynamic = 'force-dynamic'
