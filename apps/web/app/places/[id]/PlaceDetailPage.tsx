@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { useCampusStore } from '@/_store/campus'
 import { PlaceQueryKeys, usePlaceQueries } from '@/_apis/queries/place'
-import { Banner } from '@repo/ui/components/Banner'
+import { Carousel } from '@repo/ui/components/Carousel'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { Text } from '@repo/ui/components/Text'
 import { Header } from '@repo/ui/components/Header'
@@ -47,8 +47,8 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
         right={<LikeButton placeId={placeId} initIsLiked={isLiked} />}
       />
       <VerticalScrollArea className={'flex-1'}>
-        <Banner
-          contents={photos.map((photo, index) => (
+        <Carousel minHeight={180} showIndicator={true}>
+          {photos.map((photo, index) => (
             <Image
               key={photo.displayOrder}
               src={photo.photoUrl}
@@ -59,9 +59,7 @@ export const PlaceDetailPage = ({ id }: { id: string }) => {
               priority={index === 0}
             />
           ))}
-          minHeight={180}
-          showIndicator={true}
-        />
+        </Carousel>
         <Column className={'flex-1 justify-around gap-4 p-5'}>
           <Section icon={'pin'} title={'위치'}>
             <Location location={location} />

@@ -7,7 +7,7 @@ import { useRequestQueries } from '@/_apis/queries/request'
 import { Header } from '@repo/ui/components/Header'
 import { Text } from '@repo/ui/components/Text'
 import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
-import { Banner } from '@repo/ui/components/Banner'
+import { Carousel } from '@repo/ui/components/Carousel'
 import { HeaderBackButton } from '@/_components/HeaderBackButton'
 import { Description, Location, Menus, Tags } from '@/places/[id]/_components'
 import { StatusChip } from '@/requests/_components/StatusChip'
@@ -42,8 +42,8 @@ export const RequestDetailPage = ({ id }: { id: string }) => {
         {rejectedReason && registerStatus === 'REJECTED' && (
           <RejectedReason rejectedReason={rejectedReason} />
         )}
-        <Banner
-          contents={photos.map((photo) => (
+        <Carousel minHeight={180} showIndicator={true}>
+          {photos.map((photo) => (
             <Image
               key={photo.displayOrder}
               src={photo.photoUrl}
@@ -53,9 +53,7 @@ export const RequestDetailPage = ({ id }: { id: string }) => {
               className={'max-h-[180px] object-contain'}
             />
           ))}
-          minHeight={180}
-          showIndicator={true}
-        />
+        </Carousel>
         <Column className={'flex-1 justify-around gap-4 p-5'}>
           <Section icon={'pin'} title={'위치'}>
             <Location location={location} />

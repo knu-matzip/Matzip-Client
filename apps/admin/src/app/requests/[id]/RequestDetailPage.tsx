@@ -8,7 +8,7 @@ import { Header } from '@repo/ui/components/Header'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
-import { Banner } from '@repo/ui/components/Banner'
+import { Carousel } from '@repo/ui/components/Carousel'
 
 import type { RequestDetail } from './_api/types'
 import { CLIENT_PATH } from '@/consts/path'
@@ -56,8 +56,8 @@ export const RequestDetailPage = ({ data }: Props) => {
       />
       <VerticalScrollArea className={'flex-1 py-5'}>
         {photos.length > 0 && (
-          <Banner
-            contents={photos.map((photo) => (
+          <Carousel minHeight={180} showIndicator={true}>
+            {photos.map((photo) => (
               <Image
                 key={photo.displayOrder}
                 src={photo.photoUrl}
@@ -67,9 +67,7 @@ export const RequestDetailPage = ({ data }: Props) => {
                 className={'max-h-[180px] object-contain'}
               />
             ))}
-            minHeight={180}
-            showIndicator={true}
-          />
+          </Carousel>
         )}
         <Column className={'flex-1 justify-around gap-4 px-5'}>
           <Section icon={'pin'} title={'위치'}>

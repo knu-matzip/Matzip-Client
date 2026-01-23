@@ -3,7 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import type { UseFormGetValues, UseFormSetValue } from 'react-hook-form'
 import type { NewPlaceRequest } from '@/_apis/schemas/place'
 import { usePlaceQueries } from '@/_apis/queries/place'
-import { Banner } from '@repo/ui/components/Banner'
+import { Carousel } from '@repo/ui/components/Carousel'
 import { Location, Menus } from '@/places/[id]/_components'
 import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
@@ -51,8 +51,8 @@ export const PlacePreview = ({ getValues, setValue, nextStep }: Props) => {
           <Icon type={'blingBling'} />
         </Flex>
         <Column className={'flex-1 justify-around gap-4'}>
-          <Banner
-            contents={photos.map((photo) => (
+          <Carousel showIndicator={true} minHeight={180}>
+            {photos.map((photo) => (
               <Image
                 key={photo.displayOrder}
                 src={photo.photoUrl}
@@ -62,9 +62,7 @@ export const PlacePreview = ({ getValues, setValue, nextStep }: Props) => {
                 className={'max-h-[180px] object-contain'}
               />
             ))}
-            showIndicator={true}
-            minHeight={180}
-          />
+          </Carousel>
           <Section icon={'pin'} title={'위치'}>
             <Location location={location} />
           </Section>

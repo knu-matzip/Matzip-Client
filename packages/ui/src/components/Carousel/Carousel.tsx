@@ -1,49 +1,46 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import 'keen-slider/keen-slider.min.css'
 import { useKeenSlider } from 'keen-slider/react'
 import { cn } from '@repo/ui/utils/cn'
 
 type Props = {
-  contents: React.ReactNode[]
   minHeight?: number
   showIndicator?: boolean
+  children: ReactNode[]
 }
 
 /**
- * Banner 컴포넌트
+ * Carousel 컴포넌트
  *
  * - 여러 콘텐츠를 순차적으로 보여주는 슬라이더 배너입니다.
  * - `keen-slider`를 기반으로 자동 재생(loop) 기능을 제공합니다.
  * - 마우스를 올리면 자동 재생이 일시 정지되고, 마우스를 치우면 다시 재생됩니다.
  *
- * @param contents 렌더링할 React 노드 배열 (각각의 배너 콘텐츠)
+ * @param children 렌더링할 React 노드 배열 (각각의 배너 콘텐츠)
  * @param minHeight 배너의 최소 높이(px). 기본값은 150입니다.
  * @param showIndicator 인디케이터 노출 유무. 기본값은 false 입니다.
  *
  * @example
  * ```tsx
- * <Banner
- *   contents={[
- *     <div>배너 1</div>,
- *     <div>배너 2</div>,
- *     <div>배너 3</div>,
- *   ]}
- *   minHeight={200}
- * />
+ * <Carousel minHeight={200}>
+ *   <div>배너 1</div>
+ *   <div>배너 2</div>
+ *   <div>배너 3</div>
+ * </Carousel>
  * ```
  */
-export const Banner = ({
-  contents,
+export const Carousel = ({
   minHeight = 150,
   showIndicator = false,
+  children,
 }: Props) => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>(
     {
-      loop: contents.length > 1,
+      loop: children.length > 1,
       initial: 0,
       slideChanged(slider) {
         setCurrentSlide(slider.track.details.rel)
@@ -90,7 +87,7 @@ export const Banner = ({
     ],
   )
 
-  if (contents.length === 0) {
+  if (children.length === 0) {
     return null
   }
 
@@ -100,7 +97,7 @@ export const Banner = ({
       className={'keen-slider ui:relative'}
       style={{ minHeight }}
     >
-      {contents.map((content, index) => (
+      {children.map((content, index) => (
         <div
           key={index}
           className={cn(
