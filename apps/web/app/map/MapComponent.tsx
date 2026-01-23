@@ -20,6 +20,7 @@ import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
 import { PlaceSummaryCard } from './_components/PlaceSummaryCard'
 import { RefreshButton } from './_components/RefreshButton'
+import { useDebounced } from '@/_hooks/useDebounced'
 
 const MapComponent = () => {
   const [map, setMap] = useState<naver.maps.Map | null>(null)
@@ -67,11 +68,11 @@ const MapComponent = () => {
     setIsCenteredOnUser(false)
   }
 
-  const onCenterChanged = () => {
+  const onCenterChanged = useDebounced(() => {
     setIsCenteredOnUser(false)
     setShowUpdateButton(true)
     setSelectedPlaceId(null)
-  }
+  }, 200)
 
   useEffect(refreshMapBounds, [refreshMapBounds])
   useEffect(() => {
@@ -96,17 +97,13 @@ const MapComponent = () => {
         }
       />
       <CampusButtonBox map={map} centerMapToCampus={centerMapToCampus} />
-      <Container
-        className={cn('map-wrapper', 'w-full', 'h-full')}
-        onTouchEnd={onCenterChanged}
-        onMouseUp={onCenterChanged}
-      >
+      <Container className={cn('map-wrapper', 'w-full', 'h-full')}>
         <NaverMap
           defaultZoom={15}
           minZoom={12}
           ref={setMap}
           defaultCenter={defaultCenter}
-          onZoomChanged={onCenterChanged}
+          onCenterChanged={onCenterChanged}
         >
           {userLocation && <UserMarker position={userLocation} />}
           {data.map((place) => (
