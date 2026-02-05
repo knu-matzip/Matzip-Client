@@ -73,8 +73,7 @@ const PlaceNewPage = () => {
   const {
     getValues,
     handleSubmit,
-    trigger,
-    formState: { errors, isSubmitting },
+    formState: { isSubmitting },
   } = methods
 
   const onSubmit: SubmitHandler<NewPlaceRequest> = async (data) => {
@@ -147,14 +146,7 @@ const PlaceNewPage = () => {
         </Step>
         <Step name={'DESCRIPTION'}>
           <Description
-            nextStep={async () => {
-              const valid = await trigger('description')
-              if (!valid) {
-                addToast({
-                  title: errors.description?.message || '설명을 입력해주세요!',
-                })
-                return
-              }
+            nextStep={() => {
               nextStep('CATEGORY')
             }}
           />
