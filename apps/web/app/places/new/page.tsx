@@ -85,7 +85,7 @@ const PlaceNewPage = () => {
   }
 
   return (
-    <FormProvider {...methods}>
+    <>
       <Header
         left={<HeaderBackButton />}
         center={
@@ -96,62 +96,64 @@ const PlaceNewPage = () => {
         }
         right={<HeaderHomeButton />}
       />
-      <Column
-        as={'form'}
-        onSubmit={handleSubmit(onSubmit, onError)}
-        className={'min-h-0 flex-1 p-5'}
-      >
-        <Step name={'EVENT_WELCOME'}>
-          <EventWelcome
-            nextStep={() => {
-              nextStep('CAMPUS')
-            }}
-          />
-        </Step>
-        <Step name={'CAMPUS'}>
-          <Campus
-            nextStep={() => {
-              nextStep('PLACE_SEARCH')
-            }}
-          />
-        </Step>
-        <Step name={'PLACE_SEARCH'}>
-          <PlaceSearch
-            nextStep={() => {
-              nextStep('PLACE_PREVIEW')
-            }}
-          />
-        </Step>
-        <Step name={'PLACE_PREVIEW'}>
-          <PlacePreview
-            nextStep={() => {
-              const step =
-                getValues().menus.length > 0
-                  ? 'RECOMMENDED_MENU'
-                  : 'DESCRIPTION'
-              nextStep(step)
-            }}
-          />
-        </Step>
-        <Step name={'RECOMMENDED_MENU'}>
-          <RecommendedMenu
-            nextStep={() => {
-              nextStep('DESCRIPTION')
-            }}
-          />
-        </Step>
-        <Step name={'DESCRIPTION'}>
-          <Description
-            nextStep={() => {
-              nextStep('CATEGORY')
-            }}
-          />
-        </Step>
-        <Step name={'CATEGORY'}>
-          <Category isLoading={isSubmitting || isPending} />
-        </Step>
-      </Column>
-    </FormProvider>
+      <FormProvider {...methods}>
+        <Column
+          as={'form'}
+          onSubmit={handleSubmit(onSubmit, onError)}
+          className={'min-h-0 flex-1 p-5'}
+        >
+          <Step name={'EVENT_WELCOME'}>
+            <EventWelcome
+              nextStep={() => {
+                nextStep('CAMPUS')
+              }}
+            />
+          </Step>
+          <Step name={'CAMPUS'}>
+            <Campus
+              nextStep={() => {
+                nextStep('PLACE_SEARCH')
+              }}
+            />
+          </Step>
+          <Step name={'PLACE_SEARCH'}>
+            <PlaceSearch
+              nextStep={() => {
+                nextStep('PLACE_PREVIEW')
+              }}
+            />
+          </Step>
+          <Step name={'PLACE_PREVIEW'}>
+            <PlacePreview
+              nextStep={() => {
+                const step =
+                  getValues().menus.length > 0
+                    ? 'RECOMMENDED_MENU'
+                    : 'DESCRIPTION'
+                nextStep(step)
+              }}
+            />
+          </Step>
+          <Step name={'RECOMMENDED_MENU'}>
+            <RecommendedMenu
+              nextStep={() => {
+                nextStep('DESCRIPTION')
+              }}
+            />
+          </Step>
+          <Step name={'DESCRIPTION'}>
+            <Description
+              nextStep={() => {
+                nextStep('CATEGORY')
+              }}
+            />
+          </Step>
+          <Step name={'CATEGORY'}>
+            <Category isLoading={isSubmitting || isPending} />
+          </Step>
+        </Column>
+      </FormProvider>
+    </>
   )
 }
 
