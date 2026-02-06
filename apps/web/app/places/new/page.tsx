@@ -88,7 +88,7 @@ const PlaceNewPage = () => {
   // 엔터 클릭 시 폼 제출 방지
   const preventEnterKeySubmission = (e: KeyboardEvent) => {
     const target = e.target as HTMLElement
-    if (e.key === 'Enter' && target.tagName !== 'INPUT') {
+    if (e.key === 'Enter' && target.tagName === 'INPUT') {
       e.preventDefault()
     }
   }
