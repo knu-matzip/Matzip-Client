@@ -1,5 +1,6 @@
 'use client'
 
+import { KeyboardEvent } from 'react'
 import {
   type FieldErrors,
   type SubmitHandler,
@@ -84,6 +85,14 @@ const PlaceNewPage = () => {
     }
   }
 
+  // 엔터 클릭 시 폼 제출 방지
+  const preventEnterKeySubmission = (e: KeyboardEvent) => {
+    const target = e.target as HTMLElement
+    if (e.key === 'Enter' && target.tagName !== 'TEXTAREA') {
+      e.preventDefault()
+    }
+  }
+
   return (
     <>
       <Header
@@ -100,6 +109,7 @@ const PlaceNewPage = () => {
         <Column
           as={'form'}
           onSubmit={handleSubmit(onSubmit, onError)}
+          onKeyDown={preventEnterKeySubmission}
           className={'min-h-0 flex-1 p-5'}
         >
           <Step name={'EVENT_WELCOME'}>
