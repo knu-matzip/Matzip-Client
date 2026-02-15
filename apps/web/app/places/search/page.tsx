@@ -1,31 +1,74 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { SearchPage } from '@/_components/SearchPage'
-import { getPlacesBySearch } from '@/_apis/services/place'
+import { FilterSelector } from './_components/FilterSelector'
+import {
+  getPlacesByMenuSearch,
+  getPlacesByNameSearch,
+} from '@/_apis/services/place'
 import { CLIENT_PATH } from '@/_constants/path'
+
+const SEARCH_TYPE = {
+  NAME: 'NAME',
+  MENU: 'MENU',
+} as const
+
+type SearchType = keyof typeof SEARCH_TYPE
+
+const TYPE_CONFIG = {
+  [SEARCH_TYPE.NAME]: {
+    label: '가게',
+    placeholder: '식당 이름을 검색해주세요',
+    searchFunc: async (query: string) => {
+      const result = await getPlacesByNameSearch(query)
+      return result.map((place) => ({
+        id: place.placeId,
+        name: place.placeName,
+        address: place.address,
+      }))
+    },
+  },
+  [SEARCH_TYPE.MENU]: {
+    label: '메뉴',
+    placeholder: '메뉴 이름을 검색해주세요',
+    searchFunc: async (query: string) => {
+      const result = await getPlacesByMenuSearch(query)
+      return result.map((place) => ({
+        id: place.placeId,
+        name: place.menuName,
+        address: place.placeName,
+      }))
+    },
+  },
+}
 
 const Page = () => {
   const { replace } = useRouter()
-
-  const handleSearch = async (query: string) => {
-    const result = await getPlacesBySearch(query)
-    return result.map((place) => ({
-      id: place.placeId,
-      name: place.placeName,
-      address: place.address,
-    }))
-  }
+  const [searchType, setSearchType] = useState<SearchType>('NAME')
+  const currentConfig = TYPE_CONFIG[searchType]
 
   return (
-    <SearchPage
-      placeholder={'식당을 검색해주세요'}
-      useBackHandler={true}
-      searchFunc={handleSearch}
-      onSelectPlace={(id) => {
-        replace(CLIENT_PATH.PLACE_DETAIL(id))
-      }}
-    />
+    <>
+      <FilterSelector
+        value={searchType}
+        onChange={(newKey) => setSearchType(newKey)}
+        options={Object.values(SEARCH_TYPE).map((type) => ({
+          key: type,
+          label: TYPE_CONFIG[type].label,
+        }))}
+      />
+      <SearchPage
+        key={searchType}
+        useBackHandler={true}
+        placeholder={currentConfig.placeholder}
+        searchFunc={currentConfig.searchFunc}
+        onSelectPlace={(id) => {
+          replace(CLIENT_PATH.PLACE_DETAIL(id))
+        }}
+      />
+    </>
   )
 }
 

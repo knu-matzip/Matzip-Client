@@ -26,11 +26,13 @@ export const API_PATH = {
       POST: (id: string) => `/places/${id}/like`,
       DELETE: (id: string) => `/places/${id}/like`,
     },
-    SEARCH: (keyword: string) => `/places/search?keyword=${keyword}`,
+    SEARCH: {
+      BY_NAME: `/places/search`,
+      BY_MENU: `/places/search/menu`,
+    },
   },
   KAKAO: {
-    SEARCH: (query: string, categoryCode: string, x: number, y: number) =>
-      `https://dapi.kakao.com/v2/local/search/keyword.json?query=${query}&category_group_code=${categoryCode}&x=${x}&y=${y}`,
+    SEARCH: `https://dapi.kakao.com/v2/local/search/keyword.json`,
   },
   EVENT: {
     INFO: '/events',

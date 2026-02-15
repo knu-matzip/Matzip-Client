@@ -78,9 +78,9 @@ export const SearchPage = ({
       </Flex>
       {inputValue && (
         <VerticalScrollArea as={'ul'} className={'px-3.5'}>
-          {places.map((place) => (
+          {places.map((place, index) => (
             <SearchPlaceListItem
-              key={place.id}
+              key={place.id + '-' + index}
               inputValue={inputValue}
               place={place}
               onClick={() => {

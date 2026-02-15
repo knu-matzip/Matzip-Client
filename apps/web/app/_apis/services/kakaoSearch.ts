@@ -14,14 +14,17 @@ export const getSearchPlaceByKakao = async ({
   const KAKAO_API_KEY = process.env.NEXT_PUBLIC_KAKAO_API || ''
   const { x, y } = location
   try {
-    const { data } = await axios.get(
-      API_PATH.KAKAO.SEARCH(query, KAKAO_CATEGORY_CODE[categoryCode], x, y),
-      {
-        headers: {
-          Authorization: `KakaoAK ${KAKAO_API_KEY}`,
-        },
+    const { data } = await axios.get(API_PATH.KAKAO.SEARCH, {
+      headers: {
+        Authorization: `KakaoAK ${KAKAO_API_KEY}`,
       },
-    )
+      params: {
+        query,
+        category_group_code: KAKAO_CATEGORY_CODE[categoryCode],
+        x,
+        y,
+      },
+    })
 
     if (!data?.documents || !Array.isArray(data.documents)) {
       return []
