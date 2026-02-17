@@ -1,2 +1,1 @@
 export { InProgressEvent } from './InProgressEvent'
-export { Result } from './Result'

@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { Column, JustifyBetween } from '@repo/ui/components/Layout'
 import { NavBarItem } from './_components/NavBarItem'
-import { Participation, Result } from './_components/Pages'
+import { InProgressEvent, Result } from './_components/Pages'
 
 export type StepType = 'inProgress' | 'finished'
 
@@ -31,7 +31,7 @@ export const LuckyDraw = () => {
             />
           ))}
         </JustifyBetween>
-        {currentTab === 'inProgress' && <Participation />}
+        {currentTab === 'inProgress' && <InProgressEvent />}
         {currentTab === 'finished' && <Result />}
       </Column>
     </>

@@ -17,7 +17,7 @@ type Props = {
   remainingTicketsCount: number
 }
 
-export const ParticipationModal = ({
+export const EntryTicketModal = ({
   isOpen,
   onOpenChange,
   eventId,
