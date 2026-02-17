@@ -27,7 +27,9 @@ export const participationEvent = async (body: {
   return data
 }
 
-export const getEventResult = async (): Promise<EventResult | null> => {
-  const { data } = await axiosInstance.get(API_PATH.EVENT.RESULT)
+export const getEventResult = async (
+  eventId: string,
+): Promise<EventResult | null> => {
+  const { data } = await axiosInstance.get(API_PATH.EVENT.RESULT(eventId))
   return EventResultSchema.parse(data)
 }

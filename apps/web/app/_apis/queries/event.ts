@@ -23,9 +23,9 @@ export const useEventQueries = {
       queryKey: EventQueryKeys.privateInfo(),
       queryFn: getPrivateEventInfo,
     }),
-  result: () =>
+  result: (eventId: string) =>
     queryOptions({
       queryKey: EventQueryKeys.result(),
-      queryFn: getEventResult,
+      queryFn: () => getEventResult(eventId),
     }),
 }
