@@ -6,10 +6,11 @@ import { useDisclosure } from '@heroui/react'
 // import { useEventQueries } from '@/_apis/queries/event'
 import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
-import { Column } from '@repo/ui/components/Layout'
+import { Column, Flex } from '@repo/ui/components/Layout'
 import { LottoBalls } from './_components/LottoBalls'
 import { ResultModal } from './ResultModal'
 import { ParticipationStatus } from '../../_components/ParticipationStatus'
+import Image from 'next/image'
 
 interface Props {
   eventId: string
@@ -43,6 +44,7 @@ export const EventResultClient = ({ eventId }: Props) => {
   return (
     <>
       <Column className='h-full items-center gap-4 p-5'>
+        <EventSummary />
         <Column className='mt-10 items-center gap-4'>
           <Text className='text-center' variant='title1'>
             행운의 주인공이 되어보세요!
@@ -65,5 +67,27 @@ export const EventResultClient = ({ eventId }: Props) => {
         stopRunning={stopRunning}
       />
     </>
+  )
+}
+
+const EventSummary = () => {
+  return (
+    <Flex className={'border-b-1 w-full gap-4 border-gray-100 py-2'}>
+      <Image
+        src={'/images/chicken.png'}
+        alt={'종료된 이벤트 상품'}
+        width={80}
+        height={80}
+      />
+      <Column>
+        <Text variant={'title3'}>BBQ 황금 올리브 치킨</Text>
+        <Text variant={'caption2'} className={'text-gray-300'}>
+          당첨자 3명 | 참여자 27명
+        </Text>
+        <Text variant={'caption2'} className={'text-gray-300'}>
+          종료 일자: 2025.12.23
+        </Text>
+      </Column>
+    </Flex>
   )
 }
