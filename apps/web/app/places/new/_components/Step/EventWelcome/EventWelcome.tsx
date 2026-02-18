@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { motion, stagger, type Variants } from 'motion/react'
 import { CLIENT_PATH } from '@/_constants/path'
@@ -37,8 +38,19 @@ const itemVariants: Variants = {
 }
 
 export const EventWelcome = ({ nextStep }: Props) => {
+  const { replace } = useRouter()
   const { data } = useSuspenseQuery(useEventQueries.publicInfo())
   const { prize } = data
+
+  useEffect(() => {
+    if (!prize) {
+      replace(`${CLIENT_PATH.PLACE_NEW}?step=1`)
+    }
+  }, [replace, prize])
+
+  if (!prize) {
+    return null
+  }
 
   return (
     <VerticalScrollArea

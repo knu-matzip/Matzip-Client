@@ -10,7 +10,7 @@ export const EventHandlers = [
   http.post(addBaseUrl(API_PATH.EVENT.PARTICIPATIONS), () => {
     return HttpResponse.json({ message: '성공' })
   }),
-  http.get(addBaseUrl(API_PATH.EVENT.RESULT), () => {
+  http.get(addBaseUrl('/events/:eventId/entries'), () => {
     return HttpResponse.json(eventResult)
   }),
 ]
