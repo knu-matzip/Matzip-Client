@@ -4,7 +4,9 @@ import { type Coord, toLatLng } from '@/map/_utils/toLatLng'
 import { PlaceMarker } from '@/map/_components/Marker'
 import { Column } from '@repo/ui/components/Layout'
 import { openNaverMap } from '@/_utils/openNaverMap'
+import { openKakaoTaxi } from '@/_utils/openKakaoTaxi'
 import Image from 'next/image'
+import { cn } from '@repo/ui/utils/cn'
 
 interface LocationProps {
   location: Coord
@@ -22,10 +24,29 @@ export const Location = ({ location, placeName }: LocationProps) => {
     })
   }
 
+  const handleOpenKakaoTaxi = () => {
+    openKakaoTaxi({
+      latitude: location.latitude,
+      longitude: location.longitude,
+      placeName,
+    })
+  }
+
   return (
     <Column className={'gap-3'}>
       <Container className={'h-[150px] overflow-hidden rounded-xl'}>
-        <OpenNaverMapButton onClick={handleOpenNaverMap} />
+        <Column className={'absolute right-2 top-2 gap-2'}>
+          <MapButton
+            onClick={handleOpenKakaoTaxi}
+            imageSrc={'/images/kakao-taxi-logo.png'}
+            alt={'kakao-taxi-logo'}
+          />
+          <MapButton
+            onClick={handleOpenNaverMap}
+            imageSrc={'/images/naver-map-logo.webp'}
+            alt={'naver-map-logo'}
+          />
+        </Column>
         <NaverMap
           draggable={false}
           defaultZoom={18}
@@ -40,18 +61,25 @@ export const Location = ({ location, placeName }: LocationProps) => {
   )
 }
 
-const OpenNaverMapButton = ({ onClick }: { onClick: VoidFunction }) => (
+interface MapButtonProps {
+  onClick: VoidFunction
+  imageSrc: string
+  alt: string
+}
+
+const MapButton = ({ onClick, imageSrc, alt }: MapButtonProps) => (
   <button
-    className={
-      'absolute right-2 top-2 rounded-lg border-gray-300 bg-white p-1 shadow'
-    }
+    className={cn(
+      'border-1 border-gray-100',
+      'rounded-lg',
+      'bg-white',
+      'p-1',
+      'shadow',
+      'transition-transform',
+      'hover:scale-105',
+    )}
     onClick={onClick}
   >
-    <Image
-      src={'/images/naver-map-logo.webp'}
-      alt={'naver-map-logo'}
-      width={25}
-      height={25}
-    />
+    <Image src={imageSrc} alt={alt} width={20} height={20} />
   </button>
 )
