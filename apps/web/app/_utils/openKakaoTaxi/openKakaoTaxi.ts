@@ -1,9 +1,9 @@
 import { addToast } from '@heroui/react'
 import { openDeepLink } from '../openDeepLink'
+import { isMobileDevice, isIOSDevice } from '../device'
+import { Coord } from '@/map/_utils/toLatLng'
 
-interface OpenKakaoTaxiParams {
-  latitude: number
-  longitude: number
+interface OpenKakaoTaxiParams extends Coord {
   placeName?: string
 }
 
@@ -15,23 +15,21 @@ interface OpenKakaoTaxiParams {
 export const openKakaoTaxi = ({
   latitude,
   longitude,
-  placeName,
+  placeName = '목적지',
 }: OpenKakaoTaxiParams): void => {
-  // 카카오택시 딥링크 URL 스킴
-  const appScheme = `kakaot://taxi?dest_lat=${latitude}&dest_lng=${longitude}&end_name=${encodeURIComponent(placeName || '목적지')}`
-
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-
-  if (isMobile) {
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
-    const storeUrl = isIOS
-      ? 'https://apps.apple.com/kr/app/kakaotaxi/id981110422'
-      : 'https://play.google.com/store/apps/details?id=com.kakao.taxi'
-
-    openDeepLink({ appScheme, fallbackUrl: storeUrl })
+  if (isMobileDevice()) {
+    const urls = buildKakaoTaxiUrls({ latitude, longitude }, placeName)
+    openDeepLink({ appScheme: urls.app, fallbackUrl: urls.store })
   } else {
     addToast({
       title: '카카오택시 앱은 모바일에서만 이용 가능합니다.',
     })
   }
 }
+
+const buildKakaoTaxiUrls = (coords: Coord, placeName: string) => ({
+  app: `kakaot://taxi?dest_lat=${coords.latitude}&dest_lng=${coords.longitude}&end_name=${encodeURIComponent(placeName)}`,
+  store: isIOSDevice()
+    ? 'https://apps.apple.com/kr/app/kakaotaxi/id981110422'
+    : 'https://play.google.com/store/apps/details?id=com.kakao.taxi',
+})

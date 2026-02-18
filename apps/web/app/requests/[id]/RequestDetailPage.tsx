@@ -56,7 +56,7 @@ export const RequestDetailPage = ({ id }: { id: string }) => {
         </Carousel>
         <Column className={'flex-1 justify-around gap-4 p-5'}>
           <Section icon={'pin'} title={'위치'}>
-            <Location location={location} />
+            <Location location={location} placeName={placeName} />
           </Section>
           <Section icon={'note'} title={'메뉴'}>
             <Menus menus={menus} />

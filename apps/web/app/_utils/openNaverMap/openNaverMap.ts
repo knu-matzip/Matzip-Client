@@ -1,8 +1,8 @@
 import { openDeepLink } from '../openDeepLink'
+import { isMobileDevice } from '../device'
+import { Coord } from '@/map/_utils/toLatLng'
 
-interface OpenNaverMapParams {
-  latitude: number
-  longitude: number
+interface OpenNaverMapParams extends Coord {
   placeName?: string
 }
 
@@ -14,19 +14,19 @@ interface OpenNaverMapParams {
 export const openNaverMap = ({
   latitude,
   longitude,
-  placeName,
+  placeName = '공주대학교',
 }: OpenNaverMapParams): void => {
-  // 네이버 지도 URL 스킴 (앱)
-  const appScheme = `nmap://place?lat=${latitude}&lng=${longitude}&name=${encodeURIComponent(placeName || '위치')}`
-  // 네이버 지도 웹 URL (폴백)
-  const webUrl = `https://map.naver.com/p/search/${encodeURIComponent(placeName || '')}?c=${longitude},${latitude},18,0,0,0,dh`
+  const urls = buildNaverMapUrls({ latitude, longitude }, placeName)
 
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-
-  if (isMobile) {
-    openDeepLink({ appScheme, fallbackUrl: webUrl })
+  if (isMobileDevice()) {
+    openDeepLink({ appScheme: urls.app, fallbackUrl: urls.web })
   } else {
     // 데스크톱: 웹 페이지로 바로 이동
-    window.open(webUrl, '_blank')
+    window.open(urls.web, '_blank')
   }
 }
+
+const buildNaverMapUrls = (coords: Coord, placeName: string) => ({
+  app: `nmap://place?lat=${coords.latitude}&lng=${coords.longitude}&name=${encodeURIComponent(placeName)}&appname=com.matzip`,
+  web: `https://map.naver.com/p/search/${encodeURIComponent(placeName)}?c=${coords.longitude},${coords.latitude},18,0,0,0,dh`,
+})

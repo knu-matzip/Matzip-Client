@@ -1,17 +1,21 @@
 interface OpenDeepLinkParams {
   appScheme: string
   fallbackUrl: string
+  timeout?: number
 }
+
+const DEEPLINK_TIMEOUT = 2500
 
 /**
  * 딥링크 실행 유틸 함수
  * - 앱이 설치되어 있으면 앱 실행
- * - 앱이 없으면 2.5초 후 fallbackUrl로 이동
+ * - 앱이 없으면 timeout 이후 fallbackUrl로 이동
  * - 앱 실행 시 페이지가 백그라운드로 가면 fallback 취소
  */
 export const openDeepLink = ({
   appScheme,
   fallbackUrl,
+  timeout = DEEPLINK_TIMEOUT,
 }: OpenDeepLinkParams): void => {
   const startTime = Date.now()
 
@@ -30,10 +34,10 @@ export const openDeepLink = ({
   const fallbackTimeout = setTimeout(() => {
     document.removeEventListener('visibilitychange', handleVisibilityChange)
     // 페이지가 포그라운드 상태로 유지되었다면 앱이 없는 것으로 간주
-    if (!document.hidden && Date.now() - startTime >= 2500) {
+    if (!document.hidden && Date.now() - startTime >= timeout) {
       window.location.href = fallbackUrl
     }
-  }, 2500)
+  }, timeout)
 
   window.location.href = appScheme
 }
