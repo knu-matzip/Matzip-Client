@@ -38,6 +38,7 @@ export const API_PATH = {
     INFO: '/events',
     PARTICIPATIONS: '/events/entries',
     RESULT: (eventId: string) => `/events/${eventId}/entries`,
+    APPLY: (eventId: string) => `/events/${eventId}/apply`,
   },
   REQUEST: {
     LIST: '/requests/places',

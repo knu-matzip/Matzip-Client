@@ -33,3 +33,13 @@ export const getEventResult = async (
   const { data } = await axiosInstance.get(API_PATH.EVENT.RESULT(eventId))
   return EventResultSchema.parse(data)
 }
+
+// TODO: API 명세 확정 후 (인자, 반환값) 명확히 하기
+export const submitWinnerPhoneNumber = async (
+  eventId: string,
+  phoneNumber: string,
+): Promise<void> => {
+  await axiosInstance.post(API_PATH.EVENT.APPLY(eventId), {
+    phoneNumber,
+  })
+}

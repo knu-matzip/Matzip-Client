@@ -16,13 +16,11 @@ interface Props {
   eventId: string
 }
 
-export const EventResultClient = ({
-  eventId: _eventId, // eslint-disable-line @typescript-eslint/no-unused-vars
-}: Props) => {
+export const EventResultClient = ({ eventId }: Props) => {
   const [isRunning, setIsRunning] = useState(false)
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   // Todo: 백엔드 API 작업 완료 시 연동 필요
-  // const { data } = useSuspenseQuery(useEventQueries.result(_eventId))
+  // const { data } = useSuspenseQuery(useEventQueries.result(eventId))
   const data = {
     isWinner: true,
     participantsCount: 100,
@@ -31,7 +29,7 @@ export const EventResultClient = ({
 
   const { isWinner, participantsCount, usedTicketsCount } = data
 
-  const stopRunning = () => {
+  const stopLotteryAnimation = () => {
     setIsRunning(false)
   }
 
@@ -62,10 +60,11 @@ export const EventResultClient = ({
         </Button>
       </Column>
       <ResultModal
+        eventId={eventId}
         isWinner={isWinner}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
-        stopRunning={stopRunning}
+        onAnimationStop={stopLotteryAnimation}
       />
     </>
   )

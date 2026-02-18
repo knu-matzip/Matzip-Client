@@ -1,14 +1,15 @@
-import { Input, Modal, ModalContent } from '@heroui/react'
+import { Modal, ModalContent } from '@heroui/react'
 import { Icon, type IconType } from '@repo/ui/components/Icon'
 import { Column } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
-import { Button } from '@repo/ui/components/Button'
+import { WinnerInfoForm } from './_components/WinnerInfoForm'
 
 type Props = {
+  eventId: string
   isWinner: boolean
   isOpen: boolean
   onOpenChange: VoidFunction
-  stopRunning: VoidFunction
+  onAnimationStop: VoidFunction
 }
 
 type ModalContent = {
@@ -33,16 +34,17 @@ const FailModalContent: ModalContent = {
 }
 
 export const ResultModal = ({
+  eventId,
   isWinner,
   isOpen,
   onOpenChange,
-  stopRunning,
+  onAnimationStop,
 }: Props) => {
   const modalContent = isWinner ? SuccessModalContent : FailModalContent
 
   return (
     <Modal
-      onClose={stopRunning}
+      onClose={onAnimationStop}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       placement={'center'}
@@ -81,24 +83,9 @@ export const ResultModal = ({
               {modalContent.description}
             </Text>
           </Column>
-          {isWinner && <WinnerInfoForm />}
+          {isWinner && <WinnerInfoForm eventId={eventId} />}
         </Column>
       </ModalContent>
     </Modal>
-  )
-}
-
-const WinnerInfoForm = () => {
-  // Todo: 전송하기 버튼에 api 연동 필요
-
-  return (
-    <Column className={'items-center gap-2'}>
-      <Input
-        type={'tel'}
-        placeholder={'010-1234-5678'}
-        className={'w-[140px]'}
-      />
-      <Button size={'small'}>전송하기</Button>
-    </Column>
   )
 }
