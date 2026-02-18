@@ -1,4 +1,5 @@
 import { addToast } from '@heroui/react'
+import { openDeepLink } from '../openDeepLink'
 
 interface OpenKakaoTaxiParams {
   latitude: number
@@ -22,18 +23,12 @@ export const openKakaoTaxi = ({
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
 
   if (isMobile) {
-    // 모바일: 딥링크 시도
-    window.location.href = appScheme
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
+    const storeUrl = isIOS
+      ? 'https://apps.apple.com/kr/app/kakaotaxi/id981110422'
+      : 'https://play.google.com/store/apps/details?id=com.kakao.taxi'
 
-    // 앱이 설치되지 않은 경우를 대비한 타임아웃 (2.5초 후 스토어로 이동)
-    setTimeout(() => {
-      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent)
-      const storeUrl = isIOS
-        ? 'https://apps.apple.com/kr/app/kakaotaxi/id981110422'
-        : 'https://play.google.com/store/apps/details?id=com.kakao.taxi'
-
-      window.location.href = storeUrl
-    }, 2500)
+    openDeepLink({ appScheme, fallbackUrl: storeUrl })
   } else {
     addToast({
       title: '카카오택시 앱은 모바일에서만 이용 가능합니다.',
