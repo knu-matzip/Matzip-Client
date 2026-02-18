@@ -34,8 +34,8 @@ export const Location = ({ location, placeName }: LocationProps) => {
 
   return (
     <Column className={'gap-3'}>
-      <Container className={'h-[150px] overflow-hidden rounded-xl'}>
-        <Column className={'absolute right-2 top-2 gap-2'}>
+      <Container className={'relative h-[150px] overflow-hidden rounded-xl'}>
+        <Column className={'absolute right-2 top-2 z-10 gap-2'}>
           <MapButton
             onClick={handleOpenKakaoTaxi}
             imageSrc={'/images/kakao-taxi-logo.png'}
@@ -69,6 +69,7 @@ interface MapButtonProps {
 
 const MapButton = ({ onClick, imageSrc, alt }: MapButtonProps) => (
   <button
+    type={'button'}
     className={cn(
       'border-1 border-gray-100',
       'rounded-lg',
