@@ -1,0 +1,1 @@
+export { openNaverMap } from './openNaverMap'
