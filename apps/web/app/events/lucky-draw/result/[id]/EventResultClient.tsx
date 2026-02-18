@@ -1,27 +1,28 @@
 'use client'
 
+import Image from 'next/image'
 import { useState } from 'react'
 import { useDisclosure } from '@heroui/react'
 // import { useSuspenseQuery } from '@tanstack/react-query'
 // import { useEventQueries } from '@/_apis/queries/event'
-import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
 import { Column, Flex } from '@repo/ui/components/Layout'
+import { Text } from '@repo/ui/components/Text'
+import { ParticipationStatus } from '../../_components/ParticipationStatus'
 import { LottoBalls } from './_components/LottoBalls'
 import { ResultModal } from './ResultModal'
-import { ParticipationStatus } from '../../_components/ParticipationStatus'
-import Image from 'next/image'
 
 interface Props {
   eventId: string
 }
 
-export const EventResultClient = ({ eventId }: Props) => {
-  console.log(eventId)
+export const EventResultClient = ({
+  eventId: _eventId, // eslint-disable-line @typescript-eslint/no-unused-vars
+}: Props) => {
   const [isRunning, setIsRunning] = useState(false)
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   // Todo: 백엔드 API 작업 완료 시 연동 필요
-  // const { data } = useSuspenseQuery(useEventQueries.result(eventId))
+  // const { data } = useSuspenseQuery(useEventQueries.result(_eventId))
   const data = {
     isWinner: true,
     participantsCount: 100,
