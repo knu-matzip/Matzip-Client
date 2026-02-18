@@ -15,6 +15,13 @@ import { ParticipationStatus } from '@/events/lucky-draw/_components/Participati
 export const InProgressEvent = () => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const { data } = useSuspenseQuery(useEventQueries.privateInfo())
+
+  // 진행 중인 이벤트가 없는 경우
+  // Todo: API에서 진행 중인 이벤트가 없는 경우에 대한 명확한 응답이 필요 (예: data: null 등)
+  if (!data.eventId || !data.prize || !data.eventEndDate) {
+    return <EmptyEventState />
+  }
+
   const {
     eventId,
     prize,
@@ -24,12 +31,6 @@ export const InProgressEvent = () => {
     usedTicketsCount,
     eventEndDate,
   } = data
-
-  // 진행 중인 이벤트가 없는 경우
-  // Todo: API에서 진행 중인 이벤트가 없는 경우에 대한 명확한 응답이 필요 (예: data: null 등)
-  if (!eventId || !prize || !eventEndDate) {
-    return <EmptyEventState />
-  }
 
   return (
     <>
