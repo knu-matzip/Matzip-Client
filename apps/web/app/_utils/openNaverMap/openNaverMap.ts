@@ -15,8 +15,7 @@ export const openNaverMap = ({
   placeName,
 }: OpenNaverMapParams): void => {
   // 네이버 지도 URL 스킴 (앱)
-  const appScheme = `nmap://place?lat=${latitude}&lng=${longitude}&name=${encodeURIComponent(placeName || '위치')}&appname=com.matzip`
-
+  const appScheme = `nmap://place?lat=${latitude}&lng=${longitude}&name=${encodeURIComponent(placeName || '위치')}`
   // 네이버 지도 웹 URL (폴백)
   const webUrl = `https://map.naver.com/p/search/${encodeURIComponent(placeName || '')}?c=${longitude},${latitude},18,0,0,0,dh`
 
@@ -25,11 +24,6 @@ export const openNaverMap = ({
   if (isMobile) {
     // 모바일: 딥링크 시도
     window.location.href = appScheme
-
-    // 앱이 설치되지 않은 경우를 대비한 타임아웃 (2.5초 후 웹으로 폴백)
-    setTimeout(() => {
-      window.location.href = webUrl
-    }, 2500)
   } else {
     // 데스크톱: 웹 페이지로 바로 이동
     window.open(webUrl, '_blank')
