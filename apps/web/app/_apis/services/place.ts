@@ -59,10 +59,12 @@ export const getPlacesByMap = async ({
 
 export const getPlacesByNameSearch = async (
   keyword: string,
+  campus: CampusType,
 ): Promise<PlaceByNameSearch[]> => {
   const { data } = await axiosInstance.get(API_PATH.PLACES.SEARCH.BY_NAME, {
     params: {
       keyword,
+      campus,
     },
   })
   return PlaceByNameSearchSchema.array().parse(data)
@@ -70,10 +72,12 @@ export const getPlacesByNameSearch = async (
 
 export const getPlacesByMenuSearch = async (
   keyword: string,
+  campus: CampusType,
 ): Promise<PlaceByMenuSearch[]> => {
   const { data } = await axiosInstance.get(API_PATH.PLACES.SEARCH.BY_MENU, {
     params: {
       keyword,
+      campus,
     },
   })
   return PlaceByMenuSearchSchema.array().parse(data)
