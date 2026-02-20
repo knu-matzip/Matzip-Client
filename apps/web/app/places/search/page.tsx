@@ -18,8 +18,20 @@ const SEARCH_TYPE = {
 } as const
 
 type SearchType = keyof typeof SEARCH_TYPE
+type TypeConfig = Record<
+  SearchType,
+  {
+    label: string
+    placeholder: string
+    searchFunc: (
+      campus: CampusType,
+    ) => (
+      query: string,
+    ) => Promise<Array<{ id: string; name: string; address: string }>>
+  }
+>
 
-const TYPE_CONFIG = {
+const TYPE_CONFIG: TypeConfig = {
   [SEARCH_TYPE.NAME]: {
     label: '가게',
     placeholder: '식당 이름을 검색해주세요',
@@ -63,7 +75,7 @@ const Page = () => {
         }))}
       />
       <SearchPage
-        key={searchType}
+        key={`${searchType}-${campus}`}
         useBackHandler={true}
         placeholder={currentConfig.placeholder}
         searchFunc={currentConfig.searchFunc(campus)}
