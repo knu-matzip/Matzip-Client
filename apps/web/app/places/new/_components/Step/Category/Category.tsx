@@ -19,33 +19,36 @@ type Props = {
 export const Category = ({ isLoading }: Props) => {
   const { getValues, setValue } = useFormContext<NewPlaceRequest>()
   const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
+
   const initialValues = getValues().categoryIds
   const initialCategory = initialValues
     .map((id) => categories.find((category) => category.id === id))
     .filter((category): category is CategoryType => category !== undefined)
+
   const [selectedCategories, setSelectedCategories] =
     useState<CategoryType[]>(initialCategory)
+
+  const includeInCategories = (category: CategoryType) => {
+    return selectedCategories.some((c) => c.id === category.id)
+  }
+
+  const syncFormCategories = (categories: CategoryType[]) => {
+    setValue(
+      'categoryIds',
+      categories.map((c) => c.id),
+    )
+  }
 
   const addCategory = (category: CategoryType) => {
     const updated = [...selectedCategories, category]
     setSelectedCategories(updated)
-    setValue(
-      'categoryIds',
-      updated.map((c) => c.id),
-    )
+    syncFormCategories(updated)
   }
 
   const removeCategory = (category: CategoryType) => {
     const updated = selectedCategories.filter((c) => c.id !== category.id)
     setSelectedCategories(updated)
-    setValue(
-      'categoryIds',
-      updated.map((c) => c.id),
-    )
-  }
-
-  const includeInCategories = (category: CategoryType) => {
-    return selectedCategories.some((c) => c.id === category.id)
+    syncFormCategories(updated)
   }
 
   const onToggle = (category: CategoryType) => {
