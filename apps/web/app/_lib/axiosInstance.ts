@@ -54,8 +54,15 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true
 
       try {
-        const { accessToken: newAccessToken } = await getToken()
-        setCookie('accessToken', newAccessToken)
+        const { accessToken: newAccessToken, accessTokenExpiresIn } =
+          await getToken()
+
+        setCookie('accessToken', newAccessToken, {
+          path: '/',
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          expires: new Date(Date.now() + accessTokenExpiresIn),
+        })
 
         if (originalRequest.headers) {
           originalRequest.headers.Authorization = newAccessToken
