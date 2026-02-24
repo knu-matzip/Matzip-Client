@@ -10,7 +10,7 @@ export type StepType = 'inProgress' | 'finished'
 
 const STEP_NAME = {
   inProgress: '진행중인 이벤트',
-  finished: '종료된 이벤트',
+  finished: '참여했던 이벤트',
 }
 const TABS: StepType[] = ['inProgress', 'finished']
 
