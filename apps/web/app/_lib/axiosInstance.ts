@@ -6,6 +6,7 @@ import axios, {
 import * as Sentry from '@sentry/nextjs'
 import { getToken } from '@/_apis/services/login'
 import { getCookie } from '@/_utils/getCookie'
+import { setCookie } from 'cookies-next'
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
@@ -53,7 +54,15 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true
 
       try {
-        const { accessToken: newAccessToken } = await getToken()
+        const { accessToken: newAccessToken, accessTokenExpiresIn } =
+          await getToken()
+
+        setCookie('accessToken', newAccessToken, {
+          path: '/',
+          secure: process.env.NODE_ENV === 'production',
+          sameSite: 'lax',
+          expires: new Date(Date.now() + accessTokenExpiresIn),
+        })
 
         if (originalRequest.headers) {
           originalRequest.headers.Authorization = newAccessToken
