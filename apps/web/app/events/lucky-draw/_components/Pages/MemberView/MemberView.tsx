@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Column, JustifyBetween } from '@repo/ui/components/Layout'
-import { NavBarItem } from '@/events/lucky-draw/_components/NavBarItem'
+import { NavBarItem } from './NavBarItem'
 import { InProgressEvent } from './InProgressEvent'
 import { FinishedEvent } from './FinishedEvent'
 
