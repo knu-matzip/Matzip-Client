@@ -67,9 +67,9 @@ const handleTokenRefresh = async (
     // 2. [브라우저 동기화] 쿠키 세팅
     res.cookies.set('accessToken', newAccessToken, {
       path: '/',
-      httpOnly: false,
       secure: process.env.NODE_ENV === 'production',
-      maxAge: accessTokenExpiresIn,
+      sameSite: 'lax',
+      expires: new Date(Date.now() + accessTokenExpiresIn),
     })
 
     // 3. 백엔드 쿠키(Set-Cookie) 포워딩
