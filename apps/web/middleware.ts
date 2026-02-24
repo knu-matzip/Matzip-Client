@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { API_PATH, CLIENT_PATH } from 'app/_constants/path'
+import { API_PATH, CLIENT_PATH } from '@/_constants/path'
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken')?.value
