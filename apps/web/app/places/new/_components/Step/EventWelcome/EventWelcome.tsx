@@ -40,17 +40,18 @@ const itemVariants: Variants = {
 export const EventWelcome = ({ nextStep }: Props) => {
   const { replace } = useRouter()
   const { data } = useSuspenseQuery(useEventQueries.publicInfo())
-  const { prize } = data
 
   useEffect(() => {
-    if (!prize) {
+    if (!data) {
       replace(`${CLIENT_PATH.PLACE_NEW}?step=1`)
     }
-  }, [replace, prize])
+  }, [replace, data])
 
-  if (!prize) {
+  if (!data) {
     return null
   }
+
+  const { prize } = data
 
   return (
     <VerticalScrollArea

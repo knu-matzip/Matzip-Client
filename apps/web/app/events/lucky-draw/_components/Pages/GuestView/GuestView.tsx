@@ -13,11 +13,12 @@ import { CLIENT_PATH } from '@/_constants/path'
 
 export const GuestView = () => {
   const { data } = useSuspenseQuery(useEventQueries.publicInfo())
-  const { prize } = data
 
-  if (!prize) {
+  if (!data) {
     return <EmptyEventState />
   }
+
+  const { prize } = data
 
   return (
     <Column className={'h-full min-h-0 justify-between gap-10 p-5'}>

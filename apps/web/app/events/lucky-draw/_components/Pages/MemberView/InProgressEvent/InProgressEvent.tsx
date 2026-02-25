@@ -17,8 +17,7 @@ export const InProgressEvent = () => {
   const { data } = useSuspenseQuery(useEventQueries.privateInfo())
 
   // 진행 중인 이벤트가 없는 경우
-  // Todo: API에서 진행 중인 이벤트가 없는 경우에 대한 명확한 응답이 필요 (예: data: null 등)
-  if (!data.eventId || !data.prize || !data.eventEndDate) {
+  if (!data) {
     return <EmptyEventState />
   }
 
