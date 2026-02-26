@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
+import { Spinner } from '@heroui/react'
 import { Column, JustifyBetween } from '@repo/ui/components/Layout'
 import { NavBarItem } from './NavBarItem'
 import { InProgressEvent } from './InProgressEvent'
@@ -31,8 +32,12 @@ export const MemberView = () => {
           />
         ))}
       </JustifyBetween>
-      {currentTab === 'inProgress' && <InProgressEvent />}
-      {currentTab === 'finished' && <FinishedEvent />}
+      <Suspense fallback={<Spinner className={'m-auto'} />}>
+        {currentTab === 'inProgress' && <InProgressEvent />}
+      </Suspense>
+      <Suspense fallback={<Spinner className={'m-auto'} />}>
+        {currentTab === 'finished' && <FinishedEvent />}
+      </Suspense>
     </Column>
   )
 }
