@@ -1,24 +1,24 @@
 import axiosInstance from '@/_lib/axiosInstance'
 import { API_PATH } from '@/_constants/path'
 import {
-  PrivateEventSchema,
-  PublicEventSchema,
-  EntryEventSchema,
+  EventByPrivateSchema,
+  EventByPublicSchema,
+  EventEntrySchema,
   EventResultSchema,
-  type EntryEvent,
+  type EventEntry,
   type EventResult,
-  type PrivateEvent,
-  type PublicEvent,
+  type EventByPrivate,
+  type EventByPublic,
 } from '@/_apis/schemas/event'
 
-export const getPublicEventInfo = async (): Promise<PublicEvent> => {
+export const getPublicEventInfo = async (): Promise<EventByPublic> => {
   const { data } = await axiosInstance.get(API_PATH.EVENT.INFO)
-  return PublicEventSchema.parse(data)
+  return EventByPublicSchema.parse(data)
 }
 
-export const getPrivateEventInfo = async (): Promise<PrivateEvent> => {
+export const getPrivateEventInfo = async (): Promise<EventByPrivate> => {
   const { data } = await axiosInstance.get(API_PATH.EVENT.INFO)
-  return PrivateEventSchema.parse(data)
+  return EventByPrivateSchema.parse(data)
 }
 
 export const participationEvent = async (body: {
@@ -29,9 +29,9 @@ export const participationEvent = async (body: {
   return data
 }
 
-export const getEntriesEvent = async (): Promise<EntryEvent[]> => {
+export const getEventByEntries = async (): Promise<EventEntry[]> => {
   const { data } = await axiosInstance.get(API_PATH.EVENT.ENTRIES)
-  return EntryEventSchema.array().parse(data)
+  return EventEntrySchema.array().parse(data)
 }
 
 export const getEventResult = async (
