@@ -11,7 +11,6 @@ export const PublicEventSchema = z.nullable(
   }),
 )
 
-// Todo: API에서 진행 중인 이벤트가 없는 경우에 대한 명확한 응답이 필요할 것 같습니다. (예: data: null 등)
 export const PrivateEventSchema = z.nullable(
   z.object({
     eventId: z.number().transform(String),
@@ -23,6 +22,14 @@ export const PrivateEventSchema = z.nullable(
     eventEndDate: z.string(),
   }),
 )
+
+export const EntryEventSchema = z.object({
+  eventId: z.string(),
+  prize: PrizeSchema,
+  totalWinnersCount: z.number(),
+  participantsCount: z.number(),
+  eventEndDate: z.string(),
+})
 
 export const EventResultSchema = z.object({
   eventId: z.string(),
@@ -43,5 +50,6 @@ export const WinnerPhoneNumberSchema = z.object({
 
 export type PublicEvent = z.infer<typeof PublicEventSchema>
 export type PrivateEvent = z.infer<typeof PrivateEventSchema>
+export type EntryEvent = z.infer<typeof EntryEventSchema>
 export type EventResult = z.infer<typeof EventResultSchema>
 export type WinnerPhoneNumber = z.infer<typeof WinnerPhoneNumberSchema>

@@ -3,7 +3,9 @@ import { API_PATH } from '@/_constants/path'
 import {
   PrivateEventSchema,
   PublicEventSchema,
+  EntryEventSchema,
   EventResultSchema,
+  type EntryEvent,
   type EventResult,
   type PrivateEvent,
   type PublicEvent,
@@ -25,6 +27,11 @@ export const participationEvent = async (body: {
 }) => {
   const { data } = await axiosInstance.post(API_PATH.EVENT.PARTICIPATIONS, body)
   return data
+}
+
+export const getEntriesEvent = async (): Promise<EntryEvent[]> => {
+  const { data } = await axiosInstance.get(API_PATH.EVENT.ENTRIES)
+  return EntryEventSchema.array().parse(data)
 }
 
 export const getEventResult = async (
