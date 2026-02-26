@@ -35,7 +35,7 @@ export const EventResultSchema = z.object({
   usedTicketsCount: z.number(),
 })
 
-export const EventWinnerPhoneSchema = z.object({
+export const EventWinnerFormSchema = z.object({
   phoneNumber: z
     .string()
     .min(1, '전화번호를 입력해주세요.')
@@ -43,10 +43,14 @@ export const EventWinnerPhoneSchema = z.object({
       /^010-\d{4}-\d{4}$/,
       '올바른 형식으로 입력해주세요 (예: 010-1234-5678)',
     ),
+  agreements: z.object({
+    termsAgreed: z.boolean().refine((val) => val === true),
+    privacyAgreed: z.boolean().refine((val) => val === true),
+  }),
 })
 
 export type EventByPublic = z.infer<typeof EventByPublicSchema>
 export type EventByPrivate = z.infer<typeof EventByPrivateSchema>
 export type EventByEntry = z.infer<typeof EventEntrySchema>
 export type EventResult = z.infer<typeof EventResultSchema>
-export type EventWinnerPhone = z.infer<typeof EventWinnerPhoneSchema>
+export type EventWinnerForm = z.infer<typeof EventWinnerFormSchema>

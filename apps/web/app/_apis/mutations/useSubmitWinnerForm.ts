@@ -1,18 +1,16 @@
 import { useMutation } from '@tanstack/react-query'
 import { addToast } from '@heroui/react'
 
-import { submitWinnerPhoneNumber } from '../services/event'
+import { submitWinnerForm } from '../services/event'
+import type { EventWinnerForm } from '@/_apis/schemas/event'
 
-interface UseSubmitWinnerPhoneNumberParams {
+type UseSubmitWinnerFormParams = {
   eventId: string
 }
 
-export const useSubmitWinnerPhoneNumber = ({
-  eventId,
-}: UseSubmitWinnerPhoneNumberParams) => {
+export const useSubmitWinnerForm = ({ eventId }: UseSubmitWinnerFormParams) => {
   return useMutation({
-    mutationFn: (phoneNumber: string) =>
-      submitWinnerPhoneNumber(eventId, phoneNumber),
+    mutationFn: (data: EventWinnerForm) => submitWinnerForm(eventId, data),
     onSuccess: () => {
       addToast({
         title: '전화번호가 성공적으로 제출되었습니다!',

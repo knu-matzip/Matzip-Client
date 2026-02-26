@@ -9,6 +9,7 @@ import {
   type EventResult,
   type EventByPrivate,
   type EventByPublic,
+  type EventWinnerForm,
 } from '@/_apis/schemas/event'
 
 export const getEventByPublic = async (): Promise<EventByPublic> => {
@@ -41,12 +42,9 @@ export const getEventResult = async (
   return EventResultSchema.parse(data)
 }
 
-// TODO: API 명세 확정 후 (인자, 반환값) 명확히 하기
-export const submitWinnerPhoneNumber = async (
+export const submitWinnerForm = async (
   eventId: string,
-  phoneNumber: string,
+  data: EventWinnerForm,
 ): Promise<void> => {
-  await axiosInstance.post(API_PATH.EVENT.APPLY(eventId), {
-    phoneNumber,
-  })
+  await axiosInstance.post(API_PATH.EVENT.APPLY(eventId), data)
 }
