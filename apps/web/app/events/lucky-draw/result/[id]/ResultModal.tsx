@@ -74,17 +74,21 @@ export const ResultModal = ({
       }}
     >
       <ModalContent>
-        <Column className={'items-center gap-2.5 px-5 py-8'}>
-          <Icon type={modalContent.icon} size={60} />
-          <Text variant={'heading2'}>{modalContent.title}</Text>
-          <Column className={'items-center'}>
-            <Text fontWeight={'medium'}>{modalContent.subTitle}</Text>
-            <Text variant={'body1'} className={'text-gray-300'}>
-              {modalContent.description}
-            </Text>
+        {(onClose) => (
+          <Column className={'items-center gap-2.5 px-5 py-8'}>
+            <Icon type={modalContent.icon} size={60} />
+            <Text variant={'heading2'}>{modalContent.title}</Text>
+            <Column className={'items-center'}>
+              <Text fontWeight={'medium'}>{modalContent.subTitle}</Text>
+              <Text variant={'body1'} className={'text-gray-300'}>
+                {modalContent.description}
+              </Text>
+            </Column>
+            {isWinner && (
+              <WinnerInfoForm eventId={eventId} onSuccess={onClose} />
+            )}
           </Column>
-          {isWinner && <WinnerInfoForm eventId={eventId} />}
-        </Column>
+        )}
       </ModalContent>
     </Modal>
   )
