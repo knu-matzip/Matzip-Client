@@ -78,6 +78,9 @@ const EventSummary = () => {
         alt={'종료된 이벤트 상품'}
         width={80}
         height={80}
+        sizes={'auto'}
+        priority={true}
+        className={'rounded-lg'}
       />
       <Column>
         <Text variant={'title3'}>BBQ 황금 올리브 치킨</Text>
