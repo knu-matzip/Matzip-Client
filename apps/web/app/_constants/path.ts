@@ -67,6 +67,7 @@ export const CLIENT_PATH = {
   REQUEST_DETAIL: (id: string | number) => `/requests/${id}`,
   EVENTS_FOOD_SLOT: '/events/food-slot',
   EVENTS_LUCKY_DRAW: '/events/lucky-draw',
+  EVENTS_RESULT: (id: string | number) => `/events/lucky-draw/result/${id}`,
   EVENT_GIFTICON: '/events/gifticon',
   EVENT_GIFTICON_DETAIL: (id: string | number) => `/events/gifticon/${id}`,
   LOGIN: '/login',
