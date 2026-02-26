@@ -19,15 +19,15 @@ export const FinishedEvent = () => {
     >
       <Column as={'ul'} className={'h-full overflow-y-auto py-2'}>
         {data.map((item) => (
-          <FinishedEventItem key={item.eventId} event={item} />
+          <EventSummary key={item.eventId} event={item} />
         ))}
       </Column>
     </EmptyFallback>
   )
 }
 
-// Todo: 따로 분리 후 EventSummary로 결과페이지에서 재사용
-const FinishedEventItem = ({ event }: { event: EventByEntry }) => {
+// Todo: 따로 분리 후 EventSummary로 결과페이지에서 재사용 고려
+const EventSummary = ({ event }: { event: EventByEntry }) => {
   const { eventId, prize, totalWinnersCount, participantsCount, eventEndDate } =
     event
 
