@@ -37,7 +37,7 @@ export const SearchBar = ({
         fontWeight={'normal'}
         className={cn('ui:text-gray-200', 'ui:outline-none', 'ui:w-full')}
       >
-        식당을 검색해주세요
+        식당 또는 메뉴를 검색해주세요
       </Text>
     </Flex>
   )
