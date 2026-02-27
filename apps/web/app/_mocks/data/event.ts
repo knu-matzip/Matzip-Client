@@ -1,4 +1,4 @@
-import type { EventByPrivate, EventResult } from '@/_apis/schemas/event'
+import type { EventByPrivate } from '@/_apis/schemas/event'
 
 export const event: EventByPrivate = {
   eventId: '1',
@@ -12,13 +12,6 @@ export const event: EventByPrivate = {
   usedTicketsCount: 3,
   remainingTicketsCount: 3,
   eventEndDate: '2025-12-18T00:00:00.000000',
-}
-
-export const eventResult: EventResult = {
-  eventId: '1',
-  isWinner: true,
-  participantsCount: 3,
-  usedTicketsCount: 3,
 }
 
 export const EVENT_ENTRIES = {
