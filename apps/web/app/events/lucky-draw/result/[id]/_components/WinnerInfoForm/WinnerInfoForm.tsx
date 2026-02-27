@@ -53,7 +53,7 @@ export const WinnerInfoForm = ({ eventId, onSuccess }: Props) => {
           placeholder={'010-1234-5678'}
           isInvalid={!!errors.phoneNumber}
           errorMessage={errors.phoneNumber?.message}
-          disabled={isSubmitting}
+          isDisabled={isSubmitting}
           autoFocus={true}
           {...register('phoneNumber')}
         />
