@@ -42,6 +42,11 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
+        hostname: 'thumb.kakaocdn.net',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
         hostname: process.env.NEXT_PUBLIC_API_URL_HOST || '',
       },
     ],
