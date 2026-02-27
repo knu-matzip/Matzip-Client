@@ -31,6 +31,15 @@ export const metadata: Metadata = {
     type: 'website',
   },
   manifest: '/manifest.json',
+  icons: {
+    icon: '/icons/icon-192x192.png',
+    apple: '/icons/icon-192x192.png',
+  },
+  appleWebApp: {
+    capable: true,
+    title: '공주대 맛집',
+    statusBarStyle: 'default',
+  },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS || '',
     other: {
