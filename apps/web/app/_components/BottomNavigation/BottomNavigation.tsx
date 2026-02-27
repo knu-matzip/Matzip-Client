@@ -21,7 +21,7 @@ export const BottomNavigation = () => {
         'h-15',
         'mt-auto',
         'px-5 py-2.5',
-        'z-10',
+        'z-100',
       )}
     >
       {tabs.map((tab: TabItemProps) => (
