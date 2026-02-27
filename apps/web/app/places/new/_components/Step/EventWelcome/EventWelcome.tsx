@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { motion, stagger, type Variants } from 'motion/react'
 import { CLIENT_PATH } from '@/_constants/path'
@@ -37,7 +38,20 @@ const itemVariants: Variants = {
 }
 
 export const EventWelcome = ({ nextStep }: Props) => {
-  const { data } = useSuspenseQuery(useEventQueries.publicInfo())
+  const { replace } = useRouter()
+  const { data } = useSuspenseQuery(useEventQueries.byPublic())
+
+  // 진행 중인 이벤트가 없는 경우, 첫 번째 단계로 리다이렉트
+  useEffect(() => {
+    if (!data) {
+      replace(`${CLIENT_PATH.PLACE_NEW}?step=1`)
+    }
+  }, [replace, data])
+
+  if (!data) {
+    return null
+  }
+
   const { prize } = data
 
   return (

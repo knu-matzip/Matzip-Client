@@ -4,11 +4,7 @@ import { useEffect, useState } from 'react'
 import { Text } from '@repo/ui/components/Text'
 import { formatRemainingTime } from '@/events/lucky-draw/_utils/formatRemainingTime'
 
-export const ParticipationCountdown = ({
-  eventEndDate,
-}: {
-  eventEndDate: string
-}) => {
+export const EventCountdown = ({ eventEndDate }: { eventEndDate: string }) => {
   const [remainingTime, setRemainingTime] = useState('')
 
   useEffect(() => {

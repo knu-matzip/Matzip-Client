@@ -8,7 +8,7 @@ type Props = {
   totalWinnersCount: number
 }
 
-export const ParticipationPrize = ({
+export const PrizeInfo = ({
   imageUrl,
   description,
   totalWinnersCount,

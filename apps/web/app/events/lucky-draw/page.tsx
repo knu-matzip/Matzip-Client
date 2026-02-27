@@ -1,41 +1,17 @@
-import { Header } from '@repo/ui/components/Header'
-import { HeaderBackButton } from '@/_components/HeaderBackButton'
-import { Flex } from '@repo/ui/components/Layout'
-import { Icon } from '@repo/ui/components/Icon'
-import { Text } from '@repo/ui/components/Text'
-import { LuckyDraw } from './LuckyDraw'
-import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
-import { useEventQueries } from '@/_apis/queries/event'
-import { InfoPopover } from './_components/InfoPopover'
+import { cookies } from 'next/headers'
+import { MemberView } from './_components/Pages/MemberView'
+import { GuestView } from './_components/Pages/GuestView'
 
-export const dynamic = 'force-dynamic'
-
-const Page = () => {
-  return (
-    <>
-      <Header
-        left={<HeaderBackButton />}
-        center={
-          <Flex className={'gap-1.5'}>
-            <Icon type={'luckMoney'} />
-            <Text variant={'heading2'}>행운 복권</Text>
-          </Flex>
-        }
-        right={<InfoPopover />}
-        className={'border-b-1 border-gray-50'}
-      />
-      <HydrationBoundaryPage
-        prefetch={async (queryClient) => {
-          await Promise.all([
-            queryClient.prefetchQuery(useEventQueries.privateInfo()),
-            queryClient.prefetchQuery(useEventQueries.result()),
-          ])
-        }}
-      >
-        <LuckyDraw />
-      </HydrationBoundaryPage>
-    </>
+const Page = async () => {
+  const accessToken = await cookies().then(
+    (cookies) => cookies.get('accessToken')?.value,
   )
+
+  if (accessToken) {
+    return <MemberView />
+  } else {
+    return <GuestView />
+  }
 }
 
 export default Page

@@ -8,7 +8,7 @@ type Props = {
   onParticipate: () => void
 }
 
-export const ParticipationAction = ({
+export const EventEntryAction = ({
   remainingTicketsCount,
   onParticipate,
 }: Props) => {

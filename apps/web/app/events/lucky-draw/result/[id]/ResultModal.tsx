@@ -2,12 +2,15 @@ import { Modal, ModalContent } from '@heroui/react'
 import { Icon, type IconType } from '@repo/ui/components/Icon'
 import { Column } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
+import { WinnerInfoForm } from './_components/WinnerInfoForm'
 
 type Props = {
+  eventId: string
   isWinner: boolean
+  isPhoneSubmitted: boolean
   isOpen: boolean
   onOpenChange: VoidFunction
-  stopRunning: VoidFunction
+  onAnimationStop: VoidFunction
 }
 
 type ModalContent = {
@@ -20,8 +23,8 @@ type ModalContent = {
 const SuccessModalContent: ModalContent = {
   icon: 'congratulation',
   title: '축하합니다!',
-  subTitle: '이번주 행운의 주인공으로 선정되셨습니다!',
-  description: '마이페이지에서 상품을 확인하실 수 있습니다',
+  subTitle: '행운의 주인공으로 선정되셨습니다!',
+  description: '전화번호를 입력하시면 3일 이내 기프티콘이 도착해요!',
 }
 
 const FailModalContent: ModalContent = {
@@ -32,16 +35,18 @@ const FailModalContent: ModalContent = {
 }
 
 export const ResultModal = ({
+  eventId,
   isWinner,
+  isPhoneSubmitted,
   isOpen,
   onOpenChange,
-  stopRunning,
+  onAnimationStop,
 }: Props) => {
   const modalContent = isWinner ? SuccessModalContent : FailModalContent
 
   return (
     <Modal
-      onClose={stopRunning}
+      onClose={onAnimationStop}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
       placement={'center'}
@@ -71,16 +76,21 @@ export const ResultModal = ({
       }}
     >
       <ModalContent>
-        <Column className={'items-center gap-2.5 px-5 py-8'}>
-          <Icon type={modalContent.icon} size={60} />
-          <Text variant={'heading2'}>{modalContent.title}</Text>
-          <Column className={'items-center'}>
-            <Text fontWeight={'medium'}>{modalContent.subTitle}</Text>
-            <Text variant={'body1'} className={'text-gray-300'}>
-              {modalContent.description}
-            </Text>
+        {(onClose) => (
+          <Column className={'items-center gap-2.5 px-5 py-8'}>
+            <Icon type={modalContent.icon} size={60} />
+            <Text variant={'heading2'}>{modalContent.title}</Text>
+            <Column className={'items-center'}>
+              <Text fontWeight={'medium'}>{modalContent.subTitle}</Text>
+              <Text variant={'body1'} className={'text-gray-300'}>
+                {modalContent.description}
+              </Text>
+            </Column>
+            {isWinner && !isPhoneSubmitted && (
+              <WinnerInfoForm eventId={eventId} onSuccess={onClose} />
+            )}
           </Column>
-        </Column>
+        )}
       </ModalContent>
     </Modal>
   )
