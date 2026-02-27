@@ -1,8 +1,5 @@
 'use client'
 
-// import 'react-spring-bottom-sheet/dist/style.css'
-// import { useRef } from 'react'
-// import { BottomSheet, type BottomSheetRef } from 'react-spring-bottom-sheet'
 import type { PlaceByMap } from '@/_apis/schemas/place'
 import { PlaceListItem } from '@/_components/PlaceListItem'
 import { EmptyFallback } from '@/_components/EmptyFallback'

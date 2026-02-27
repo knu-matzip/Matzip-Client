@@ -38,7 +38,6 @@
     "react-dom": "catalog:",
     "react-hook-form": "^7.62.0",
     "react-naver-maps": "catalog:",
-    "react-spring-bottom-sheet": "^3.5.0-alpha.0",
     "require-in-the-middle": "^8.0.1",
     "vaul": "^1.1.2",
     "zod": "catalog:",
