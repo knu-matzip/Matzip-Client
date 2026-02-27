@@ -26,7 +26,7 @@ export const SearchPlaceListItem = ({
         <Text variant={'title3'}>{highlightWord(inputValue, place.name)}</Text>
       </Flex>
       <Text variant={'body3'} className={'ml-5.5 text-gray-300'}>
-        {place.address}
+        {highlightWord(inputValue, place.address)}
       </Text>
     </Column>
   )
@@ -51,7 +51,7 @@ const highlightWord = (keyword: string, text: string) => {
 
   return parts.map((part, index) =>
     regex.test(part) ? (
-      <Text as={'span'} variant={'title3'} className={'text-blue'} key={index}>
+      <Text as={'span'} className={'text-blue'} key={index}>
         {part}
       </Text>
     ) : (
