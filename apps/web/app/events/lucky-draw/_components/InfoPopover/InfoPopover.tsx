@@ -14,12 +14,23 @@ export const InfoPopover = () => (
     </PopoverTrigger>
     <PopoverContent>
       <Column className='gap-1 px-1 py-2'>
-        {/*Todo: 내용 변경 확인하기*/}
-        {/*<Text fontWeight={'light'} fontSize={'xs'}>*/}
-        {/*  4주간, 원하는 상품을 선택해서 응모 할 수 있습니다.*/}
-        {/*</Text>*/}
         <Text fontWeight={'light'} fontSize={'xs'}>
-          이벤트 기간 내에 사용하지 않은 응모권은 소멸됩니다.
+          • 맛집 1개 등록 시 응모권 1개 발급
+        </Text>
+        <Text fontWeight={'light'} fontSize={'xs'}>
+          • 등록한 맛집은 관리자 승인 후 응모권 발급
+        </Text>
+        <Text fontWeight={'light'} fontSize={'xs'}>
+          • 응모권 개수 제한 없음
+        </Text>
+        <Text fontWeight={'light'} fontSize={'xs'}>
+          • 응모권을 많이 넣을수록 당첨 확률 증가
+        </Text>
+        <Text fontWeight={'light'} fontSize={'xs'}>
+          • 이벤트당 1회만 &#34;당첨&#34; 가능
+        </Text>
+        <Text fontWeight={'light'} fontSize={'xs'}>
+          • 당첨 시 전화번호 등록 후 연락
         </Text>
       </Column>
     </PopoverContent>
