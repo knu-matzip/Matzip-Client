@@ -26,17 +26,17 @@ const Page = () => {
             icon={'pencil'}
           />
           <ProfileMenuItem
-            href={CLIENT_PATH.EVENT_GIFTICON}
-            title={'기프티콘'}
+            href={CLIENT_PATH.EVENTS_LUCKY_DRAW}
+            title={'이벤트'}
             icon={'gift'}
           />
-          <ProfileMenuItem
-            href={
-              'https://www.notion.so/woopaca/722d2e1180f94eeead36ec09436d4576?pvs=4'
-            }
-            title={'이용약관'}
-            icon={'paper'}
-          />
+          {/*<ProfileMenuItem*/}
+          {/*  href={*/}
+          {/*    'https://www.notion.so/woopaca/722d2e1180f94eeead36ec09436d4576?pvs=4'*/}
+          {/*  }*/}
+          {/*  title={'이용약관'}*/}
+          {/*  icon={'paper'}*/}
+          {/*/>*/}
         </Column>
       </Column>
       <BottomNavigation />
