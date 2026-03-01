@@ -47,9 +47,9 @@ export default function Page() {
         >
           <Categories />
         </HydrationBoundaryPage>
-        <Carousel>
-          <FoodSlotMachineBanner />
+        <Carousel showIndicator={true}>
           <LuckyDrawBanner />
+          <FoodSlotMachineBanner />
         </Carousel>
         <RankingSection
           title={'찜많은 맛집'}
