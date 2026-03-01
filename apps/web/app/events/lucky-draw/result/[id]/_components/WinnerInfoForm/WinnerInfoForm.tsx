@@ -55,6 +55,12 @@ export const WinnerInfoForm = ({ eventId, onSuccess }: Props) => {
           errorMessage={errors.phoneNumber?.message}
           isDisabled={isSubmitting}
           autoFocus={true}
+          classNames={{
+            input: 'text-base scale-[0.875]', // 16px * 0.875 = 14px
+          }}
+          style={{
+            width: 'calc(100% / 0.875)',
+          }}
           {...register('phoneNumber')}
         />
 
