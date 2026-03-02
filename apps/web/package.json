@@ -39,6 +39,7 @@
     "react-hook-form": "^7.62.0",
     "react-naver-maps": "catalog:",
     "require-in-the-middle": "^8.0.1",
+    "sharp": "^0.34.5",
     "vaul": "^1.1.2",
     "zod": "catalog:",
     "zustand": "catalog:"
