@@ -23,7 +23,8 @@ const nextConfig: NextConfig = {
       }
     : {}),
   images: {
-    unoptimized: true,
+    loader: 'custom',
+    loaderFile: './app/_utils/cloudinary-loader.ts',
     formats: ['image/webp'],
     minimumCacheTTL: 2678400,
     deviceSizes: [640, 750, 828, 1080, 1200],
