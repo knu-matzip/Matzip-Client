@@ -34,7 +34,7 @@ export const GuestView = () => {
         as={Link}
         href={CLIENT_PATH.LOGIN}
         size={'medium'}
-        className={'ui:w-full'}
+        fullWidth={true}
       >
         참여하기
       </Button>

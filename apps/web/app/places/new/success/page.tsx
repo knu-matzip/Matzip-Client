@@ -21,12 +21,7 @@ const SuccessPage = () => (
         </Text>
       </Column>
     </Column>
-    <Button
-      as={Link}
-      href={CLIENT_PATH.MAIN}
-      size={'medium'}
-      className={'ui:w-full'}
-    >
+    <Button as={Link} href={CLIENT_PATH.MAIN} size={'medium'} fullWidth={true}>
       홈으로
     </Button>
   </Column>

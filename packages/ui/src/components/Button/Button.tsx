@@ -8,6 +8,7 @@ export interface ButtonProps {
   // color: 'primary' | 'secondary' | 'mono'
   // variant: 'filled' | 'outlined' | 'subtle' | 'text'
   size: 'small' | 'medium' | 'large'
+  fullWidth?: boolean
 }
 
 export type Props<C extends ElementType> = PolymorphicComponentProps<
@@ -22,6 +23,7 @@ export const Button: ButtonType = ({
   as,
   className,
   size,
+  fullWidth,
   children,
   ...restProps
 }) => {
@@ -37,6 +39,7 @@ export const Button: ButtonType = ({
         'ui:text-white',
         'ui:rounded-lg',
         BUTTON_SIZE[size],
+        fullWidth && 'ui:w-full',
         className,
       )}
       {...restProps}
