@@ -13,11 +13,7 @@ export const BaseEventSchema = z.object({
   eventEndDate: z.string(),
 })
 
-export const EventByPublicSchema = z.nullable(
-  z.object({
-    prize: EventPrizeSchema,
-  }),
-)
+export const EventByPublicSchema = z.nullable(BaseEventSchema)
 
 export const EventByPrivateSchema = z.nullable(
   BaseEventSchema.extend({

@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { motion, stagger, type Variants } from 'motion/react'
@@ -8,11 +7,13 @@ import { CLIENT_PATH } from '@/_constants/path'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useEventQueries } from '@/_apis/queries/event'
 import { getCookie } from '@/_utils/getCookie'
+import { EventTitle } from '@/events/lucky-draw/_components/EventTitle'
+import { PrizeInfo } from '@/events/lucky-draw/_components/PrizeInfo'
+import { EventStats } from '@/events/lucky-draw/_components/EventStats'
 
 import { Text } from '@repo/ui/components/Text'
-import { Icon } from '@repo/ui/components/Icon'
 import { Button } from '@repo/ui/components/Button'
-import { Column, Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
+import { Column, VerticalScrollArea } from '@repo/ui/components/Layout'
 
 type Props = {
   nextStep: VoidFunction
@@ -52,7 +53,7 @@ export const EventWelcome = ({ nextStep }: Props) => {
     return null
   }
 
-  const { prize } = data
+  const { prize, totalWinnersCount, participantsCount } = data
 
   return (
     <VerticalScrollArea
@@ -63,65 +64,21 @@ export const EventWelcome = ({ nextStep }: Props) => {
       className={'flex-1 justify-between gap-10'}
     >
       <motion.div variants={itemVariants}>
-        <Title />
+        <EventTitle />
       </motion.div>
 
-      <motion.div variants={itemVariants} className='flex justify-center'>
-        <Prize {...prize} />
+      <motion.div variants={itemVariants} className='flex flex-col gap-3'>
+        <PrizeInfo {...prize} />
+        <EventStats
+          totalWinnersCount={totalWinnersCount}
+          participantsCount={participantsCount}
+        />
       </motion.div>
 
       <motion.div variants={itemVariants}>
         <NextStepButton nextStep={nextStep} />
       </motion.div>
     </VerticalScrollArea>
-  )
-}
-
-const Title = () => (
-  <Column className={'items-center gap-2'}>
-    <Text fontSize={'2xl'} fontWeight={'bold'}>
-      근처 맛집을 간단하게 알리고
-    </Text>
-    <Flex className={'gap-2'}>
-      <Icon type={'headerGift'} size={28} />
-      <Text fontSize={'2xl'} fontWeight={'bold'}>
-        기프티콘 응모권 까지!!
-      </Text>
-      <Icon type={'headerGift'} size={28} />
-    </Flex>
-    <Text variant={'body3'} className={'mt-2 text-center text-gray-300'}>
-      작은 정보가 행운의 기회가 될 수 있어요.
-      <br />
-      지금 바로 등록해보세요.
-    </Text>
-  </Column>
-)
-
-const Prize = ({
-  description,
-  imageUrl,
-}: {
-  description: string
-  imageUrl: string
-}) => {
-  return (
-    <Column className={'gap-15 items-center'}>
-      <Image
-        src={imageUrl}
-        alt={description}
-        width={220}
-        height={220}
-        priority
-      />
-      <Column className='items-center gap-1'>
-        <Text variant={'body1'} className='text-gray-400'>
-          이번 주 행운의 상품
-        </Text>
-        <Text variant={'heading2'} className='text-gray-800'>
-          {description}
-        </Text>
-      </Column>
-    </Column>
   )
 }
 

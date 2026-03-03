@@ -8,7 +8,7 @@ import { Text } from '@repo/ui/components/Text'
 import { EntryTicketModal } from './EntryTicketModal'
 import { EventCountdown } from './EventCountdown'
 import { EventEntryAction } from './EventEntryAction'
-import { PrizeInfo } from './PrizeInfo'
+import { PrizeInfo } from '@/events/lucky-draw/_components/PrizeInfo'
 import { ParticipationStatus } from '@/events/lucky-draw/_components/ParticipationStatus'
 import { EmptyEventState } from '../../EmptyEventState'
 
@@ -45,11 +45,15 @@ export const InProgressEvent = () => {
             이번주 행운의 상품은?
           </Text>
           <Column className={'items-center gap-5'}>
-            <PrizeInfo
-              imageUrl={prize.imageUrl}
-              description={prize.description}
-              totalWinnersCount={totalWinnersCount}
-            />
+            <Column className={'items-center gap-3'}>
+              <PrizeInfo
+                imageUrl={prize.imageUrl}
+                description={prize.description}
+              />
+              <Text variant={'title3'} className='text-gray-800'>
+                총 당첨자: {totalWinnersCount}명
+              </Text>
+            </Column>
             <ParticipationStatus
               participantsCount={participantsCount}
               usedTicketsCount={usedTicketsCount}
