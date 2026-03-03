@@ -5,9 +5,10 @@ import { useSearchParams } from 'next/navigation'
 import { useCampusStore } from '@/_store/campus'
 import { CampusType, CAMPUS_LIST } from '@/_constants/campus'
 
-const isValidCampus = (value: string | null): value is CampusType => {
-  if (!value) return false
-  return (CAMPUS_LIST as readonly string[]).includes(value)
+const normalizeCampus = (value: string | null): CampusType | null => {
+  if (!value) return null
+  const upperValue = value.toUpperCase() as CampusType
+  return CAMPUS_LIST.includes(upperValue) ? upperValue : null
 }
 
 export const CampusInitializer = () => {
@@ -22,11 +23,14 @@ export const CampusInitializer = () => {
     const storedCampus = localStorage.getItem('campus')
     let targetCampus: CampusType = 'SINGWAN'
 
-    if (isValidCampus(paramCampus)) {
-      targetCampus = paramCampus
+    const normalizedParamCampus = normalizeCampus(paramCampus)
+    const normalizedStoredCampus = normalizeCampus(storedCampus)
+
+    if (normalizedParamCampus) {
+      targetCampus = normalizedParamCampus
       localStorage.setItem('campus', targetCampus)
-    } else if (isValidCampus(storedCampus)) {
-      targetCampus = storedCampus
+    } else if (normalizedStoredCampus) {
+      targetCampus = normalizedStoredCampus
     }
 
     setCampus(targetCampus)
