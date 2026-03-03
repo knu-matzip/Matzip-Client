@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import sharp from 'sharp'
 
+// Sharp는 Node.js runtime 필요
+export const runtime = 'nodejs'
+
 /**
  * 이미지 최적화 API Route
  * - 긴 URL (255자 초과) 처리 - Cloudinary public_id 제한 우회

@@ -19,7 +19,6 @@ type Props = {
 
 export const WinnerInfoForm = ({ eventId, onSuccess }: Props) => {
   const {
-    register,
     handleSubmit,
     control,
     formState: { errors, isSubmitting },
@@ -40,6 +39,13 @@ export const WinnerInfoForm = ({ eventId, onSuccess }: Props) => {
     onSuccess()
   }
 
+  const formatPhoneNumber = (value: string): string => {
+    const numbers = value.replace(/[^\d]/g, '')
+    if (numbers.length <= 3) return numbers
+    if (numbers.length <= 7) return `${numbers.slice(0, 3)}-${numbers.slice(3)}`
+    return `${numbers.slice(0, 3)}-${numbers.slice(3, 7)}-${numbers.slice(7, 11)}`
+  }
+
   return (
     <Column
       as={'form'}
@@ -48,20 +54,31 @@ export const WinnerInfoForm = ({ eventId, onSuccess }: Props) => {
     >
       <Column className={'w-full gap-3'}>
         {/* 1. 전화번호 입력 */}
-        <Input
-          type={'tel'}
-          placeholder={'010-1234-5678'}
-          isInvalid={!!errors.phoneNumber}
-          errorMessage={errors.phoneNumber?.message}
-          isDisabled={isSubmitting}
-          autoFocus={true}
-          classNames={{
-            input: 'text-base scale-[0.875]', // 16px * 0.875 = 14px
-          }}
-          style={{
-            width: 'calc(100% / 0.875)',
-          }}
-          {...register('phoneNumber')}
+        <Controller
+          control={control}
+          name={'phoneNumber'}
+          render={({ field }) => (
+            <Input
+              type={'text'}
+              inputMode={'numeric'}
+              placeholder={'010-1234-5678'}
+              isInvalid={!!errors.phoneNumber}
+              errorMessage={errors.phoneNumber?.message}
+              isDisabled={isSubmitting}
+              autoFocus={true}
+              classNames={{
+                input: 'text-base scale-[0.875]', // 16px * 0.875 = 14px
+              }}
+              style={{
+                width: 'calc(100% / 0.875)',
+              }}
+              value={field.value}
+              onChange={(e) => {
+                const formatted = formatPhoneNumber(e.target.value)
+                field.onChange(formatted)
+              }}
+            />
+          )}
         />
 
         {/* 2. 약관 동의 영역 */}
