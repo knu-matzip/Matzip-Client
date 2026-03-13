@@ -7,6 +7,8 @@ import { Column } from '@repo/ui/components/Layout'
 import { UserProfile } from '@/profile/_components/UserProfile'
 import { ProfileMenuItem } from '@/profile/_components/ProfileMenuItem'
 
+export const dynamic = 'force-dynamic'
+
 const Page = () => {
   return (
     <>
