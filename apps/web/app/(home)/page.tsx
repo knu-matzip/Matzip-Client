@@ -18,6 +18,8 @@ import {
   LuckyDrawBanner,
 } from './_components/eventBanners'
 
+export const dynamic = 'force-static'
+
 export default function Page() {
   return (
     <>
