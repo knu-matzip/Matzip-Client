@@ -1,13 +1,11 @@
 import Link from 'next/link'
 import { CLIENT_PATH } from '@/_constants/path'
-import { useCategoryQueries } from '@/_apis/queries/category'
 import { Header } from '@repo/ui/components/Header'
 import { SearchBar } from '@repo/ui/components/SearchBar'
 import { Flex, VerticalScrollArea } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { Divider } from '@repo/ui/components/Divider'
-import { HydrationBoundaryPage } from '@/_components/HydrationBoundaryPage'
 import { Carousel } from '@repo/ui/components/Carousel'
 import { Categories } from '@/_components/Categories'
 import { BottomNavigation } from '@/_components/BottomNavigation'
@@ -40,13 +38,7 @@ export default function Page() {
         className={'mx-5 mb-5'}
       />
       <VerticalScrollArea className={'gap-4'}>
-        <HydrationBoundaryPage
-          prefetch={async (queryClient) => {
-            await queryClient.prefetchQuery(useCategoryQueries.list())
-          }}
-        >
-          <Categories />
-        </HydrationBoundaryPage>
+        <Categories />
         <Carousel showIndicator={true}>
           <LuckyDrawBanner />
           <FoodSlotMachineBanner />

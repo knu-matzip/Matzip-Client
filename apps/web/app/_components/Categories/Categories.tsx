@@ -1,12 +1,9 @@
-'use client'
-
-import { useSuspenseQuery } from '@tanstack/react-query'
-import { useCategoryQueries } from '@/_apis/queries/category'
+import { getCategories } from '@/_apis/services/category'
 import { cn } from '@repo/ui/utils/cn'
 import { CategoryItem } from './CategoryItem'
 
-export const Categories = () => {
-  const { data: categories } = useSuspenseQuery(useCategoryQueries.list())
+export const Categories = async () => {
+  const categories = await getCategories()
 
   return (
     <div
