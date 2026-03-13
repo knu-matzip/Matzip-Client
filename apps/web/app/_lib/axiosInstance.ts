@@ -8,8 +8,26 @@ import { getToken } from '@/_apis/services/login'
 import { getCookie } from '@/_utils/getCookie'
 import { setCookie } from 'cookies-next'
 
+// 빌드 시점에만 직접 API 서버로, SSR/CSR에서는 rewrite 사용
+const getBaseURL = () => {
+  // 빌드 시점 감지: next build 실행 중에는 NEXT_PHASE가 'phase-production-build'
+  const isBuildTime =
+    typeof window === 'undefined' &&
+    process.env.NEXT_PHASE === 'phase-production-build'
+
+  if (isBuildTime) {
+    // 빌드 시에만 직접 API 서버로 연결
+    return (
+      process.env.NEXT_PUBLIC_API_URL_BUILD || process.env.NEXT_PUBLIC_API_URL
+    )
+  }
+
+  // SSR, CSR 모두 rewrite 사용
+  return process.env.NEXT_PUBLIC_API_URL
+}
+
 const axiosInstance = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL,
+  baseURL: getBaseURL(),
   headers: {
     'Content-Type': 'application/json',
   },
