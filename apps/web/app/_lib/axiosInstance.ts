@@ -8,22 +8,22 @@ import { getToken } from '@/_apis/services/login'
 import { getCookie } from '@/_utils/getCookie'
 import { setCookie } from 'cookies-next'
 
-// 빌드 시점에만 직접 API 서버로, SSR/CSR에서는 rewrite 사용
-const getBaseURL = () => {
-  // 빌드 시점 감지: next build 실행 중에는 NEXT_PHASE가 'phase-production-build'
-  const isBuildTime =
-    typeof window === 'undefined' &&
-    process.env.NEXT_PHASE === 'phase-production-build'
+const isServer = typeof window === 'undefined'
+const isBuildTime =
+  isServer && process.env.NEXT_PHASE === 'phase-production-build'
 
+/**
+ * 빌드 환경에 따른 API Base URL 결정
+ * - Build Time: 직접 API 서버 연결 (rewrite 미적용)
+ * - Runtime (SSR/CSR): Next.js rewrite 경유
+ */
+const getBaseURL = (): string => {
   if (isBuildTime) {
-    // 빌드 시에만 직접 API 서버로 연결
     return (
-      process.env.NEXT_PUBLIC_API_URL_BUILD || process.env.NEXT_PUBLIC_API_URL
+      process.env.NEXT_PUBLIC_API_URL_BUILD || process.env.NEXT_PUBLIC_API_URL!
     )
   }
-
-  // SSR, CSR 모두 rewrite 사용
-  return process.env.NEXT_PUBLIC_API_URL
+  return process.env.NEXT_PUBLIC_API_URL!
 }
 
 const axiosInstance = axios.create({
@@ -36,8 +36,9 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async (config) => {
-    const token = await getCookie('accessToken')
+    if (isBuildTime) return config
 
+    const token = await getCookie('accessToken')
     if (token) {
       config.headers.Authorization = `Bearer ${token}`
     }
