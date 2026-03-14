@@ -18,7 +18,6 @@ export const EventByPublicSchema = z.nullable(BaseEventSchema)
 export const EventByPrivateSchema = z.nullable(
   BaseEventSchema.extend({
     usedTicketsCount: z.number(),
-    remainingTicketsCount: z.number(),
   }),
 )
 
