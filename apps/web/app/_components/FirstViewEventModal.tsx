@@ -25,6 +25,8 @@ export const FirstViewEventModal = () => {
   const { data } = useSuspenseQuery(useEventQueries.byPublic())
 
   useEffect(() => {
+    if (!data) return
+
     const hasSeenModal = sessionStorage.getItem(STORAGE_KEY)
     if (hasSeenModal) return
 
@@ -34,7 +36,7 @@ export const FirstViewEventModal = () => {
     return () => {
       clearTimeout(timer)
     }
-  }, [onOpen])
+  }, [onOpen, data])
 
   if (!data) {
     return null
