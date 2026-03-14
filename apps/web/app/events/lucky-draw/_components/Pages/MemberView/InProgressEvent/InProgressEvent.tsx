@@ -8,7 +8,7 @@ import { Flex, Column } from '@repo/ui/components/Layout'
 import { Icon } from '@repo/ui/components/Icon'
 import { Text } from '@repo/ui/components/Text'
 import { EventCountdown } from './EventCountdown'
-import { PrizeInfo } from '@/events/lucky-draw/_components/PrizeInfo'
+import { EventPrizeCard } from '@/events/lucky-draw/_components/EventPrizeCard'
 import { EmptyEventState } from '../../EmptyEventState'
 import { Button } from '@repo/ui/components/Button'
 
@@ -40,7 +40,7 @@ export const InProgressEvent = () => {
         <Column className={'items-center gap-3'}>
           <Column className={'items-center gap-5'}>
             <Column className={'items-center gap-3'}>
-              <PrizeInfo
+              <EventPrizeCard
                 participantsCount={participantsCount}
                 totalWinnersCount={totalWinnersCount}
                 imageUrl={prize.imageUrl}

@@ -3,20 +3,19 @@ import { Column } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
 import { Icon } from '@repo/ui/components/Icon'
 
-type PrizeInfoProps = {
+type Props = {
   imageUrl: string
   description: string
   totalWinnersCount: number
   participantsCount: number
 }
 
-//Todo: 이벤트의 정도도 가지므로 이름 변경
-export const PrizeInfo = ({
+export const EventPrizeCard = ({
   imageUrl,
   description,
   totalWinnersCount,
   participantsCount,
-}: PrizeInfoProps) => {
+}: Props) => {
   return (
     <Column
       className={'mx-auto w-fit items-center gap-8 rounded-xl bg-gray-50 p-5'}
