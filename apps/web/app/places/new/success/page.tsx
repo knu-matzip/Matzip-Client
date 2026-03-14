@@ -17,7 +17,7 @@ const SuccessPage = () => (
           1~3일 이내 심사가 완료되며 이후 맛집에 등록됩니다!
         </Text>
         <Text variant={'body3'} className={'text-gray-300'}>
-          심사 통과 후 응모권 지급이 이뤄집니다!
+          심사 통과 시 이벤트에 자동으로 응모됩니다!
         </Text>
       </Column>
     </Column>

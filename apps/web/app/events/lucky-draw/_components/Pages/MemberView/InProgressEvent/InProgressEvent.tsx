@@ -1,19 +1,18 @@
 'use client'
 
-import { useDisclosure } from '@heroui/react'
+import Link from 'next/link'
+import { CLIENT_PATH } from '@/_constants/path'
 import { useSuspenseQuery } from '@tanstack/react-query'
 import { useEventQueries } from '@/_apis/queries/event'
 import { Column } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
-import { EntryTicketModal } from './EntryTicketModal'
 import { EventCountdown } from './EventCountdown'
-import { EventEntryAction } from './EventEntryAction'
 import { PrizeInfo } from '@/events/lucky-draw/_components/PrizeInfo'
 import { ParticipationStatus } from '@/events/lucky-draw/_components/ParticipationStatus'
 import { EmptyEventState } from '../../EmptyEventState'
+import { Button } from '@repo/ui/components/Button'
 
 export const InProgressEvent = () => {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure()
   const { data } = useSuspenseQuery(useEventQueries.byPrivate())
 
   // 진행 중인 이벤트가 없는 경우
@@ -22,11 +21,9 @@ export const InProgressEvent = () => {
   }
 
   const {
-    eventId,
     prize,
     totalWinnersCount,
     participantsCount,
-    remainingTicketsCount,
     usedTicketsCount,
     eventEndDate,
   } = data
@@ -60,19 +57,15 @@ export const InProgressEvent = () => {
             />
           </Column>
         </Column>
-        <EventEntryAction
-          onParticipate={onOpen}
-          remainingTicketsCount={remainingTicketsCount}
-        />
+        <Button
+          as={Link}
+          href={CLIENT_PATH.PLACE_NEW}
+          size={'medium'}
+          fullWidth={true}
+        >
+          참여하기
+        </Button>
       </Column>
-
-      {/*응모하기 버튼 클릭 시 응모권 갯수 선택 모달*/}
-      <EntryTicketModal
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-        eventId={eventId}
-        remainingTicketsCount={remainingTicketsCount}
-      />
     </>
   )
 }

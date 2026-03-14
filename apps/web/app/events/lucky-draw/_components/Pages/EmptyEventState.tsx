@@ -11,21 +11,12 @@ export const EmptyEventState = () => {
         </Text>
         <Icon type={'cry'} />
       </Flex>
-
-      <Column className={'items-center'}>
-        <Text
-          variant='body1'
-          className='whitespace-pre-wrap break-words text-center text-gray-300'
-        >
-          맛집 리뷰를 작성하고 응모권을 모아보세요
-        </Text>
-        <Text
-          variant='body1'
-          className='whitespace-pre-wrap break-words text-center text-gray-300'
-        >
-          다음 럭키드로우 이벤트에서 행운의 주인공이 되실 수 있습니다!
-        </Text>
-      </Column>
+      <Text
+        variant='body1'
+        className='whitespace-pre-wrap break-words text-center text-gray-300'
+      >
+        다음 이벤트에서 행운의 주인공이 되어보세요!
+      </Text>
     </Column>
   )
 }
