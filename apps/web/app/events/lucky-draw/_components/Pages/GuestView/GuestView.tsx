@@ -5,8 +5,7 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { useEventQueries } from '@/_apis/queries/event'
 import { EmptyEventState } from '../EmptyEventState'
 import { EventTitle } from '@/events/lucky-draw/_components/EventTitle'
-import { PrizeInfo } from '@/events/lucky-draw/_components/PrizeInfo'
-import { EventStats } from '@/events/lucky-draw/_components/EventStats'
+import { EventPrizeCard } from '@/events/lucky-draw/_components/EventPrizeCard'
 import { Column } from '@repo/ui/components/Layout'
 import { Button } from '@repo/ui/components/Button'
 import { CLIENT_PATH } from '@/_constants/path'
@@ -24,8 +23,8 @@ export const GuestView = () => {
     <Column className={'h-full min-h-0 justify-between gap-10 p-5'}>
       <EventTitle />
       <Column className={'gap-3'}>
-        <PrizeInfo {...prize} />
-        <EventStats
+        <EventPrizeCard
+          {...prize}
           totalWinnersCount={totalWinnersCount}
           participantsCount={participantsCount}
         />

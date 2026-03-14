@@ -8,8 +8,7 @@ import { useSuspenseQuery } from '@tanstack/react-query'
 import { useEventQueries } from '@/_apis/queries/event'
 import { getCookie } from '@/_utils/getCookie'
 import { EventTitle } from '@/events/lucky-draw/_components/EventTitle'
-import { PrizeInfo } from '@/events/lucky-draw/_components/PrizeInfo'
-import { EventStats } from '@/events/lucky-draw/_components/EventStats'
+import { EventPrizeCard } from '@/events/lucky-draw/_components/EventPrizeCard'
 
 import { Text } from '@repo/ui/components/Text'
 import { Button } from '@repo/ui/components/Button'
@@ -68,8 +67,8 @@ export const EventWelcome = ({ nextStep }: Props) => {
       </motion.div>
 
       <motion.div variants={itemVariants} className='flex flex-col gap-3'>
-        <PrizeInfo {...prize} />
-        <EventStats
+        <EventPrizeCard
+          {...prize}
           totalWinnersCount={totalWinnersCount}
           participantsCount={participantsCount}
         />

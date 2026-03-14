@@ -8,12 +8,12 @@ import { useEventQueries } from '@/_apis/queries/event'
 import { Button } from '@repo/ui/components/Button'
 import { Column, Flex } from '@repo/ui/components/Layout'
 import { Text } from '@repo/ui/components/Text'
-import { ParticipationStatus } from '../../_components/ParticipationStatus'
 import { LottoBalls } from './_components/LottoBalls'
 import { ResultModal } from './ResultModal'
 import { EventResult } from '@/_apis/schemas/event'
+import { Icon } from '@repo/ui/components/Icon'
 
-interface Props {
+type Props = {
   eventId: string
 }
 
@@ -59,11 +59,20 @@ export const EventResultClient = ({ eventId }: Props) => {
             행운의 주인공이 되어보세요!
           </Text>
           <LottoBalls isRunning={isRunning} />
-          <ParticipationStatus
-            mode={'past'}
-            participantsCount={participantsCount}
-            usedTicketsCount={usedTicketsCount}
-          />
+          <Column className='items-center'>
+            <Text variant='title3' className='flex gap-1'>
+              <Icon type='peoples' size={20} />총{' '}
+              {participantsCount.toLocaleString()}
+              명이 참여했어요
+            </Text>
+            <Text variant='body1'>
+              내가 넣은 응모권은{' '}
+              <Text as='span' className='text-yellow'>
+                {usedTicketsCount.toLocaleString()}
+              </Text>
+              개 였어요
+            </Text>
+          </Column>
         </Column>
         <Button className='ui:w-full mt-auto' size='medium' onClick={onClick}>
           확인하기

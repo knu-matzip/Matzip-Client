@@ -23,7 +23,7 @@ export const EventCountdown = ({ eventEndDate }: { eventEndDate: string }) => {
   }, [eventEndDate])
 
   return (
-    <Text fontSize={'2xl'} fontWeight={'semibold'} className={'text-yellow'}>
+    <Text fontSize={'3xl'} fontWeight={'semibold'} className={'text-yellow'}>
       {remainingTime}
     </Text>
   )

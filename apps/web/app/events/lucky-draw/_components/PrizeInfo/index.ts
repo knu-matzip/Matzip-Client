@@ -1,1 +1,0 @@
-export { PrizeInfo } from './PrizeInfo'

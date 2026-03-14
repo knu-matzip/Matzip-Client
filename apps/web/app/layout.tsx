@@ -10,6 +10,7 @@ import { NaverMapProvider } from '@/_providers/NaverMapProvider'
 import { HeroProvider } from '@/_providers/HeroProvider'
 import { CampusInitializer } from '@/_components/CampusInitializer'
 import { Column } from '@repo/ui/components/Layout'
+import { FirstViewEventModal } from '@/_components/FirstViewEventModal'
 // import { initServerMSW } from '@/_mocks/initMSW'
 // import { MSWProvider } from '@/_mocks/MSWProvider'
 
@@ -120,6 +121,9 @@ export default async function RootLayout({
                   {children}
                 </Column>
               </div>
+              <Suspense fallback={null}>
+                <FirstViewEventModal />
+              </Suspense>
               <Suspense fallback={null}>
                 <CampusInitializer />
               </Suspense>
