@@ -26,7 +26,7 @@ export default function Page() {
           <Flex className='gap-1'>
             <Icon type={'logo'} size={26} />
             <Text as={'h1'} variant={'heading1'}>
-              맛집
+              공주대 맛집
             </Text>
           </Flex>
         }
