@@ -66,6 +66,7 @@ import { Pencil } from './assets/icons/pencil'
 import { Paper } from './assets/icons/paper'
 import { X } from './assets/icons/x'
 import { Refresh } from './assets/icons/refresh'
+import { New } from './assets/icons/new'
 
 export const iconMap = {
   // 메뉴
@@ -139,6 +140,7 @@ export const iconMap = {
   paper: Paper,
   x: X,
   refresh: Refresh,
+  new: New,
 }
 
 export type IconType = keyof typeof iconMap
