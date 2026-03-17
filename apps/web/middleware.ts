@@ -1,9 +1,9 @@
+import { CLIENT_PATH } from '@/_constants/path'
 import { NextRequest, NextResponse } from 'next/server'
-import { API_PATH, CLIENT_PATH } from '@/_constants/path'
 
 export async function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('accessToken')?.value
-  // const refreshToken = request.cookies.get('refreshToken')?.value
+  const refreshToken = request.cookies.get('refreshToken')?.value
 
   // [Case 1] 액세스 토큰이 유효한 경우 -> 가장 먼저 통과시킴 (Early Return)
   if (accessToken) {
@@ -11,9 +11,9 @@ export async function middleware(request: NextRequest) {
   }
 
   // [Case 2] 토큰이 아예 없는 경우 -> 곧바로 로그인 페이지로 (Early Return)
-  // if (!refreshToken) {
-  //   return NextResponse.redirect(new URL(CLIENT_PATH.LOGIN, request.url))
-  // }
+  if (!refreshToken) {
+    return NextResponse.redirect(new URL(CLIENT_PATH.LOGIN, request.url))
+  }
 
   // [Case 3] 액세스 토큰 만료 & 리프레시 토큰 존재 -> 갱신 시도
   // return await handleTokenRefresh(request, refreshToken)
