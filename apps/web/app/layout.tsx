@@ -11,7 +11,7 @@ import { HeroProvider } from '@/_providers/HeroProvider'
 import { CampusInitializer } from '@/_components/CampusInitializer'
 import { Column } from '@repo/ui/components/Layout'
 import { FirstViewEventModal } from '@/_components/FirstViewEventModal'
-import { AuthRefreshProvider } from '@/_components/AuthRefreshProvider'
+import { AuthInitializer } from '@/_components/AuthInitializer'
 // import { initServerMSW } from '@/_mocks/initMSW'
 // import { MSWProvider } from '@/_mocks/MSWProvider'
 
@@ -116,21 +116,22 @@ export default async function RootLayout({
         {/*<MSWProvider>*/}
         <QueryProvider>
           <HeroProvider>
-            <AuthRefreshProvider>
-              <NaverMapProvider>
-                <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
-                  <Column className={'relative w-full max-w-[450px] bg-white'}>
-                    {children}
-                  </Column>
-                </div>
-                <Suspense fallback={null}>
-                  <FirstViewEventModal />
-                </Suspense>
-                <Suspense fallback={null}>
-                  <CampusInitializer />
-                </Suspense>
-              </NaverMapProvider>
-            </AuthRefreshProvider>
+            <NaverMapProvider>
+              <div className={'flex h-svh justify-center bg-[#FEFCF9]'}>
+                <Column className={'relative w-full max-w-[450px] bg-white'}>
+                  {children}
+                </Column>
+              </div>
+              <Suspense fallback={null}>
+                <FirstViewEventModal />
+              </Suspense>
+              <Suspense fallback={null}>
+                <CampusInitializer />
+              </Suspense>
+              <Suspense fallback={null}>
+                <AuthInitializer />
+              </Suspense>
+            </NaverMapProvider>
           </HeroProvider>
         </QueryProvider>
         {/*</MSWProvider>*/}

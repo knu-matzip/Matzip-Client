@@ -1,5 +1,5 @@
 import { API_PATH, CLIENT_PATH } from '@/_constants/path'
-import { setCookie, deleteCookie } from 'cookies-next'
+import { setCookie } from 'cookies-next'
 import axios from 'axios'
 
 const CLIENT_URL = process.env.NEXT_PUBLIC_CLIENT_URL || ''
@@ -26,35 +26,21 @@ export const getToken = async (): Promise<{
   accessToken: string
   accessTokenExpiresIn: number
 }> => {
-  try {
-    const res = await axios.post(
-      process.env.NEXT_PUBLIC_API_URL + API_PATH.AUTH.TOKEN,
-      {},
-      {
-        withCredentials: true,
-      },
-    )
+  const res = await axios.post(
+    process.env.NEXT_PUBLIC_API_URL + API_PATH.AUTH.TOKEN,
+    {},
+    { withCredentials: true },
+  )
 
-    const { data } = res
-    const { accessToken, accessTokenExpiresIn } = data.data
-    const expireDate = new Date(Date.now() + accessTokenExpiresIn)
+  const { accessToken, accessTokenExpiresIn } = res.data.data
+  const expireDate = new Date(Date.now() + accessTokenExpiresIn)
 
-    setCookie('accessToken', accessToken, {
-      expires: expireDate,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
-      path: '/',
-    })
+  setCookie('accessToken', accessToken, {
+    expires: expireDate,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'lax',
+    path: '/',
+  })
 
-    return data.data
-  } catch (error) {
-    console.error('토큰 재발급 실패(세션 만료):', error)
-    deleteCookie('accessToken')
-
-    if (typeof window !== 'undefined') {
-      window.location.href = CLIENT_PATH.LOGIN
-    }
-
-    throw error
-  }
+  return res.data.data
 }
