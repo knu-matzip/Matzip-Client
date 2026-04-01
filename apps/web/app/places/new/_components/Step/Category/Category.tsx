@@ -90,7 +90,8 @@ export const Category = ({ isLoading }: Props) => {
       <Button
         type='submit'
         size={'medium'}
-        className={'ui:min-w-full mt-auto'}
+        fullWidth={true}
+        className={'mt-auto'}
         disabled={isLoading}
       >
         등록하기

@@ -49,7 +49,8 @@ export const Description = ({ nextStep }: Props) => {
       <Button
         size={'medium'}
         type={'button'}
-        className={'ui:min-w-full mt-auto'}
+        fullWidth={true}
+        className={'mt-auto'}
         onClick={handleNext}
       >
         다음

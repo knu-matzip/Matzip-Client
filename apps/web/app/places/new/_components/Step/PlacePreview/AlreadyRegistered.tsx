@@ -31,7 +31,8 @@ export const AlreadyRegistered = ({ placeName }: { placeName: string }) => {
       <Button
         as={Link}
         size={'medium'}
-        className={'ui:min-w-full mt-auto'}
+        fullWidth={true}
+        className={'mt-auto'}
         href={CLIENT_PATH.MAIN}
       >
         홈으로

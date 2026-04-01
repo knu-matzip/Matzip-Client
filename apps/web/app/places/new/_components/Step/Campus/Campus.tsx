@@ -45,7 +45,8 @@ export const Campus = ({ nextStep }: Props) => {
       <Button
         size={'medium'}
         type={'button'}
-        className={'ui:min-w-full'}
+        fullWidth={true}
+        className={'mt-10'}
         onClick={nextStep}
       >
         다음

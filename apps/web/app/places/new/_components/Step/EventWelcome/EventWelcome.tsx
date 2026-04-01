@@ -121,7 +121,7 @@ const NextStepButton = ({ nextStep }: Props) => {
       <Button
         size={'medium'}
         type={'button'}
-        className={'ui:min-w-full'}
+        fullWidth={true}
         onClick={nextStep}
       >
         참여하기
