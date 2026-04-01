@@ -11,6 +11,8 @@ type Props = {
   nextStep: VoidFunction
 }
 
+const MAX_RECOMMENDED_MENUS = 3
+
 export const RecommendedMenu = ({ nextStep }: Props) => {
   const { control, getValues } = useFormContext<NewPlaceRequest>()
 
@@ -18,7 +20,7 @@ export const RecommendedMenu = ({ nextStep }: Props) => {
     <>
       <Title
         title={'내가 좋아하는 맛집의 메뉴는?'}
-        description={`추천하는 메뉴 최대 3가지를 골라주세요!`}
+        description={`추천하는 메뉴 최대 ${MAX_RECOMMENDED_MENUS}가지를 골라주세요!`}
       />
       <VerticalScrollArea className={'show-scrollbar flex-1'}>
         <Controller
@@ -35,7 +37,7 @@ export const RecommendedMenu = ({ nextStep }: Props) => {
                 (m) => m.isRecommended,
               ).length
 
-              if (isSelected && currentSelectedCount >= 3) {
+              if (isSelected && currentSelectedCount >= MAX_RECOMMENDED_MENUS) {
                 return
               }
 
@@ -52,7 +54,8 @@ export const RecommendedMenu = ({ nextStep }: Props) => {
               <CheckboxGroup className='flex-1' radius='full'>
                 {field.value.map((menu) => {
                   const isSelected = menu.isRecommended
-                  const isDisabled = !isSelected && selectedCount >= 3
+                  const isDisabled =
+                    !isSelected && selectedCount >= MAX_RECOMMENDED_MENUS
 
                   return (
                     <Checkbox
