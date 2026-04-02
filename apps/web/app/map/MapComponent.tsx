@@ -12,7 +12,7 @@ import { usePlaceQueries } from '@/_apis/queries/place'
 import type { MapBounds } from '@/_apis/schemas/place'
 
 import { cn } from '@repo/ui/utils/cn'
-import { toLatLng } from './_utils/toLatLng'
+import { type Coord, toLatLng } from './_utils/toLatLng'
 import { useWatchLocation } from './_hooks/useWatchLocation'
 import { PlaceList } from './_components/PlaceList'
 import { CampusSelector } from '@/map/_components/CampusSelector'
@@ -54,16 +54,20 @@ const MapComponent = () => {
     refreshMapBounds()
   }
 
+  const moveMapTo = (coord: Coord) => {
+    if (!map) return
+    map.setCenter(toLatLng(coord))
+  }
+
   const centerMapToUserLocation = () => {
-    if (!map || !userLocation) return
-    map.setCenter(toLatLng(userLocation))
+    if (!userLocation) return
+    moveMapTo(userLocation)
     setIsCenteredOnUser(true)
     handleRefreshClick()
   }
 
   const centerMapToCampus = (campus: CampusType) => {
-    if (!map) return
-    map.setCenter(toLatLng(CAMPUS_LOCATION[campus]))
+    moveMapTo(CAMPUS_LOCATION[campus])
     handleRefreshClick()
     setIsCenteredOnUser(false)
   }
