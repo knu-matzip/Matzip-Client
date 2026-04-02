@@ -4,10 +4,10 @@ import { Flex } from '@repo/ui/components/Layout'
 import { cn } from '@repo/ui/utils/cn'
 
 type Props = {
-  handleRefreshClick: VoidFunction
+  onClick: VoidFunction
 }
 
-export const RefreshButton = ({ handleRefreshClick }: Props) => (
+export const RefreshButton = ({ onClick }: Props) => (
   <Flex
     as={'button'}
     className={cn(
@@ -18,7 +18,7 @@ export const RefreshButton = ({ handleRefreshClick }: Props) => (
       'rounded-full',
       'bg-white',
     )}
-    onClick={handleRefreshClick}
+    onClick={onClick}
   >
     <Icon type={'refresh'} size={15} />
     <Text variant={'body2'}>현재 지도에서 찾기</Text>

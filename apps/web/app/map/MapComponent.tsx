@@ -86,9 +86,7 @@ const MapComponent = () => {
 
   return (
     <>
-      {showUpdateButton && (
-        <RefreshButton handleRefreshClick={handleRefreshClick} />
-      )}
+      {showUpdateButton && <RefreshButton onClick={handleRefreshClick} />}
       <CurrentLocationButton
         onClick={centerMapToUserLocation}
         isCenteredOnUser={isCenteredOnUser}
