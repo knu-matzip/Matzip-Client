@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Container, NaverMap } from 'react-naver-maps'
 
-import { CAMPUS_LOCATION } from '@/_constants/campus'
+import { CAMPUS_LOCATION, type CampusType } from '@/_constants/campus'
 import { useCampusStore } from '@/_store/campus'
 import { useLastMapCenterStore } from '@/_store/lastMapCenter'
 import { BOTTOM_OFFSET } from './constants/CurrentLocationButton'
@@ -15,7 +15,7 @@ import { cn } from '@repo/ui/utils/cn'
 import { toLatLng } from './_utils/toLatLng'
 import { useWatchLocation } from './_hooks/useWatchLocation'
 import { PlaceList } from './_components/PlaceList'
-import { CampusButtonBox } from './_components/CampusButtom'
+import { CampusSelector } from '@/map/_components/CampusSelector'
 import { UserMarker, PlaceMarker } from './_components/Marker'
 import { CurrentLocationButton } from './_components/CurrentLocationButton'
 import { PlaceSummaryCard } from './_components/PlaceSummaryCard'
@@ -63,7 +63,9 @@ const MapComponent = () => {
     handleRefreshClick()
   }
 
-  const centerMapToCampus = () => {
+  const centerMapToCampus = (campus: CampusType) => {
+    if (!map) return
+    map.setCenter(toLatLng(CAMPUS_LOCATION[campus]))
     handleRefreshClick()
     setIsCenteredOnUser(false)
   }
@@ -94,7 +96,7 @@ const MapComponent = () => {
           selectedPlaceId ? BOTTOM_OFFSET.WITH_SUMMARY_CARD : undefined
         }
       />
-      <CampusButtonBox map={map} centerMapToCampus={centerMapToCampus} />
+      <CampusSelector onChangeAction={centerMapToCampus} />
       <Container className={cn('map-wrapper', 'w-full', 'h-full')}>
         <NaverMap
           defaultZoom={15}
