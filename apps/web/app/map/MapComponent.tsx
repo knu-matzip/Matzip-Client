@@ -29,12 +29,10 @@ const MapComponent = () => {
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null)
   const [showUpdateButton, setShowUpdateButton] = useState(false)
 
-  const { campus } = useCampusStore()
-  const { lastMapCenter, setLastMapCenter } = useLastMapCenterStore()
+  const { setLastMapCenter } = useLastMapCenterStore()
   const { userLocation } = useWatchLocation()
   const { data = [] } = useQuery(usePlaceQueries.byMap(currentBounds))
 
-  const defaultCenter = toLatLng(lastMapCenter || CAMPUS_LOCATION[campus])
   const selectedPlace = selectedPlaceId
     ? data.find((place) => place.placeId === selectedPlaceId)!
     : null
@@ -102,7 +100,7 @@ const MapComponent = () => {
           defaultZoom={15}
           minZoom={12}
           ref={setMap}
-          defaultCenter={defaultCenter}
+          defaultCenter={useDefaultMapCenter()}
           onCenterChanged={onCenterChanged}
         >
           {userLocation && <UserMarker position={userLocation} />}
@@ -128,3 +126,10 @@ const MapComponent = () => {
 }
 
 export default MapComponent
+
+const useDefaultMapCenter = () => {
+  const { campus } = useCampusStore()
+  const { lastMapCenter } = useLastMapCenterStore()
+
+  return toLatLng(lastMapCenter || CAMPUS_LOCATION[campus])
+}
