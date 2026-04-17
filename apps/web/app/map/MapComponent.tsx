@@ -28,6 +28,8 @@ const MapComponent = () => {
   const [currentBounds, setCurrentBounds] = useState<MapBounds | null>(null)
   const [selectedPlaceId, setSelectedPlaceId] = useState<string | null>(null)
   const [showUpdateButton, setShowUpdateButton] = useState(false)
+  const { campus: initCampus } = useCampusStore()
+  const [campus, setCampus] = useState<CampusType>(initCampus)
 
   const { setLastMapCenter } = useLastMapCenterStore()
   const { userLocation } = useWatchLocation()
@@ -70,6 +72,7 @@ const MapComponent = () => {
     moveMapTo(CAMPUS_LOCATION[campus])
     handleRefreshClick()
     setIsCenteredOnUser(false)
+    setCampus(campus)
   }
 
   const onCenterChanged = useDebounced(() => {
@@ -98,7 +101,7 @@ const MapComponent = () => {
           selectedPlaceId ? BOTTOM_OFFSET.WITH_SUMMARY_CARD : undefined
         }
       />
-      <CampusSelector onChangeAction={centerMapToCampus} />
+      <CampusSelector value={campus} onChange={centerMapToCampus} />
       <Container className={cn('map-wrapper', 'w-full', 'h-full')}>
         <NaverMap
           defaultZoom={15}
