@@ -1,20 +1,24 @@
 import { motion, PanInfo } from 'motion/react'
 
 type Props = {
-  categoryId: string
-  setCategoryId: (id: string) => void
+  activeKey: string
+  onNext: () => void
+  onPrev: () => void
+  canSwipePrev?: boolean
+  canSwipeNext?: boolean
   children: React.ReactNode
 }
 
 const SWIPE_CONFIDENCE_THRESHOLD = 5000
 
 export const SwipeableArea = ({
-  categoryId,
-  setCategoryId,
+  activeKey,
+  onNext,
+  onPrev,
+  canSwipePrev,
+  canSwipeNext,
   children,
 }: Props) => {
-  const NumberToCategoryId = Number(categoryId)
-
   const onDragEnd = (
     _e: MouseEvent | TouchEvent | PointerEvent,
     { offset, velocity }: PanInfo,
@@ -22,24 +26,20 @@ export const SwipeableArea = ({
     const swipePower = Math.abs(offset.x) * velocity.x
 
     if (swipePower < -SWIPE_CONFIDENCE_THRESHOLD) {
-      if (NumberToCategoryId < 15) {
-        setCategoryId(String(NumberToCategoryId + 1))
-      }
+      onNext()
     } else if (swipePower > SWIPE_CONFIDENCE_THRESHOLD) {
-      if (NumberToCategoryId > 1) {
-        setCategoryId(String(NumberToCategoryId - 1))
-      }
+      onPrev()
     }
   }
 
   return (
     <div className='relative h-full w-full overflow-x-hidden px-6'>
       <motion.div
-        key={categoryId}
+        key={activeKey}
         drag='x'
         dragConstraints={{
-          right: NumberToCategoryId <= 1 ? 0 : undefined,
-          left: NumberToCategoryId >= 15 ? 0 : undefined,
+          right: canSwipePrev ? undefined : 0,
+          left: canSwipeNext ? undefined : 0,
         }}
         dragElastic={0.2}
         dragSnapToOrigin

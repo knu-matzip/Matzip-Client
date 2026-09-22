@@ -19,6 +19,9 @@ export const CategoryDetailPage = () => {
   const activeCategory = categories.find(
     (category) => category.id === categoryId,
   )
+  const activeIndex = categories.findIndex((category) => category.id === categoryId)
+  const prevCategory = categories[activeIndex - 1]
+  const nextCategory = categories[activeIndex + 1]
 
   useEffect(() => {
     document.title = `공주대 맛집 | ${activeCategory?.name}`
@@ -43,7 +46,13 @@ export const CategoryDetailPage = () => {
         categoryId={categoryId}
         setCategoryId={setCategoryId}
       />
-      <SwipeableArea categoryId={categoryId} setCategoryId={setCategoryId}>
+      <SwipeableArea
+        activeKey={categoryId}
+        canSwipePrev={Boolean(prevCategory)}
+        canSwipeNext={Boolean(nextCategory)}
+        onPrev={() => prevCategory && setCategoryId(prevCategory.id)}
+        onNext={() => nextCategory && setCategoryId(nextCategory.id)}
+      >
         <Suspense fallback={<PlaceListItem.Skeleton count={3} />}>
           <Places categoryId={categoryId} />
         </Suspense>
