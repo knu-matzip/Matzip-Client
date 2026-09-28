@@ -54,7 +54,7 @@ const STEP_ORDER: Record<StepType, string> = {
 const PlaceNewPage = () => {
   const { Step, nextStep } = useFunnel<StepType>(STEP_ORDER)
   const { campus: initCampus } = useCampusStore()
-  const { mutate, isPending } = useCreateNewPlace()
+  const { mutateAsync, isPending, isSuccess } = useCreateNewPlace()
   const methods = useForm<NewPlaceRequest>({
     resolver: zodResolver(NewPlaceRequestSchema),
     defaultValues: {
@@ -74,7 +74,8 @@ const PlaceNewPage = () => {
   } = methods
 
   const onSubmit: SubmitHandler<NewPlaceRequest> = async (data) => {
-    mutate(data)
+    if (isPending || isSuccess) return
+    await mutateAsync(data)
   }
 
   const onError = (errors: FieldErrors<NewPlaceRequest>) => {
@@ -159,7 +160,7 @@ const PlaceNewPage = () => {
             />
           </Step>
           <Step name={'CATEGORY'}>
-            <Category isLoading={isSubmitting || isPending} />
+            <Category isLoading={isSubmitting || isPending || isSuccess} />
           </Step>
         </Column>
       </FormProvider>
